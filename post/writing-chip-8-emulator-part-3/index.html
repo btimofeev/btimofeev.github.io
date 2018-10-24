@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Пишем эмулятор CHIP-8. Часть 3: Примеры программ | Emunix
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://emunix.org/post/writing-chip-8-emulator-part-3/"/>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+  <link href="https://emunix.org/index.xml" rel="feed" type="application/rss+xml" title="Emunix" />
+
+</head>
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://emunix.org/">Emunix</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/btimofeev" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/btimofeev" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Пишем эмулятор CHIP-8. Часть 3: Примеры программ</h1>
+      <div class="meta">
+        Apr 15, 2012 &nbsp;
+        
+          #<a href="/tags/dev">dev</a>&nbsp;
+        
+          #<a href="/tags/emulation">emulation</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>В прошлой статье мы рассмотрели опкоды CHIP-8. Сегодня попробуем написать несколько простых демонстрационных программ для него.</p>
+
+<h2 id="chipper">Chipper</h2>
+
+<p>Для компиляции исходного кода нам потребуется ассемблер Chipper, автором которого является Hans Christian Egeberg. Скачать можно по ссылке <a href="http://www.hpcalc.org/hp48/pc/programming/chipper.zip">http://www.hpcalc.org/hp48/pc/programming/chipper.zip</a>
+
+В архиве лежат 3 файла:</p>
+
+<ul>
+<li>CHIPPER.EXE - ассемблер для DOS (возможно запустится в Windows. Если нет, то используйте <a href="http://www.dosbox.com/">DosBox</a>)</li>
+<li>CHIPPER.DOC - документация в формате txt (а не в doc как указано)</li>
+<li>CHIPPER.C - исходный код программы (пригодится пользователям альтернативных операционных систем)</li>
+</ul>
+
+<p>Для линукса Chipper компилируется следующей командой:</p>
+
+<pre><code>g++ CHIPPER.C -o chipper
+</code></pre>
+
+<p>Для Arch Linux готовый пакет лежит в <a href="https://aur.archlinux.org/packages.php?ID=57427">AUR</a>.</p>
+
+<p>После этого бинарник для CHIP-8 собирается следующей командой:</p>
+
+<pre><code>chipper ЦЕЛЬ ИСХОДНИК
+</code></pre>
+
+<p>где ЦЕЛЬ - название файла игры который появится в результате компиляции, далее запускаем его в эмуляторе.<br />
+ИСХОДНИК - путь к файлу с исходным кодом игры (здесь можно указать несколько файлов).</p>
+
+<h2 id="рисуем-спрайт-на-экране">Рисуем спрайт на экране</h2>
+
+<p>Первая программа будет совсем простой - мы нарисуем спрайт рыцаря в центре экрана. (Спрайт я взял вот с <a href="http://8bitcity.blogspot.com/2011/12/pixel-art-tiny-sprites.html">этой</a> страницы).</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-TASM" data-lang="TASM"><span style="color:#75af00">OPTION</span> <span style="color:#111">BINARY</span>
+<span style="color:#00a8c8">ALIGN</span> <span style="color:#111">OFF</span>
+ 
+        <span style="color:#75af00">ld</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#ae81ff">28</span>      <span style="color:#75715e">;(4)</span>
+        <span style="color:#75af00">ld</span> <span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">10</span>      <span style="color:#75715e">;(5)</span>
+        <span style="color:#75af00">ld</span> <span style="color:#111">I</span><span style="color:#111">,</span><span style="color:#111">sp</span><span style="color:#111">rite</span>   <span style="color:#75715e">;(6)</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>  <span style="color:#75715e">;(7)</span>
+       
+<span style="color:#111">loop:</span>                 <span style="color:#75715e">;(9)</span>
+        <span style="color:#75af00">jp</span> <span style="color:#111">loop</span>       <span style="color:#75715e">;(10)</span>
+       
+<span style="color:#111">sprite:</span>               <span style="color:#75715e">;(12)</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">......1.</span>  <span style="color:#75715e">;(13)</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1.1.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111111</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">.1111...</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111...</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>  <span style="color:#75715e">;(24)</span></code></pre></div>
+<p>Сохраняем данный код в файл с именем <strong>sprite.asm</strong> и компилируем командой:</p>
+
+<pre><code>chipper sprite.c8 sprite.asm
+</code></pre>
+
+<p>Запустив sprite.c8 в эмуляторе мы увидим рыцаря.</p>
+
+<p><img src="../../images/writing-chip-8-emulator-part-3/knight.png" alt="Изображение рыцаря в эмуляторе" /></p>
+
+<p>Теперь разберем код программы построчно.
+Две первые строчки указывают Chipper&rsquo;у создавать бинарный файл и не использовать выравнивание. Данные строки будут во всех наших программах.</p>
+
+<p>В строке (4) мы загружаем в регистр V0 число 28, это будет значение координаты X.<br />
+В (5) точно так загружаем координату Y в регистр V1.<br />
+Строка (6) загружает адрес спрайта в регистр I. Адрес мы указываем в качестве метки sprite: которая находится на (12) строке.</p>
+
+<p>В (7) строке рисуется спрайт по координатам лежащим в регистрах V0 и V1. Высота спрайта равна 12 пикселей (как вы помните из первой статьи, высота спрайта для CHIP-8 может варьироваться от 1 до 15 пикселей, для Super CHIP до 16).</p>
+
+<p>В строках (9) и (10) мы создаем бесконечный цикл, что бы программа не завершилась.</p>
+
+<p>Начиная от (13) и по (24) строку располагаются 12 байт представляющих спрайт рыцаря. Записаны они в двоичном виде(на что указывает символ $), где символ &ldquo;1&rdquo; обозначает установленный бит, символ &ldquo;.&rdquo; неустановленный (вместо точки можно использовать ноль). Установленные биты рисуются на экране.</p>
+
+<h2 id="клавиатура-подпрограммы-перерисовка-спрайтов">Клавиатура, подпрограммы, перерисовка спрайтов</h2>
+
+<p>В следующей программе можно перемещать спрайт по экрану используя клавиатуру.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-TASM" data-lang="TASM"><span style="color:#75af00">OPTION</span> <span style="color:#111">BINARY</span>
+<span style="color:#00a8c8">ALIGN</span> <span style="color:#111">OFF</span>
+ 
+        <span style="color:#75af00">ld</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#ae81ff">28</span>
+        <span style="color:#75af00">ld</span> <span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">10</span>
+        <span style="color:#75af00">ld</span> <span style="color:#111">I</span><span style="color:#111">,</span><span style="color:#111">sp</span><span style="color:#111">rite</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;рисуем спрайт в центре экрана</span>
+       
+        <span style="color:#75af00">ld</span> <span style="color:#111">v4</span><span style="color:#111">,</span> <span style="color:#ae81ff">1</span>        <span style="color:#75715e">;регистр v4 будем использовать для изменения координаты на 1 пиксель</span>
+ 
+<span style="color:#111">loop:</span>
+        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">2</span>        <span style="color:#75715e">;в регистре v3 сохраняем номер клавиши</span>
+        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>         <span style="color:#75715e">;пропускаем следующую инструкцию если эта клавиша не нажата</span>
+        <span style="color:#75af00">call</span> <span style="color:#111">up</span>         <span style="color:#75715e">;если клавиша оказалась нажата, то вызываем подпрограмму up</span>
+       
+        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">8</span>        <span style="color:#75715e">;остальное подобно предыдущему блоку</span>
+        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>
+        <span style="color:#75af00">call</span> <span style="color:#111">down</span>
+       
+        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">4</span>
+        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>
+        <span style="color:#75af00">call</span> <span style="color:#111">left</span>
+       
+        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">6</span>
+        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>
+        <span style="color:#75af00">call</span> <span style="color:#111">right</span>
+       
+        <span style="color:#75af00">jp</span> <span style="color:#111">loop</span>
+       
+<span style="color:#111">up:</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;стираем спрайт</span>
+        <span style="color:#75af00">sub</span> <span style="color:#111">v1</span><span style="color:#111">,</span> <span style="color:#111">v4</span>      <span style="color:#75715e">;вычисляем новую координату</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;рисуем спрайт на новом месте</span>
+        <span style="color:#75af00">ret</span>             <span style="color:#75715e">;возвращаемся из подпрограммы в место вызова</span>
+       
+<span style="color:#111">down:</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;подобно функции up</span>
+        <span style="color:#75af00">add</span> <span style="color:#111">v1</span><span style="color:#111">,</span> <span style="color:#111">v4</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+        <span style="color:#75af00">ret</span>
+ 
+<span style="color:#111">left:</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+        <span style="color:#75af00">sub</span> <span style="color:#111">v0</span><span style="color:#111">,</span> <span style="color:#111">v4</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+        <span style="color:#75af00">ret</span>
+       
+<span style="color:#111">right:</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+        <span style="color:#75af00">add</span> <span style="color:#111">v0</span><span style="color:#111">,</span> <span style="color:#111">v4</span>
+        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+        <span style="color:#75af00">ret</span>
+       
+<span style="color:#111">sprite:</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">......1.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1.1.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111111</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">.1111...</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111...</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>
+        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span></code></pre></div>
+<p>Все необходимые комментарии есть в коде программы. Хочу упомянуть лишь о том, что графика на экран выводится методом XOR. Это означает, что если в определенной точке экрана нарисован пиксель, и мы рисуем его в этом же месте снова, то пиксель стирается! Таким образом, что бы стереть спрайт с экрана, нам необходимо нарисовать его еще раз в том же самом месте, что мы и делаем в первой строчке функций up, down, left и right.</p>
+
+<h2 id="заготовка-для-небольшой-игры">Заготовка для небольшой игры</h2>
+
+<p>В следующей программе я реализовал небольшую заготовку для игры наподобие Space Invaders. В ней инопланетный захватчик перемещается вправо-влево. Нажимая клавиши 4 и 6 мы так же можем перемещать наш корабль. Но стрелять наш корабль пока не умеет, я думаю вы сможете сами написать код для реализации стрельбы, если захотите.</p>
+
+<p><img src="../../images/writing-chip-8-emulator-part-3/space-invaders.png" alt="Изображение space invaders" /></p>
+
+<p>Я не буду размещать в статье весь код этой программы, посмотреть его вы можете по ссылке <a href="http://pastebin.com/HaZYN5j6">http://pastebin.com/HaZYN5j6</a>
+В строке (13) мы включаем режим Super CHIP.
+Спрайт invader&rsquo;а имеет размер16x16 пикселей(поэтому последний параметр команды drw равен нулю), спрайт корабля 8x8.
+Для передвижения invader&rsquo;а мы используем таймер задержки. Когда таймер обнулен, мы сдвигаем спрайт и снова устанавливаем таймер. Изменяя начальное значение таймера можно регулировать скорость перемещения спрайта.
+Если вы хотите реализовать стрельбу, то помните: что бы определить столкновение двух спрайтов, необходимо проверять регистр VF, при столкновении он будет установлен в 1.</p>
+
+<p><em>В сегодняшней статье мы не рассмотрели некоторые возможности CHIP-8, наподобие встроенных шрифтов и скроллинга экрана, но в них нет ничего сложного, вы и сами легко в этом разберетесь. Ну, а в следующей статье мы перейдем непосредственно к написанию эмулятора.</em></p>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'emunix';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="https://emunix.org/post/writing-chip-8-emulator-part-2/" rel="prev">Пишем эмулятор CHIP-8. Часть 2: Ассемблер</a></span>
+    
+    
+      <span class="next"><a href="https://emunix.org/post/writing-chip-8-emulator-part-4-kernel/" rel="next">Пишем эмулятор CHIP-8. Часть 4: Ядро</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      © 2011-2017, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a>
+    </div>
+  </footer>
+
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-28744527-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Русификация Zenwalk 7 | Emunix
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://emunix.org/post/rusifikaciya-zenwalk-7/"/>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+  <link href="https://emunix.org/index.xml" rel="feed" type="application/rss+xml" title="Emunix" />
+
+</head>
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://emunix.org/">Emunix</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/btimofeev" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/btimofeev" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Русификация Zenwalk 7</h1>
+      <div class="meta">
+        Feb 23, 2012 &nbsp;
+        
+          #<a href="/tags/linux">linux</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>После установки linux-дистрибутива Zenwalk, мы получаем систему на английском языке. Как ее русифицировать? Это очень просто.</p>
+
+<p>Первым делом, во время установки, zenwalk предлагает нам выбрать локаль. Сразу выбираем <em>ru_RU.UTF-8</em>, это заставит программы использовать русский язык по-умолчанию.</p>
+
+<p>Для добавления русской раскладки клавиатуры изменяем в файле <em>/etc/X11/xorg.conf</em> следующую секцию:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Xorg" data-lang="Xorg"><span style="color:#f92672">Section</span> <span style="color:#8045ff">&#34;InputDevice&#34;</span>
+    <span style="color:#111">Identifier</span>    <span style="color:#d88200">&#34;Keyboard1&#34;</span>
+    <span style="color:#111">Driver</span>    <span style="color:#d88200">&#34;kbd&#34;</span>
+    <span style="color:#111">Option</span>     <span style="color:#d88200">&#34;XkbRules&#34;      &#34;xorg&#34;</span>
+    <span style="color:#111">Option</span>     <span style="color:#d88200">&#34;XkbModel&#34;      &#34;pc105&#34;</span>
+<span style="color:#111">Option</span>     <span style="color:#d88200">&#34;XkbLayout&#34;     &#34;us,ru(winkeys)&#34;</span>
+<span style="color:#111">Option</span>     <span style="color:#d88200">&#34;XkbOptions&#34;      &#34;grp:ctrl_shift_toggle,grp_led:scroll,terminate:ctrl_alt_bksp&#34;</span>
+<span style="color:#f92672">EndSection</span> </code></pre></div>
+<p>В этом примере раскладки переключаются по <em>Control+Shift</em>, при переключении загорается лампочка <em>Scroll Lock</em>. Если вам не нравится данная комбинация, то нужно изменить значение опции grp. Список доступных значений можно посмотреть <a href="http://andgera.livejournal.com/14162.html">здесь</a>.</p>
+
+<p>Для переключения раскладок в консоли редактируем файл <em>/etc/rс.d/rc.keymap</em> заменяя строку <strong>/usr/bin/loadkeys us.map</strong>
+на <strong>/usr/bin/loadkeys ru.map.gz</strong></p>
+
+<p>Файл <em>ru.map.gz</em> находится в каталоге <em>/usr/share/kbd/keymaps/i386/qwerty/</em>. В нем описывается соответствие нажимаемых клавиш и выводимых на экран символов. В данном случае используется вывод символов в юникоде и переключение раскладки по <em>Control+Shift</em>. Изменить это можно выбором другого файла в этой директории или отредактировав сам файл.</p>
+
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'emunix';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="https://emunix.org/post/lazyips-patcher/" rel="prev">Lazy IPS</a></span>
+    
+    
+      <span class="next"><a href="https://emunix.org/post/writing-chip-8-emulator-part-1-intro/" rel="next">Пишем эмулятор CHIP-8. Часть 1: Введение</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      © 2011-2017, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a>
+    </div>
+  </footer>
+
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-28744527-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+

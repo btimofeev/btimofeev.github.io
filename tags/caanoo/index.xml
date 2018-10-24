@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Caanoo on Emunix</title>
+    <link>https://emunix.org/tags/caanoo/</link>
+    <description>Recent content in Caanoo on Emunix</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru</language>
+    <lastBuildDate>Thu, 02 Feb 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://emunix.org/tags/caanoo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Передача файлов на Caanoo через Wi-Fi</title>
+      <link>https://emunix.org/post/transfer-files-to-caanoo-via-wifi/</link>
+      <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/transfer-files-to-caanoo-via-wifi/</guid>
+      <description>&lt;p&gt;В этой заметке я опишу способ передачи файлов на Caanoo через Wi-Fi.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/transfer-files-to-caanoo-via-wifi/caanoo.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Для этого нам понадобятся:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;собственно консоль GPH Caanoo&lt;/li&gt;
+&lt;li&gt;wifi-сеть, я использую домашний wifi-роутер, но в общественных сетях тоже должно работать&lt;/li&gt;
+&lt;li&gt;wifi-адаптер для Caanoo&lt;/li&gt;
+&lt;li&gt;ssh-сервер Dropbear (скачать можно &lt;a href=&#34;http://zx81.zx81.free.fr/serendipity/index.php?/categories/187-DropBear&#34;&gt;здесь&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;любой SFTP-клиент (например &lt;a href=&#34;http://filezilla-project.org/&#34;&gt;Filezilla&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Игра flood-it для Caanoo и Linux</title>
+      <link>https://emunix.org/post/flood-it-game-for-caanoo-and-linux/</link>
+      <pubDate>Mon, 30 Jan 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/flood-it-game-for-caanoo-and-linux/</guid>
+      <description>За два дня написал свою первую игру на SDL. Это клон игры flood-it. Работает на Caanoo и линуксе, но скомпилировать можно и для других систем.
+Цель игры: Начиная с левого верхнего угла и перекрашивая прилегающие квадраты заполнить всё поле одним цветом. На это дается 25 ходов.
+Скачать: версии для Caanoo, Linux, исходный код.
+Страница на GitHub&amp;rsquo;е</description>
+    </item>
+    
+  </channel>
+</rss>

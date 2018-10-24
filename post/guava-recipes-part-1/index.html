@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Guava - простые рецепты, делающие ваш Java код чище, часть 1 | Emunix
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://emunix.org/post/guava-recipes-part-1/"/>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+  <link href="https://emunix.org/index.xml" rel="feed" type="application/rss+xml" title="Emunix" />
+
+</head>
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://emunix.org/">Emunix</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/btimofeev" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/btimofeev" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Guava - простые рецепты, делающие ваш Java код чище, часть 1</h1>
+      <div class="meta">
+        Apr 23, 2014 &nbsp;
+        
+          #<a href="/tags/dev">dev</a>&nbsp;
+        
+          #<a href="/tags/java">java</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p><em>Это перевод статьи <a href="http://onthejvm.blogspot.ru/2013/06/guava-simple-recipes-to-make-your-java.html">Guava - simple recipes to make your Java code cleaner, 1st part</a>, автор Lukasz Barc.</em></p>
+
+<p>Это статья для тех, кто не работал с библиотекой Guava. Просто несколько простых примеров которые вы можете использовать в своем коде.</p>
+
+<h4 id="1-вы-можете-использовать-optional-вместо-простого-возврата-null-в-некоторых-случаях">1. Вы можете использовать Optional вместо простого возврата null в некоторых случаях:</h4>
+
+<p>Вместо:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e">* Может вернуть null в некоторых случаях ... но это
+</span><span style="color:#75715e">* трудно запомнить
+</span><span style="color:#75715e">*/</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#111">String</span> <span style="color:#75af00">someMethod</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">String</span> <span style="color:#111">returnValue</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">;</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">Date</span><span style="color:#f92672">().</span><span style="color:#75af00">getTime</span><span style="color:#f92672">()</span> <span style="color:#f92672">%</span> <span style="color:#111">2</span> <span style="color:#f92672">==</span> <span style="color:#111">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">returnValue</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;time % 2 == 0&#34;</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#111">returnValue</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">main</span><span style="color:#f92672">(</span><span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#111">args</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">String</span> <span style="color:#111">str</span> <span style="color:#f92672">=</span> <span style="color:#111">someMethod</span><span style="color:#f92672">();</span>
+    <span style="color:#111">str</span><span style="color:#f92672">.</span><span style="color:#75af00">contains</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;%&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">// ошибка, если str == null
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span></code></pre></div>
+<p></p>
+
+<p>используйте это:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Явно показывает, что метод может
+</span><span style="color:#75715e"> * возвратить пустое (null) значение
+</span><span style="color:#75715e"> */</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#111">Optional</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">someMethod</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">Optional</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">returnValue</span> <span style="color:#f92672">=</span> <span style="color:#111">Optional</span><span style="color:#f92672">.</span><span style="color:#75af00">absent</span><span style="color:#f92672">();</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">Date</span><span style="color:#f92672">().</span><span style="color:#75af00">getTime</span><span style="color:#f92672">()</span> <span style="color:#f92672">%</span> <span style="color:#111">2</span> <span style="color:#f92672">==</span> <span style="color:#111">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">returnValue</span> <span style="color:#f92672">=</span> <span style="color:#111">Optional</span><span style="color:#f92672">.</span><span style="color:#75af00">of</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">String</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#111">returnValue</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">main</span><span style="color:#f92672">(</span><span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#111">args</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">Optional</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">str</span>  <span style="color:#f92672">=</span> <span style="color:#111">someMethod</span><span style="color:#f92672">();</span>
+    <span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">str</span><span style="color:#f92672">.</span><span style="color:#75af00">isPresent</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">// значение не равно null
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// вы можете работать с полученным значением, либо со значением по умолчанию, если str == null
+</span><span style="color:#75715e"></span>    <span style="color:#111">str</span><span style="color:#f92672">.</span><span style="color:#75af00">or</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;default value&#34;</span><span style="color:#f92672">).</span><span style="color:#75af00">contains</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;%&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<h4 id="2-вы-можете-использовать-firstnonnull-из-класса-objects-библиотеки-guava-вместо-записи-if-else">2. Вы можете использовать firstNonNull из класса Objects библиотеки Guava вместо записи &ldquo;if else&rdquo;</h4>
+
+<p>Вместо:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#111">T</span> <span style="color:#75af00">foo</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">...</span>
+    <span style="color:#f92672">...</span>
+    <span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">first</span> <span style="color:#f92672">!=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">first</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span> <span style="color:#00a8c8">else</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">second</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>используйте это:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import static</span> <span style="color:#111">com.google.common.base.Objects.firstNonNull</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">...</span>
+<span style="color:#00a8c8">public</span> <span style="color:#111">T</span> <span style="color:#75af00">foo</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">...</span>
+    <span style="color:#f92672">...</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#111">firstNonNull</span><span style="color:#f92672">(</span><span style="color:#111">first</span><span style="color:#f92672">,</span> <span style="color:#111">second</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<h4 id="3-вы-можете-использовать-методы-из-класса-strings-библиотеки-guava-для-работы-с-пустыми-или-null-строками">3. Вы можете использовать методы из класса Strings библиотеки Guava для работы с пустыми или null строками</h4>
+
+<p>Вместо:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">str</span> <span style="color:#f92672">==</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">str</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;&#34;</span><span style="color:#f92672">.</span><span style="color:#75af00">equals</span><span style="color:#f92672">(</span><span style="color:#111">str</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">str</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">str</span> <span style="color:#f92672">==</span> <span style="color:#00a8c8">null</span> <span style="color:#f92672">||</span> <span style="color:#111">str</span><span style="color:#f92672">.</span><span style="color:#75af00">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#111">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// null или пустая строка
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span></code></pre></div>
+<p>используйте это:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import static</span> <span style="color:#111">com.google.common.base.Strings.*</span><span style="color:#f92672">;</span>
+    
+<span style="color:#111">str</span> <span style="color:#f92672">=</span> <span style="color:#111">nullToEmpty</span><span style="color:#f92672">(</span><span style="color:#111">str</span><span style="color:#f92672">);</span>
+<span style="color:#111">str</span> <span style="color:#f92672">=</span> <span style="color:#111">emptyToNull</span><span style="color:#f92672">(</span><span style="color:#111">str</span><span style="color:#f92672">);</span>
+<span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">isNullOrEmpty</span><span style="color:#f92672">(</span><span style="color:#111">str</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+   <span style="color:#75715e">// null или пустая строка
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span></code></pre></div>
+<h4 id="4-вы-можете-использовать-object-equals-a-b-для-безопасной-проверки-на-равенство">4. Вы можете использовать Object.equals(a, b) для безопасной проверки на равенство</h4>
+
+<p>Вместо:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">a</span><span style="color:#f92672">.</span><span style="color:#75af00">equals</span><span style="color:#f92672">(</span><span style="color:#111">b</span><span style="color:#f92672">);</span> <span style="color:#f92672">//</span> <span style="color:#111">ошибка</span><span style="color:#f92672">,</span> <span style="color:#111">если</span> <span style="color:#111">а</span> <span style="color:#f92672">==</span> <span style="color:#00a8c8">null</span></code></pre></div>
+<p>используйте это:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import static</span> <span style="color:#111">com.google.common.base.Objects.equal</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">...</span>
+<span style="color:#111">equal</span><span style="color:#f92672">(</span><span style="color:#111">a</span><span style="color:#f92672">,</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">);</span> <span style="color:#75715e">// возвратит false
+</span><span style="color:#75715e"></span><span style="color:#111">equal</span><span style="color:#f92672">(</span><span style="color:#00a8c8">null</span><span style="color:#f92672">,</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">);</span> <span style="color:#75715e">// возвратит true
+</span><span style="color:#75715e"></span><span style="color:#111">equal</span><span style="color:#f92672">(</span><span style="color:#111">a</span><span style="color:#f92672">,</span> <span style="color:#111">b</span><span style="color:#f92672">);</span> <span style="color:#f92672">//</span> <span style="color:#111">возвратит</span> <span style="color:#00a8c8">true</span> <span style="color:#111">если</span> <span style="color:#111">a</span> <span style="color:#f92672">==</span> <span style="color:#111">b</span></code></pre></div>
+<h4 id="5-вы-можете-использовать-joiner-для-соединения-строк">5. Вы можете использовать Joiner для соединения строк</h4>
+
+<p>Вместо:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">StringBuffer</span> <span style="color:#111">buffer</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">StringBuffer</span><span style="color:#f92672">();</span>
+<span style="color:#00a8c8">for</span> <span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">str</span> <span style="color:#f92672">:</span> <span style="color:#111">strs</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">str</span> <span style="color:#f92672">!=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">buffer</span><span style="color:#f92672">.</span><span style="color:#75af00">append</span><span style="color:#f92672">(</span><span style="color:#111">str</span><span style="color:#f92672">);</span>
+        <span style="color:#111">buffer</span><span style="color:#f92672">.</span><span style="color:#75af00">append</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;, &#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">buffer</span><span style="color:#f92672">.</span><span style="color:#75af00">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;=</span> <span style="color:#111">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">buffer</span><span style="color:#f92672">.</span><span style="color:#75af00">substring</span><span style="color:#f92672">(</span><span style="color:#111">0</span><span style="color:#f92672">,</span> <span style="color:#111">buffer</span><span style="color:#f92672">.</span><span style="color:#75af00">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> <span style="color:#111">2</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+<span style="color:#00a8c8">return</span> <span style="color:#111">buffer</span><span style="color:#f92672">.</span><span style="color:#75af00">toString</span><span style="color:#f92672">();</span></code></pre></div>
+<p>используйте это:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.common.base.Joiner</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">...</span>
+<span style="color:#00a8c8">return</span> <span style="color:#111">Joiner</span><span style="color:#f92672">.</span><span style="color:#75af00">on</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;, &#34;</span><span style="color:#f92672">).</span><span style="color:#75af00">skipNulls</span><span style="color:#f92672">().</span><span style="color:#75af00">join</span><span style="color:#f92672">(</span><span style="color:#111">strs</span><span style="color:#f92672">);</span></code></pre></div>
+<h4 id="6-вы-можете-использовать-splitter-для-разбиения-строки">6. Вы можете использовать Splitter для разбиения строки</h4>
+
+<p>Вместо:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">String</span> <span style="color:#111">str</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;abc, bcd,, cde   ,zsa&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#111">split</span> <span style="color:#f92672">=</span> <span style="color:#111">str</span><span style="color:#f92672">.</span><span style="color:#75af00">split</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;,&#34;</span><span style="color:#f92672">);</span>
+
+<span style="color:#f92672">//</span> <span style="color:#111">Что</span> <span style="color:#111">делать</span> <span style="color:#111">с</span> <span style="color:#111">пробелами</span><span style="color:#f92672">,</span> <span style="color:#111">пустыми</span> <span style="color:#111">строками</span><span style="color:#f92672">?</span> </code></pre></div>
+<p>используйте это:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.common.base.Splitter</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">...</span>
+<span style="color:#111">Splitter</span><span style="color:#f92672">.</span><span style="color:#75af00">on</span><span style="color:#f92672">(</span><span style="color:#d88200">&#39;,&#39;</span><span style="color:#f92672">)</span>
+        <span style="color:#f92672">.</span><span style="color:#75af00">trimResults</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">.</span><span style="color:#75af00">omitEmptyStrings</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">.</span><span style="color:#75af00">split</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;abc, bcd,, cde   ,zsa&#34;</span><span style="color:#f92672">);</span></code></pre></div>
+<h4 id="7-вы-можете-использовать-multiset-для-подсчета-количества-вхождений-объекта">7. Вы можете использовать Multiset для подсчета количества вхождений объекта</h4>
+
+<p>Вместо:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">Map</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span><span style="color:#f92672">,</span> <span style="color:#111">Integer</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">countMap</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">HashMap</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span><span style="color:#f92672">,</span> <span style="color:#111">Integer</span> <span style="color:#f92672">&gt;();</span>
+<span style="color:#00a8c8">for</span> <span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">word</span> <span style="color:#f92672">:</span> <span style="color:#111">words</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">if</span><span style="color:#f92672">(!</span><span style="color:#111">countMap</span><span style="color:#f92672">.</span><span style="color:#75af00">containsKey</span><span style="color:#f92672">(</span><span style="color:#111">word</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">countMap</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span><span style="color:#111">word</span><span style="color:#f92672">,</span> <span style="color:#111">0</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#111">countMap</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span><span style="color:#111">word</span><span style="color:#f92672">,</span> <span style="color:#111">countMap</span><span style="color:#f92672">.</span><span style="color:#75af00">get</span><span style="color:#f92672">(</span><span style="color:#111">word</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#111">1</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>используйте это:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.common.collect.HashMultiset</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.common.collect.Multiset</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">...</span>
+<span style="color:#111">Multiset</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">wordsMultiset</span> <span style="color:#f92672">=</span> <span style="color:#111">HashMultiset</span><span style="color:#f92672">.</span><span style="color:#75af00">create</span><span style="color:#f92672">();</span>
+<span style="color:#111">wordsMultiset</span><span style="color:#f92672">.</span><span style="color:#75af00">addAll</span><span style="color:#f92672">(</span><span style="color:#111">words</span><span style="color:#f92672">);</span></code></pre></div>
+<h4 id="8-вы-можете-использовать-multimap-вместо-map-со-значениями-list-или-set">8. Вы можете использовать Multimap вместо Map со значениями List или Set</h4>
+
+<p>Вместо:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">Map</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span><span style="color:#f92672">,</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">languagesMap</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">HashMap</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span><span style="color:#f92672">,</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span> <span style="color:#f92672">&gt;&gt;();</span>
+<span style="color:#00a8c8">for</span> <span style="color:#f92672">(</span><span style="color:#111">Programmer</span> <span style="color:#111">programmer</span> <span style="color:#f92672">:</span> <span style="color:#111">programmers</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">languagesMap</span><span style="color:#f92672">.</span><span style="color:#75af00">get</span><span style="color:#f92672">(</span><span style="color:#111">programmer</span><span style="color:#f92672">.</span><span style="color:#75af00">getLanguage</span><span style="color:#f92672">())</span> <span style="color:#f92672">!=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">languagesMap</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span><span style="color:#111">programmer</span><span style="color:#f92672">.</span><span style="color:#75af00">getLanguage</span><span style="color:#f92672">(),</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ArrayList</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span> <span style="color:#f92672">&gt;());</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#111">languagesMap</span><span style="color:#f92672">.</span><span style="color:#75af00">get</span><span style="color:#f92672">(</span><span style="color:#111">programmer</span><span style="color:#f92672">.</span><span style="color:#75af00">getLanguage</span><span style="color:#f92672">()).</span><span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">programmer</span><span style="color:#f92672">.</span><span style="color:#75af00">getEmail</span><span style="color:#f92672">());</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>используйте это:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.common.collect.HashMultimap</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.common.collect.Multimap</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">...</span>
+<span style="color:#111">Multimap</span><span style="color:#f92672">&lt;</span> <span style="color:#111">String</span><span style="color:#f92672">,</span> <span style="color:#111">String</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">languagesMap</span> <span style="color:#f92672">=</span> <span style="color:#111">HashMultimap</span><span style="color:#f92672">.</span><span style="color:#75af00">create</span><span style="color:#f92672">();</span>
+<span style="color:#00a8c8">for</span> <span style="color:#f92672">(</span><span style="color:#111">Programmer</span> <span style="color:#111">programmer</span> <span style="color:#f92672">:</span> <span style="color:#111">programmers</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">languagesMap</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span><span style="color:#111">programmer</span><span style="color:#f92672">.</span><span style="color:#75af00">getLanguage</span><span style="color:#f92672">(),</span> <span style="color:#111">programmer</span><span style="color:#f92672">.</span><span style="color:#75af00">getEmail</span><span style="color:#f92672">());</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p><em>&hellip; продолжение следует &hellip;</em></p>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'emunix';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="https://emunix.org/post/the-dark-side-of-asynctask/" rel="prev">Тёмная сторона AsyncTask</a></span>
+    
+    
+      <span class="next"><a href="https://emunix.org/post/nethack-sink/" rel="next">NetHack: Раковины, питьё из них и пинание</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      © 2011-2017, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a>
+    </div>
+  </footer>
+
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-28744527-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+

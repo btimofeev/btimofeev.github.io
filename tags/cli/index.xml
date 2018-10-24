@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cli on Emunix</title>
+    <link>https://emunix.org/tags/cli/</link>
+    <description>Recent content in Cli on Emunix</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru</language>
+    <lastBuildDate>Tue, 12 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://emunix.org/tags/cli/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Как сделать раздел жесткого диска доступным нескольким пользователям</title>
+      <link>https://emunix.org/post/how-to-share-partition-between-users-in-linux/</link>
+      <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/how-to-share-partition-between-users-in-linux/</guid>
+      <description>Данная заметка написана для начинающих пользователей Linux. В ней описывается как примонтировать раздел жесткого диска таким образом, что бы у нескольких пользователей в системе были права на доступ к файлам (на чтение и запись). Вся информация подходит только для файловых систем использующих unix права доступа (таких как ext3, ext4 и т.п.) и не подходит для файловых систем NTFS и FAT.
+Допустим, у нас есть два пользователя состоящие в разных группах</description>
+    </item>
+    
+    <item>
+      <title>atool: простая работа с архивами в Linux</title>
+      <link>https://emunix.org/post/atool/</link>
+      <pubDate>Thu, 24 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/atool/</guid>
+      <description>При работе с архивами в командной строке Linux есть одно неудобство: у каждой программы-архиватора свой набор ключей, который необходимо помнить, либо постоянно заглядывать в man.
+Эта проблема легко решается, если использовать утилиту atool, т.к. с ее помощью вы сможете работать с любым форматом архивов. Попросту говоря, atool это фронтенд для консольных архиваторов, предоставляющий единый интерфейс для работы с ними.
+Программу можно скачать с официальной страницы www.nongnu.org/atool, либо установив с помощью пакетного менеджера вашего дистрибутива.</description>
+    </item>
+    
+    <item>
+      <title>Запись CD/DVD дисков из консоли</title>
+      <link>https://emunix.org/post/command-line-cd-burning/</link>
+      <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/command-line-cd-burning/</guid>
+      <description>Запись образа на CD-R или CD-RW диск: cdrecord -v -eject speed=10 dev=/dev/cdrom ~/disc.iso
+Если speed=0 программа сама выбирает подходящую скорость.
+CD-RW диск необходимо сначала очистить: cdrecord -v blank=fast dev=/dev/cdrom
+blank=all - очистить весь диск
+blank=fast - быстрая очистка диска
+blank=session - очистить последнюю сессию
+blank=unclose - открыть последнюю записанную сессию
+Создание образа диска: mkisofs -o test.iso -Jrv -V test_disk /home/user/something
+В этом примере следующие обозначения:
+-o - имя создаваемого iso-файла (test.</description>
+    </item>
+    
+    <item>
+      <title>Монтируем образ диска через FuseISO</title>
+      <link>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</link>
+      <pubDate>Thu, 08 Dec 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</guid>
+      <description>FuseISO это программа для монтирования образов дисков в форматах .iso, .nrg, .bin, .mdf и .img. Для работы не нужны привилегии root&amp;rsquo;а.
+Для того что бы примонтировать образ disk.iso к файловой системе в каталог /mount_point используем команду:
+fuseiso -p disk.iso /mount_point  Опция -p создает каталог, если его не существует, а также удаляет его при отмонтировании.
+Для отмонтирования используем команду:
+fusermount -u /mount_point  </description>
+    </item>
+    
+    <item>
+      <title>Как восстановить Windows MBR из-под Linux</title>
+      <link>https://emunix.org/post/how-to-restore-windows-mbr-from-linux/</link>
+      <pubDate>Thu, 03 Nov 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/how-to-restore-windows-mbr-from-linux/</guid>
+      <description>Что делать если необходимо восстановить Windows Master Boot Record (MBR)?
+Берем любой LiveCD-дистрибутив linux и устанавливаем программу ms-sys. К примеру, в Ubuntu для этого набираем в терминале:
+sudo apt-get install ms-sys  Далее ищем в выводе следующей команды диск с установленной windows:
+sudo fdisk -l  Если, например, таким диском является /dev/sda1, набираем:
+sudo ms-sys -m /dev/sda  Вот и все, загрузчик восстановлен.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Пишем эмулятор CHIP-8. Часть 4: Ядро | Emunix
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://emunix.org/post/writing-chip-8-emulator-part-4-kernel/"/>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+  <link href="https://emunix.org/index.xml" rel="feed" type="application/rss+xml" title="Emunix" />
+
+</head>
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://emunix.org/">Emunix</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/btimofeev" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/btimofeev" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Пишем эмулятор CHIP-8. Часть 4: Ядро</h1>
+      <div class="meta">
+        Jun 30, 2012 &nbsp;
+        
+          #<a href="/tags/dev">dev</a>&nbsp;
+        
+          #<a href="/tags/emulation">emulation</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>В сегодняшней статье мы перейдем непосредственно к самой важной части - написанию ядра нашего эмулятора.</p>
+
+<p>В общем виде эмуляция CHIP8 выглядит следующим образом:</p>
+
+<ul>
+<li>Мы объявляем переменные, которые будут представлять регистры процессора, массивы которые представляют память, экран, состояние клавиатуры и т.п.</li>
+<li>Инициализируем эти переменные начальными значениями, очищаем массивы памяти и экрана, загружаем в память стандартные шрифты CHIP8/SCHIP. После этого загружаем в память игру (копируем ее в массив памяти со смещением 0x200 от начала массива)
+<!-- TEASER_END --></li>
+<li>Считываем из памяти по адресу PC двухбайтовый опкод, конструкцией switch-case выбираем его и выполняем (здесь мы должны добиться полного соответствия с эмулируемой платформой: если опкод CHIP-8 присваивает регистру I какое-то значение, то и мы присваиваем его нашей переменной I; если опкод сдвигает изображение на экране на несколько пикселей вправо, то и мы сдвигаем данные в массиве представляющем экран, и т.п.). И не забываем увеличивать значение в регистре PC на 2 (необходимо для выполнения следующего опкода). Конструкция выглядит примерно так:</li>
+</ul>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#111">opcode</span> <span style="color:#f92672">=</span> <span style="color:#111">memory</span><span style="color:#111">[</span><span style="color:#111">PC</span><span style="color:#111">];</span>
+<span style="color:#111">PC</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span><span style="color:#111">;</span>
+<span style="color:#00a8c8">switch</span><span style="color:#111">(</span><span style="color:#111">opcode</span><span style="color:#111">)</span>
+<span style="color:#111">{</span>
+    <span style="color:#00a8c8">case</span> <span style="color:#111">opcode1</span><span style="color:#111">:</span> <span style="color:#75715e">/** выполняем опкод **/</span><span style="color:#111">;</span> <span style="color:#00a8c8">break</span><span style="color:#111">;</span>
+    <span style="color:#00a8c8">case</span> <span style="color:#111">opcode2</span><span style="color:#111">:</span> <span style="color:#75715e">/** выполняем опкод **/</span><span style="color:#111">;</span> <span style="color:#00a8c8">break</span><span style="color:#111">;</span>
+    <span style="color:#111">..</span>
+    <span style="color:#00a8c8">case</span> <span style="color:#111">opcodeN</span><span style="color:#111">:</span> <span style="color:#75715e">/** выполняем опкод **/</span><span style="color:#111">;</span> <span style="color:#00a8c8">break</span><span style="color:#111">;</span>
+<span style="color:#111">}</span>
+</code></pre></div>
+<ul>
+<li>Обновляем значения таймеров 60 раз в секунду, рисуем экран, считываем состояние клавиатуры и снова выполняем пункт 3.</li>
+</ul>
+
+<p>Теперь приступим к написанию кода. Создаем файл <strong>emu_chip.h</strong> со следующим содержимым:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#ifndef CHIP_EMU_H
+</span><span style="color:#75715e">#define CHIP_EMU_H
+</span><span style="color:#75715e"></span> 
+<span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#00a8c8">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#75af00">ChipEmu</span>
+<span style="color:#111">{</span>
+<span style="color:#00a8c8">private</span><span style="color:#f92672">:</span>
+        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">opcode</span><span style="color:#111">;</span>          <span style="color:#75715e">// двухбайтовый опкод
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">V</span><span style="color:#111">[</span><span style="color:#ae81ff">16</span><span style="color:#111">];</span>            <span style="color:#75715e">// регистры общего назначения и флаг переноса VF  
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">I</span><span style="color:#111">;</span>               <span style="color:#75715e">// адрессный регистр
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">PC</span><span style="color:#111">;</span>              <span style="color:#75715e">// указатель кода
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">SP</span><span style="color:#111">;</span>               <span style="color:#75715e">// указаель стека
+</span><span style="color:#75715e"></span>       
+        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">stack</span><span style="color:#111">[</span><span style="color:#ae81ff">16</span><span style="color:#111">];</span>       <span style="color:#75715e">// массив хранящий в себе стек
+</span><span style="color:#75715e"></span>       
+        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">memory</span><span style="color:#111">[</span><span style="color:#ae81ff">4096</span><span style="color:#111">];</span>     <span style="color:#75715e">// память, в нее загружаем игру
+</span><span style="color:#75715e"></span> 
+        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">delay_timer</span><span style="color:#111">;</span>      <span style="color:#75715e">// таймеры задержки
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">sound_timer</span><span style="color:#111">;</span>      <span style="color:#75715e">// и звука
+</span><span style="color:#75715e"></span> 
+        <span style="color:#75715e">// функция рисующая спрайт в массив screen
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">drawSprite</span><span style="color:#111">(</span><span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">X</span><span style="color:#111">,</span> <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">Y</span><span style="color:#111">,</span> <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">N</span><span style="color:#111">);</span>
+ 
+        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">hp48_flags</span><span style="color:#111">[</span><span style="color:#ae81ff">8</span><span style="color:#111">];</span>    <span style="color:#75715e">// флаги, необходимы для опкодов Fx75, Fx85
+</span><span style="color:#75715e"></span> 
+<span style="color:#00a8c8">public</span><span style="color:#f92672">:</span>
+        <span style="color:#00a8c8">int</span> <span style="color:#111">mode</span><span style="color:#111">;</span>                       <span style="color:#75715e">// переменная определяющая текущий режим:
+</span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 0 - CHIP-8
+</span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 1 - SCHIP
+</span><span style="color:#75715e"></span> 
+        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">screen</span><span style="color:#111">[</span><span style="color:#ae81ff">128</span><span style="color:#111">][</span><span style="color:#ae81ff">64</span><span style="color:#111">];</span>  <span style="color:#75715e">// массив представляющий экран
+</span><span style="color:#75715e"></span> 
+        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">key</span><span style="color:#111">[</span><span style="color:#ae81ff">16</span><span style="color:#111">];</span>          <span style="color:#75715e">// массив содержащий состояние клавиатуры:
+</span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 0 - клавиша отпущена
+</span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 1 - клавиша нажата
+</span><span style="color:#75715e"></span> 
+        <span style="color:#00a8c8">bool</span> <span style="color:#111">stop</span><span style="color:#111">;</span>                      <span style="color:#75715e">// переменная для опкода 00FD
+</span><span style="color:#75715e"></span> 
+        <span style="color:#111">ChipEmu</span><span style="color:#111">();</span>
+ 
+        <span style="color:#75715e">// инициализация переменных, загрузка шрифтов
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">init</span><span style="color:#111">();</span>
+ 
+        <span style="color:#75715e">// функция загрузки игры в память
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">bool</span> <span style="color:#75af00">loadGame</span><span style="color:#111">(</span><span style="color:#00a8c8">const</span> <span style="color:#00a8c8">char</span> <span style="color:#f92672">*</span><span style="color:#111">filename</span><span style="color:#111">);</span>
+ 
+        <span style="color:#75715e">// функция выполняющая опкод
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">executeNextOpcode</span><span style="color:#111">();</span>
+ 
+        <span style="color:#75715e">// функция уменьшающая значения таймеров
+</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">decreaseTimers</span><span style="color:#111">();</span>
+<span style="color:#111">};</span>
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span></code></pre></div>
+<p>Файл <strong>emu_chip.cpp</strong> я выложил на <a href="http://pastebin.com/iiAz3Hfk">http://pastebin.com/iiAz3Hfk</a> Рассмотрим в нем ключевые моменты.</p>
+
+<p>В функции <strong>init()</strong> мы обнуляем регистры, очищаем массивы памяти и экрана, а так же загружаем шрифты: маленький грузим в начало массива памяти, большой со смешением в 80 байт от начала. PC устанавливаем в 0x200, так как игра начинает выполняться с этого адреса.</p>
+
+<p>Переменная mode нужна для того, что бы функция <strong>drawSprite()</strong> знала в каком режиме ей рисовать спрайты: CHIP-8 или SUPER CHIP. По-умолчанию это режим CHIP-8.</p>
+
+<p>Функция <strong>loadGame()</strong> загружает игру в массив memory начиная со смещения 0x200, так как по спецификации CHIP-8 код игры должен начинаться с этого адреса.</p>
+
+<p>Функция <strong>decreaseTimers()</strong> вызывается 60 раз в секунду для уменьшения таймеров. К ней мы еще вернемся в следующей статье, когда будем говорить о скорости эмуляции.</p>
+
+<p>Теперь рассмотрим функцию <strong>executeNextOpcode()</strong>. Практически весь процесс эмуляции происходит именно в ней.</p>
+
+<p>В строке 188 мы загружаем двухбайтовое значение из памяти с адресом PC в переменную opcode. Затем увеличиваем PC на 2, что бы при следующей итерации цикла загружались следующие два байта.</p>
+
+<p>Я подразумеваю, что вы понимаете как работают операции сдвига и булева алгебра, иначе сложно будет разобраться как мы находим необходимый опкод и &ldquo;извлекаем&rdquo; из него определенные биты.</p>
+
+<p>Попробую объяснить это на примере:
+Возмем опкод 8XY0. В нем X и Y - любая шестнадцатеричная цифра. Наша задача определить, что в переменной opcode содержится именно этот опкод, а затем &ldquo;извлечь&rdquo; из него значения X и Y.</p>
+
+<p>Для начала нам нужно узнать старшие 4 бита опкода. Делаем это так: <code>(opcode &amp; 0xF000) &gt;&gt; 12</code>
+В результате выполнения <code>opcode &amp; 0xF000</code> мы получим значение 8000, которое сдвигаем на 12 бит вправо и получаем число 8.</p>
+
+<p>Точно так же определяем остальные цифры:
+Младший 0 получаем после операции <code>opcode &amp; 0x000F</code>, и теперь мы точно можем быть уверены, что это опкод 8XY0
+Значение X получаем вот так <code>(opcode &amp; 0x0F00) &gt;&gt; 8</code>
+Значение Y получаем вот так <code>(opcode &amp; 0x00F0) &gt;&gt; 4</code></p>
+
+<p>В функции <strong>executeNextOpcode()</strong> опкод выбирается через вложенные операторы switch-case. Внешний switch определяет старшие 4 бита опкода и, если их недостаточно для идентификации, вложенный switch определяет остальные необходимые биты.</p>
+
+<p>Дальше смотрим список опкодов во второй части этой статьи и реализуем функционал который эти опкоды должны выполнять.
+К примеру, для опкода 00E0 (который очищает экран) в цикле забиваем нулями массив screen (строки 209-213).
+Вообще большая часть опкодов реализуется довольно просто, сложности могут возникнуть с опкодами DXYN, FX33, FX55 и FX65 (угадайте почему 2 последних входят в этот список).</p>
+
+<p>Функция <strong>drawSprite()</strong> реализует поведение опкода DXYN. Она рисует в массив screen спрайт находящийся по смещению I. Координаты спрайта берутся из регистров VX и VY.
+Один байт по смещению I представляет одну строку спрайта для CHIP-8, и полстроки для SCHIP (при N=0). Каждый бит в этом байте представляет отдельный пиксель. Количество строк N извлекается из опкода. Если N=0, то в спрайте 16 строк.
+Также не стоит забывать о том, что если мы рисуем пиксель &ldquo;поверх&rdquo; уже существующего пикселя, то эта точка экрана очистится, а регистр VF установится в 1. То есть рисуем методом XOR.</p>
+
+<p><em>В этой статье мы написали класс реализующий ядро эмулятора, а в следующей займемся интерфейсной частью - выводом графики и обработкой событий клавиатуры, а также рассмотрим как управлять скоростью эмуляции.</em></p>
+
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'emunix';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="https://emunix.org/post/writing-chip-8-emulator-part-3/" rel="prev">Пишем эмулятор CHIP-8. Часть 3: Примеры программ</a></span>
+    
+    
+      <span class="next"><a href="https://emunix.org/post/command-line-cd-burning/" rel="next">Запись CD/DVD дисков из консоли</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      © 2011-2017, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a>
+    </div>
+  </footer>
+
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-28744527-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+

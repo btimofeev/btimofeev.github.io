@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Тёмная сторона AsyncTask | Emunix
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://emunix.org/post/the-dark-side-of-asynctask/"/>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+  <link href="https://emunix.org/index.xml" rel="feed" type="application/rss+xml" title="Emunix" />
+
+</head>
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://emunix.org/">Emunix</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/btimofeev" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/btimofeev" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Тёмная сторона AsyncTask</h1>
+      <div class="meta">
+        Jul 31, 2013 &nbsp;
+        
+          #<a href="/tags/android">android</a>&nbsp;
+        
+          #<a href="/tags/dev">dev</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<p><em>Это перевод статьи <a href="http://bon-app-etit.blogspot.com/2013/04/the-dark-side-of-asynctask.html">The dark side of AsyncTask</a>, автор Fr&#233; Dumazy.</em></p>
+
+<p>Привет всем,</p>
+
+<p>В этой статье я хочу рассказать о некоторых проблемах <a href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask</a>. Я написал свою первую статью о том, как использовать AsyncTask примерно полгода назад. Теперь я собираюсь рассказать про проблемы, которые он может вызвать, о том как их можно исправить и о существующих альтернативах.</p>
+
+<p>В настоящее время AsyncTask, вероятно, наиболее широко используемый на Android способ выполнения задач в фоне. С ним очень легко работать, за что AsyncTask и получил признание среди разработчиков. Но у этого класса есть несколько недостатков, о которых не все знают.</p>
+
+<h3 id="жизненный-цикл">Жизненный цикл</h3>
+
+<p>Существует небольшое непонимание работы AsyncTask. Вы можете думать, что, если Activity создавшая AsyncTask будет уничтожена, AsyncTask также будет уничтожен. Но это не так. AsyncTask продолжает работать, пока его метод <em>doInBackground()</em> не завершится. AsyncTask запустит метод <em>onCancelled(Result result)</em>, если мы отменяем задачу вызовом <em>cancel(boolean)</em>, либо метод <em>onPostExecute(Result result)</em>, если задача не была отменена.
+<!-- TEASER_END -->
+Предположим, наш AsyncTask не был отменен до того как Activity была уничтожена. Теперь, если AsyncTask попытается взаимодействовать с компонентами этой Activity программа упадет, т.к. Activity больше не существует. Таким образом, мы всегда должны быть уверены, что мы отменили нашу задачу до того как Activity будет уничтожена.  Метод <em>cancel(boolean)</em> требует один параметр: логическую переменную <em>mayInterruptIfRunning</em>. Она должна иметь значение true, если поток, выполняющий задачу должен прерваться, иначе задача имеет право выполниться до конца. Если в методе <em>doInBackground()</em> есть цикл, мы можем в нём проверять значение методом boolean <em>isCancelled()</em> для остановки дальнейшего выполнения задачи.</p>
+
+<p>Таким образом, мы должны быть уверены, что AsyncTask всегда правильно отменяется.</p>
+
+<p><strong>Метод <em>cancel()</em> действительно работает?</strong><br />
+<strong>Короткий ответ:</strong> иногда.<br />
+Если вы вызовите <em>cancel(false)</em>, AsyncTask просто будет продолжать выполняться, пока не завершит свою работу, но метод <em>onPostExecute()</em> вызван не будет. Таким образом, мы позволяем нашему приложению делать бессмысленную работу. Вы скажете: давайте просто всегда вызывать <em>cancel(true)</em> и проблема решена, не так ли? Не совсем. <em>mayInterruptIfRunning</em> равный <em>true</em> постарается завершить задачу пораньше, но если наш метод непрерываемый, такой как <em>BitmapFactory.decodeStream()</em>, он все равно будет продолжать выполнять свою работу. Вы можете закрыть поток преждевременно и поймать выброшенное исключение, но это делает метод <em>cancel()</em> бессмысленным.</p>
+
+<h3 id="утечки-памяти">Утечки памяти</h3>
+
+<p>Так как AsyncTask имеет методы, которые работают в фоновом потоке (<em>doInBackground()</em>), а также методы, которые работают в потоке пользовательского интерфейса (например <em>OnPostExecute()</em>), он сохраняет ссылку на Activity, до тех пор пока работает. Но, если Activity уничтожена, он будет по-прежнему хранить эту ссылку в памяти. Это совершенно бесполезно, потому что задача уже была отменена.</p>
+
+<h3 id="потеря-результатов">Потеря результатов</h3>
+
+<p>Еще одной проблемой является то, что мы потеряем результаты выполнения AsyncTask если наша Activity будет пересоздана. Например, это происходит при повороте экрана. Activity будет уничтожена и создана заново, но наш AsyncTask теперь будет иметь недействительную ссылку на эту Activity, поэтому <em>onPostExecute()</em> не будет иметь никакого эффекта. Существует решение этой проблемы. Вы можете сохранять ссылку на AsyncTask во время изменения конфигурации (например, используя global holder в объекте Application). <em>Activity.onRetainNonConfigurationInstance()</em> и <em>Fragment.setRetainedInstance(true)</em> также могут помочь вам в этом случае.</p>
+
+<h3 id="последовательно-или-параллельно">Последовательно или параллельно?</h3>
+
+<p>Существует много путаницы в том, как работают несколько AsyncTask: последовательно или параллельно. Всё дело в том, что его поведение было изменено несколько раз. Что я имею в виду под словами <em>&ldquo;работают последовательно или параллельно&rdquo;</em>? Предположим, где-то в коде у вас есть следующие строки:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">new</span> <span style="color:#111">AsyncTask1</span><span style="color:#f92672">().</span><span style="color:#75af00">execute</span><span style="color:#f92672">();</span>
+<span style="color:#00a8c8">new</span> <span style="color:#111">AsyncTask2</span><span style="color:#f92672">().</span><span style="color:#75af00">execute</span><span style="color:#f92672">();</span></code></pre></div>
+<p><strong>Будут ли эти две задачи выполняться одновременно или AsyncTask2 запустится после завершения работы AsyncTask1?</strong><br />
+<strong>Краткий ответ:</strong> это зависит от версии API.</p>
+
+<h4 id="до-api-версии-1-6-donut">До API версии 1.6 (Donut):</h4>
+
+<p>В первой версии AsyncTask задачи выполнялись последовательно. Это значит, что следующая задача не будет запущена пока предыдущая не завершит свою работу. Это вызывало некоторые проблемы производительности. Одна задача должна ждать завершения другой. Не очень хороший подход.</p>
+
+<h4 id="с-api-версии-1-6-до-api-версии-2-3-gingerbread">С API версии 1.6 до API версии 2.3 (Gingerbread):</h4>
+
+<p>Разработчики Android решили изменить поведение так, что бы несколько AsyncTask могли работать параллельно в отдельных потоках. Но появилась другая проблема. Многие разработчики полагались на последовательное поведение, и вдруг у них возникло много проблем связанных с параллельным выполнением.</p>
+
+<h4 id="с-api-версии-3-0-honeycomb-по-настоящее-время">С API версии 3.0 (Honeycomb) по настоящее время</h4>
+
+<p>&ldquo;М-да, разработчики, кажется, не пользуются этим? Давайте вернём всё как было.&rdquo; AsyncTask&rsquo;и снова выполняются последовательно. Конечно, разработчики Android предоставили возможность выполнять задачи параллельно. Это делается методом <em>executeOnExecutor(Executor)</em>. Смотрите документацию для получения дополнительной информации по этому методу.</p>
+
+<p>Если мы хотим быть уверены, что наши задачи выполняются параллельно, можно использовать следующий код:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">execute</span><span style="color:#f92672">(</span><span style="color:#111">AsyncTask</span> <span style="color:#111">as</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">Build</span><span style="color:#f92672">.</span><span style="color:#75af00">VERSION</span><span style="color:#f92672">.</span><span style="color:#75af00">SDK_INT</span> <span style="color:#f92672">&lt;=</span> <span style="color:#111">Build</span><span style="color:#f92672">.</span><span style="color:#75af00">VERSION_CODES</span><span style="color:#f92672">.</span><span style="color:#75af00">HONEYCOMB_MR1</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#111">as</span><span style="color:#f92672">.</span><span style="color:#75af00">execute</span><span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span> <span style="color:#00a8c8">else</span> <span style="color:#f92672">{</span>
+  		<span style="color:#111">as</span><span style="color:#f92672">.</span><span style="color:#75af00">executeOnExecutor</span><span style="color:#f92672">(</span><span style="color:#111">AsyncTask</span><span style="color:#f92672">.</span><span style="color:#75af00">THREAD_POOL_EXECUTOR</span><span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>(Этот код не работает для API версий от 1 до 3)</p>
+
+<h3 id="нужен-ли-нам-asynctask">Нужен ли нам AsyncTask?</h3>
+
+<p>Не всегда. AsyncTask это простой способ выполнения фоновых задач без необходимости писать много кода, но как вы могли увидеть, если мы хотим чтобы все хорошо работало мы должны помнить о многих &ldquo;подводных камнях&rdquo;. Другой способ асинхронной загрузки данных это использовние класса <a href="http://developer.android.com/guide/components/loaders.html">Loaders</a>. Он был введен в Android 3.0 (Honeycomb), а также доступен в <em>Android Support Library</em>. Смотрите документацию для получения дополнительной информации. Возможно, в ближайшем будущем, я напишу статью о том, как использовать Loaders, так что не забудьте зайти на мой блог позже (или на мой сайт <a href="http://www.bon-app-etit.com">www.bon-app-etit.com</a>).</p>
+
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'emunix';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="https://emunix.org/post/command-line-cd-burning/" rel="prev">Запись CD/DVD дисков из консоли</a></span>
+    
+    
+      <span class="next"><a href="https://emunix.org/post/guava-recipes-part-1/" rel="next">Guava - простые рецепты, делающие ваш Java код чище, часть 1</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      © 2011-2017, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a>
+    </div>
+  </footer>
+
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-28744527-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Запись CD/DVD дисков из консоли | Emunix
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://emunix.org/post/command-line-cd-burning/"/>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+  <link href="https://emunix.org/index.xml" rel="feed" type="application/rss+xml" title="Emunix" />
+
+</head>
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://emunix.org/">Emunix</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/btimofeev" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/btimofeev" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Запись CD/DVD дисков из консоли</h1>
+      <div class="meta">
+        Dec 1, 2012 &nbsp;
+        
+          #<a href="/tags/linux">linux</a>&nbsp;
+        
+          #<a href="/tags/cli">cli</a>&nbsp;
+        
+          #<a href="/tags/cd">cd</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<h3 id="запись-образа-на-cd-r-или-cd-rw-диск">Запись образа на CD-R или CD-RW диск:</h3>
+
+<p><code>cdrecord -v -eject speed=10 dev=/dev/cdrom ~/disc.iso</code></p>
+
+<p>Если <code>speed=0</code> программа сама выбирает подходящую скорость.</p>
+
+<h3 id="cd-rw-диск-необходимо-сначала-очистить">CD-RW диск необходимо сначала очистить:</h3>
+
+<p><code>cdrecord -v blank=fast dev=/dev/cdrom</code></p>
+
+<p><code>blank=all</code> - очистить весь диск<br />
+<code>blank=fast</code> - быстрая очистка диска<br />
+<code>blank=session</code> - очистить последнюю сессию<br />
+<code>blank=unclose</code> - открыть последнюю записанную сессию</p>
+
+<h3 id="создание-образа-диска">Создание образа диска:</h3>
+
+<p><code>mkisofs -o test.iso -Jrv -V test_disk /home/user/something</code></p>
+
+<p>В этом примере следующие обозначения:<br />
+<code>-o</code> - имя создаваемого iso-файла (<em>test.iso</em>)<br />
+<code>-J</code> - используем записи Joliet для совместимости с Windows<br />
+<code>-r</code> - Rock Ridge расширение для совсестимости с unix (Сохраняет права на файлы)<br />
+<code>-v</code> - выводить информацию о выполняемом процессе<br />
+<code>-V</code> - указываем имя тома (<em>test_disk</em>); Это имя будет отображаться при просмотре в Windows</p>
+
+<h2 id="запись-dvd-r-rw-дисков">Запись DVD-R/RW дисков:</h2>
+
+<h3 id="очищаем-dvd-rw-диск">Очищаем DVD-RW диск:</h3>
+
+<p><code>dvd+rw-format -f /dev/cdrom</code></p>
+
+<h3 id="запись-образа">Запись образа:</h3>
+
+<p><code>growisofs -Z /dev/cdrom=image.iso</code></p>
+
+<h3 id="запись-файлов-из-каталога">Запись файлов из каталога:</h3>
+
+<p><code>growisofs -Z /dev/cdrom -R -J /home/user/something</code></p>
+
+<p>Параметр <code>-Z</code> применяется, если мы начинаем новую сессию. Чтобы добавить другую сессию, вместо <code>-Z</code> пишем параметр <code>-M</code>.</p>
+
+<h2 id="утилита-cdw">Утилита CDW</h2>
+
+<p>Существует ncurses-фронтенд для этих программ - <a href="http://cdw.sourceforge.net">CDW</a>. Позволяет в удобной форме создавать образы и записывать диски.</p>
+
+<p><img src="../../images/command-line-cd-burning/cdw.png" alt="Изображение программы cdw" /></p>
+
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'emunix';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="https://emunix.org/post/writing-chip-8-emulator-part-4-kernel/" rel="prev">Пишем эмулятор CHIP-8. Часть 4: Ядро</a></span>
+    
+    
+      <span class="next"><a href="https://emunix.org/post/the-dark-side-of-asynctask/" rel="next">Тёмная сторона AsyncTask</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      © 2011-2017, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a>
+    </div>
+  </footer>
+
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-28744527-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+

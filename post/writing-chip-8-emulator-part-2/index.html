@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Пишем эмулятор CHIP-8. Часть 2: Ассемблер | Emunix
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://emunix.org/post/writing-chip-8-emulator-part-2/"/>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+  <link href="https://emunix.org/index.xml" rel="feed" type="application/rss+xml" title="Emunix" />
+
+</head>
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://emunix.org/">Emunix</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/btimofeev" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/btimofeev" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Пишем эмулятор CHIP-8. Часть 2: Ассемблер</h1>
+      <div class="meta">
+        Mar 30, 2012 &nbsp;
+        
+          #<a href="/tags/dev">dev</a>&nbsp;
+        
+          #<a href="/tags/emulation">emulation</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>В предыдущей статье мы рассмотрели общее устройство CHIP-8. Сегодня перейдем к описанию <a href="http://ru.wikipedia.org/wiki/Язык_ассемблера">ассемблерных</a> команд и их <a href="http://ru.wikipedia.org/wiki/Код_операции">опкодов</a>.</p>
+
+<p>В этой статье список инструкций условно разбит на три колонки:</p>
+
+<p><em><code>опкод</code>    <code>команда на ассемблере</code>    описание</em></p>
+
+<p>И используются следующие обозначения:<br />
+<code>nnn</code> - 12 битный адрес<br />
+<code>kk</code> - 8 битная константа<br />
+<code>x</code> -  4 битный номер регистра<br />
+<code>y</code> - 4 битный номер регистра<br />
+<code>1..9, A..F</code> - шестнадцатеричные цифры</p>
+
+<h2 id="инструкции-chip-8">Инструкции CHIP-8</h2>
+
+<p><code>00E0</code>   <code>CLS</code>    Очистить экран</p>
+
+<p><code>00EE</code>   <code>RET</code>    Возвратиться из <a href="http://ru.wikipedia.org/wiki/Подпрограмма">подпрограммы</a></p>
+
+<p><code>0nnn</code>    <code>SYS nnn</code>    Перейти на машинный код RCA 1802 по адресу <strong>nnn</strong>. Эта инструкция была только в самой первой реализации CHIP-8. В более поздних реализациях и эмуляторах не используется.
+
+<code>1nnn</code>    <code>JP nnn</code>    Перейти по адресу <strong>nnn</strong></p>
+
+<p><code>2nnn</code>    <code>CALL nnn</code>    Вызов подпрограммы по адресу <strong>nnn</strong></p>
+
+<p><code>3xkk</code>    <code>SE Vx, kk</code>    Пропустить следующую инструкцию, если регистр <strong>Vx = kk</strong></p>
+
+<p><code>4xkk</code>    <code>SNE Vx, kk</code>    Пропустить следующую инструкцию, если регистр <strong>Vx != kk</strong></p>
+
+<p><code>5xy0</code>    <code>SE Vx, Vy</code>    Пропустить следующую инструкцию, если <strong>Vx = Vy</strong></p>
+
+<p><code>6xkk</code>    <code>LD Vx, kk</code>    Загрузить в регистр <strong>Vx</strong> число <strong>kk</strong>, т.е. <strong>Vx = kk</strong></p>
+
+<p><code>7xkk</code>    <code>ADD Vx, kk</code>    Установить <strong>Vx = Vx + kk</strong></p>
+
+<p><code>8xy0</code>    <code>LD Vx, Vy</code>    Установить <strong>Vx = Vy</strong></p>
+
+<p><code>8xy1</code>    <code>OR Vx, Vy</code>     Выполнить операцию <a href="http://ru.wikipedia.org/wiki/Дизъюнкция">дизъюнкция</a> (логическое &ldquo;ИЛИ&rdquo;) над значениями регистров <strong>Vx</strong> и <strong>Vy</strong>, результат сохранить в <strong>Vx</strong>. Т.е. <strong>Vx = Vx | Vy</strong></p>
+
+<p><code>8xy2</code>    <code>AND Vx, Vy</code>     Выполнить операцию <a href="http://ru.wikipedia.org/wiki/Конъюнкция">конъюнкция</a> (логическое &ldquo;И&rdquo;) над значениями регистров <strong>Vx</strong> и <strong>Vy</strong>, результат сохранить в <strong>Vx</strong>. Т.е. <strong>Vx = Vx &amp; Vy</strong></p>
+
+<p><code>8xy3</code>    <code>XOR Vx, Vy</code>     Выполнить операцию <a href="http://ru.wikipedia.org/wiki/Строгая_дизъюнкция">&ldquo;исключающее ИЛИ&rdquo;</a> над значениями регистров <strong>Vx</strong> и <strong>Vy</strong>, результат сохранить в <strong>Vx</strong>. Т.е. <strong>Vx = Vx ^ Vy</strong></p>
+
+<p><code>8xy4</code>    <code>ADD Vx, Vy</code>    Значения <strong>Vx</strong> и <strong>Vy</strong> суммируются. Если результат больше, чем 8 бит (т.е.&gt; 255) <strong>VF</strong> устанавливается в 1, иначе 0. Только младшие 8 бит результата сохраняются в <strong>Vx</strong>. Т.е. <strong>Vx = Vx + Vy</strong></p>
+
+<p><code>8xy5</code>    <code>SUB Vx, Vy</code>    Если <strong>Vx &gt;= Vy</strong>, то <strong>VF</strong> устанавливается в 1, иначе 0. Затем <strong>Vy</strong> вычитается из <strong>Vx</strong>, а результат сохраняется в <strong>Vx</strong>. Т.е. <strong>Vx = Vx - Vy</strong></p>
+
+<p><code>8xy6</code>    <code>SHR Vx {, Vy}</code>    <a href="http://ru.wikipedia.org/wiki/Битовый_сдвиг">Операция сдвига</a> вправо на 1 бит. Сдвигается регистр <strong>Vx</strong>. Т.е. <strong>Vx = Vx &gt;&gt; 1</strong>. До операции сдвига выполняется следующее: если младший бит (самый правый) регистра <strong>Vx</strong> равен 1, то <strong>VF = 1</strong>, иначе <strong>VF = 0</strong></p>
+
+<p><code>8xy7</code>    <code>SUBN Vx, Vy</code>    Если <strong>Vy &gt;= Vx</strong>, то <strong>VF</strong> устанавливается в 1, иначе 0. Тогда <strong>Vx</strong> вычитается из <strong>Vy</strong>, и результат сохраняется в <strong>Vx</strong>. Т.е. <strong>Vx = Vy - Vx</strong></p>
+
+<p><code>8xyE</code>    <code>SHL Vx {, Vy}</code>    Операция сдвига влево на 1 бит. Сдвигается регистр <strong>Vx</strong>. Т.е. <strong>Vx = Vx &lt;&lt; 1</strong>. До операции сдвига выполняется следующее: если младший бит (самый правый) регистра <strong>Vx</strong> равен 1, то <strong>VF = 1</strong>, иначе <strong>VF = 0</strong></p>
+
+<p><code>9xy0</code>    <code>SNE Vx, Vy</code>    Пропустить следующую инструкцию, если <strong>Vx != Vy</strong></p>
+
+<p><code>Annn</code>    <code>LD I, nnn</code>    Значение регистра <strong>I</strong> устанавливается в <strong>nnn</strong></p>
+
+<p><code>Bnnn</code>    <code>JP V0, nnn</code>    Перейти по адресу <strong>nnn</strong> + значение в регистре <strong>V0</strong>.</p>
+
+<p><code>Cxkk</code>    <code>RND Vx, kk</code>    Устанавливается <strong>Vx =  (случайное число от 0 до 255) &amp; kk</strong></p>
+
+<p><code>Dxyn</code>    <code>DRW Vx, Vy, n</code>    Нарисовать на экране спрайт. Эта инструкция считывает <strong>n</strong> байт по адресу содержащемуся в регистре <strong>I</strong> и рисует их на экране в виде спрайта c координатой <strong>Vx</strong>, <strong>Vy</strong>. Спрайты рисуются на экран по методу операции <strong>XOR</strong>, то есть если в том месте где мы рисуем спрайт уже есть нарисованные пиксели - они стираются, если их нет - рисуются. Если хоть один пиксель был стерт, то <strong>VF</strong> устанавливается в 1, иначе в 0.</p>
+
+<p><code>Ex9E</code>    <code>SKP Vx</code>    Пропустить следующую команду если клавиша, номер которой хранится в регистре <strong>Vx</strong>, нажата</p>
+
+<p><code>ExA1</code>    <code>SKNP Vx</code>    Пропустить следующую команду если клавиша, номер которой хранится в регистре <strong>Vx</strong>, не нажата</p>
+
+<p><code>Fx07</code>    <code>LD Vx, DT</code>    Скопировать значение таймера задержки в регистр <strong>Vx</strong></p>
+
+<p><code>Fx0A</code>   <code>LD Vx, K</code>    Ждать нажатия любой клавиши. Как только клавиша будет нажата записать ее номер в регистр <strong>Vx</strong> и перейти к выполнению следующей инструкции.</p>
+
+<p><code>Fx15</code>    <code>LD DT, Vx</code>    Установить значение таймера задержки равным значению регистра <strong>Vx</strong></p>
+
+<p><code>Fx18</code>    <code>LD ST, Vx</code>    Установить значение звукового таймера равным значению регистра <strong>Vx</strong></p>
+
+<p><code>Fx1E</code>    <code>ADD I, Vx</code>    Сложить значения регистров <strong>I</strong> и <strong>Vx</strong>, результат сохранить в <strong>I</strong>. Т.е. <strong>I = I + Vx</strong></p>
+
+<p><code>Fx29</code>    <code>LD F, Vx</code>    Используется для вывода на экран символов встроенного шрифта размером 4x5 пикселей. Команда загружает в регистр <strong>I</strong> адрес спрайта, значение которого находится в <strong>Vx</strong>. <em>Например, нам надо вывести на экран цифру 5. Для этого загружаем в Vx число 5. Потом команда LD F, Vx загрузит адрес спрайта, содержащего цифру 5, в регистр I</em></p>
+
+<p><code>Fx33</code>    <code>LD B, Vx</code>   Сохранить значение регистра <strong>Vx</strong> в <a href="http://ru.wikipedia.org/wiki/Двоично-десятичный_код">двоично-десятичном (BCD)</a> представлении по адресам <strong>I</strong>, <strong>I+1</strong> и <strong>I+2</strong></p>
+
+<p><code>Fx55</code>    <code>LD [I], Vx</code>    Сохранить значения регистров от <strong>V0</strong> до <strong>Vx</strong> в памяти, начиная с адреса находящегося в <strong>I</strong></p>
+
+<p><code>Fx65</code>    <code>LD Vx, [I]</code>    Загрузить значения регистров от <strong>V0</strong> до <strong>Vx</strong> из памяти, начиная с адреса находящегося в <strong>I</strong></p>
+
+<h2 id="инструкции-super-chip">Инструкции Super CHIP</h2>
+
+<p>Super CHIP может использовать все вышеназванные инструкции (за исключением <strong>0nnn</strong>), а так же добавляет следующие:</p>
+
+<p><code>00Cn</code>    <code>SCD n</code>    Прокрутить изображение на экране на <strong>n</strong> строк вниз</p>
+
+<p><code>00FB</code>    <code>SCR</code>    Прокрутить изображение на экране на 4 пикселя вправо в режиме 128x64, либо на 2 пикселя в режиме 64x32</p>
+
+<p><code>00FC</code>    <code>SCL</code>    Прокрутить изображение на экране на 4 пикселя влево в режиме 128x64, либо на 2 пикселя в режиме 64x32</p>
+
+<p><code>00FD</code>    <code>EXIT</code>    Завершить программу</p>
+
+<p><code>00FE</code>   <code>LOW</code>    Выключить расширенный режим экрана. Переход на разрешение 64x32</p>
+
+<p><code>00FF</code>    <code>HIGH</code>    Включить расширенный режим экрана. Переход на разрешение 128x64</p>
+
+<p><code>Dxy0</code>    <code>DRW Vx, Vy, 0</code>    Работает подобно инструкции <strong>Dxyn</strong>, только в расширенном режиме экрана рисует спрайты размером 16x16 пикселей, в обычном режиме 8x16</p>
+
+<p><code>Fx30</code>    <code>LD HF, Vx</code>    Работает подобно команде <strong>Fx29</strong>, только загружает спрайты размером 8x10 пикселей</p>
+
+<p><code>Fx75</code>    <code>LD R, Vx</code>    Сохранить регистры <strong>V0</strong> - <strong>Vx</strong> в пользовательских флагах [RPL](<a href="http://en.wikipedia.org/wiki/RPL_(programming_language)">http://en.wikipedia.org/wiki/RPL_(programming_language)</a>)</p>
+
+<p><code>Fx85</code>    <code>LD Vx, R</code>    Загрузить регистры <strong>V0</strong> - <strong>Vx</strong> из пользовательских флагов RPL</p>
+
+<p>На самом деле как в расширенном режиме, так и в обычном, физический размер экрана одинаков. Но при разрешении экрана 64x32 каждый пиксель рисуется в два раза больше, чем при 128x64. Поэтому операции скроллинга экрана (<strong>00FB</strong>, <strong>00FC</strong>) в расширенном режиме сдвигают 4 пикселя,  а в обычном 2. То же относится и к инструкции <strong>00Cn</strong>.</p>
+
+<p>Super CHIP добавляет в память еще один шрифт. Он тоже состоит из шестнадцатеричных символов от 0 до F, размер каждого 8x10 пикселей. Если программа находится в расширенном режиме, то она должна выводить этот крупный шрифт. В обычном режиме программа выводит обычный шрифт, размером 4x5.</p>
+
+<p><em>Сегодняшняя статья получилась довольно громоздкой и, возможно, непонятной для тех кто не знаком с ассемблером. Но не волнуйтесь если вы во всём этом не разобрались, немного позже все станет понятнее.
+В дальнейшем мы будем использовать информацию с этой страницы как справочник. Что бы лучше понять эмулируемую платформу в следующей статье мы напишем несколько программ для CHIP-8 и затем начнем писать наш эмулятор.</em></p>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'emunix';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="https://emunix.org/post/writing-chip-8-emulator-part-1-intro/" rel="prev">Пишем эмулятор CHIP-8. Часть 1: Введение</a></span>
+    
+    
+      <span class="next"><a href="https://emunix.org/post/writing-chip-8-emulator-part-3/" rel="next">Пишем эмулятор CHIP-8. Часть 3: Примеры программ</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      © 2011-2017, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a>
+    </div>
+  </footer>
+
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-28744527-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cd on Emunix</title>
+    <link>https://emunix.org/tags/cd/</link>
+    <description>Recent content in Cd on Emunix</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru</language>
+    <lastBuildDate>Sat, 01 Dec 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://emunix.org/tags/cd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Запись CD/DVD дисков из консоли</title>
+      <link>https://emunix.org/post/command-line-cd-burning/</link>
+      <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/command-line-cd-burning/</guid>
+      <description>Запись образа на CD-R или CD-RW диск: cdrecord -v -eject speed=10 dev=/dev/cdrom ~/disc.iso
+Если speed=0 программа сама выбирает подходящую скорость.
+CD-RW диск необходимо сначала очистить: cdrecord -v blank=fast dev=/dev/cdrom
+blank=all - очистить весь диск
+blank=fast - быстрая очистка диска
+blank=session - очистить последнюю сессию
+blank=unclose - открыть последнюю записанную сессию
+Создание образа диска: mkisofs -o test.iso -Jrv -V test_disk /home/user/something
+В этом примере следующие обозначения:
+-o - имя создаваемого iso-файла (test.</description>
+    </item>
+    
+    <item>
+      <title>Монтируем образ диска через FuseISO</title>
+      <link>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</link>
+      <pubDate>Thu, 08 Dec 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</guid>
+      <description>FuseISO это программа для монтирования образов дисков в форматах .iso, .nrg, .bin, .mdf и .img. Для работы не нужны привилегии root&amp;rsquo;а.
+Для того что бы примонтировать образ disk.iso к файловой системе в каталог /mount_point используем команду:
+fuseiso -p disk.iso /mount_point  Опция -p создает каталог, если его не существует, а также удаляет его при отмонтировании.
+Для отмонтирования используем команду:
+fusermount -u /mount_point  </description>
+    </item>
+    
+  </channel>
+</rss>

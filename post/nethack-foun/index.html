@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    NetHack: Питьё и погружение предметов в фонтаны | Emunix
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://emunix.org/post/nethack-foun/"/>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+  <link href="https://emunix.org/index.xml" rel="feed" type="application/rss+xml" title="Emunix" />
+
+</head>
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://emunix.org/">Emunix</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/btimofeev" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/btimofeev" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>NetHack: Питьё и погружение предметов в фонтаны</h1>
+      <div class="meta">
+        Feb 29, 2016 &nbsp;
+        
+          #<a href="/tags/game">game</a>&nbsp;
+        
+          #<a href="/tags/nethack">nethack</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p><em>© <a href="https://nethackwiki.com/wiki/Foun-343.txt">foun-343.txt</a> Последний раз редактировалось 2003-12-17 для NetHack 3.4.3</em><br />
+<em>© Собрано Диланом О&rsquo;Доннеллом (Dylan O&rsquo;Donnell) <a href="mailto:psmith@spod-central.org">psmith@spod-central.org</a></em><br />
+<em>© Перевод с английского: Борис Тимофеев <a href="mailto:btimofeev@emunix.org">btimofeev@emunix.org</a>.</em><br />
+<em>Этот спойлер я перевёл для сайта <a href="http://www.nethack-rutext.ru/doku.php?id=wiki:foun-343ru">www.nethack-rutext.ru</a>. Здесь будет лежать его резервная копия.</em></p>
+
+<h2 id="питьё-из-фонтанов">Питьё из фонтанов</h2>
+
+<p>Любой случайно сгенерированный фонтан будет иметь шанс <sup>1</sup>&frasl;<sub>7</sub> быть &ldquo;волшебным&rdquo; (<em>magic</em>), или &ldquo;освящённым&rdquo; (<em>blessed</em>); но не существует способа узнать, является ли данный фонтан волшебным или нет.</p>
+
+<p>Питье из волшебного фонтана, при неотрицательной удаче:</p>
+
+<p><sup>3</sup>&frasl;<sub>10</sub>: Чувство голода немного уменьшается.</p>
+
+<ul>
+<li><strong>&ldquo;The cool draught refreshes you.&rdquo;</strong> - <em>&ldquo;Холодный глоток освежает вас.&rdquo;</em></li>
+</ul>
+
+<p><sup>7</sup>&frasl;<sub>10</sub>: Ваша мудрость тренируется (<em>exercised</em>), и все ваши атрибуты восстанавливаются до их максимального значения (такой же эффект, как от <em>blessed potion of restore ability</em>). Один атрибут увеличивается на 1 (эффект как у <em>uncursed potion of gain ability</em>); если ваша Удача (<em>Luck</em>) 4 или выше, этот последний эффект увеличит все ваши атрибуты на 1 (<em>blessed potion effect</em>). После такого эффекта фонтан перестаёт быть волшебным.</p>
+
+<ul>
+<li><strong>&ldquo;Wow! This makes you feel great!&rdquo;</strong> - <em>&ldquo;Вау! От этого вы чувствуете себя великолепно!&rdquo;</em></li>
+<li><strong>&ldquo;A wisp of vapor escapes the fountain&hellip;&rdquo;</strong> - <em>&ldquo;Немного пара исходит из фонтана&hellip;&rdquo;</em>
+
+Питьё из обычного (не волшебного) фонтана или из волшебного при отрицательной удаче:</li>
+</ul>
+
+<p><sup>9</sup>&frasl;<sub>30</sub>: Чувство голода немного уменьшается. (То же самое, что и выше.)</p>
+
+<ul>
+<li><strong>&ldquo;The cool draught refreshes you.&rdquo;</strong> - <em>&ldquo;Холодный глоток освежает вас.&rdquo;</em></li>
+</ul>
+
+<p><sup>9</sup>&frasl;<sub>30</sub>: Нет эффекта.</p>
+
+<ul>
+<li><strong>&ldquo;This tepid water is tasteless.&rdquo;</strong> - <em>&ldquo;Эта прохладная вода не имеет вкуса.&rdquo;</em></li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Вы видите свои атрибуты и тренируете (<em>exercise</em>) свою мудрость (как с <em>wand</em> или с <em>uncursed potion of enlightenment</em>).</p>
+
+<ul>
+<li><strong>&ldquo;You feel self-knowledgeable&hellip;&rdquo;</strong> - <em>&ldquo;Вы чувствуете себя осведомлённым&hellip;&rdquo;</em></li>
+<li><strong>&ldquo;The feeling subsides&hellip;&rdquo;</strong> - <em>&ldquo;Чувство стихает&hellip;&rdquo;</em></li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Вас тошнит и ваше чувство голода увеличивается.</p>
+
+<ul>
+<li><strong>&ldquo;The water is foul! You gag and vomit.&rdquo;</strong> - <em>&ldquo;Вода отвратительна! Вы подавились и вас стошнило&rdquo;.</em></li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Если вы имеете сопротивление к яду (<em>poison resistant</em>), то теряете <em>d4 HP</em>; в противном случае, вы теряете <em>d10 HP</em> и <em>d4+2 STR</em> и ваше телосложение ухудшается (<em>abused</em>).</p>
+
+<ul>
+<li><strong>&ldquo;The water is contaminated!&rdquo;</strong> - <em>&ldquo;Вода заражена!&rdquo;</em></li>
+<li><strong>&ldquo;Perhaps it is runoff from the nearby <fruit> farm.&rdquo;</strong> - <em>&ldquo;Возможно, это сточные воды с близлежащей &lt;фруктовой&gt; фермы.&rdquo;</em> (если имеете сопротивление к яду (<em>poison resistant</em>))</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Создаётся <em>d5+1</em> <em>water moccasin&rsquo;ов</em>.</p>
+
+<ul>
+<li><strong>&ldquo;An endless stream of snakes pour forth!&rdquo;</strong> - <em>&ldquo;Извергается нескончаемый поток змей!&rdquo;</em> (не ослеплён)</li>
+<li><strong>&ldquo;You hear something hissing!&rdquo;</strong> - <em>&ldquo;Вы слышите чьё-то шипение!&rdquo;</em> (ослеплён)</li>
+<li><strong>&ldquo;The fountain bubbles furiously for a moment, then calms.&rdquo;</strong> - <em>&ldquo;Фонтан яростно бурлит, но вскоре успокаивается.&rdquo;</em> (<em>moccasin&rsquo;ы</em> подвергались геноциду)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub> Призывается демон воды (<em>water demon</em>). Он имеет шанс <em>80+DL/100</em> быть враждебным (100%, если у вас есть <em>Амулет</em>); если не враждебный, то он исполнит одно желание, а затем исчезнет.</p>
+
+<ul>
+<li><strong>&ldquo;You unleash a water demon!&rdquo;</strong> - <em>&ldquo;Вы освобождаете демона воды!&rdquo;</em> (не ослеплён)</li>
+<li><strong>&ldquo;You feel the presence of evil.&rdquo;</strong> - <em>&ldquo;Вы чувствуете присутствие зла.&rdquo;</em> (ослеплён)</li>
+<li><strong>&ldquo;Grateful for his release, he grants you a wish!&rdquo;</strong> - <em>&ldquo;В благодарность за своё освобождение, он исполняет ваше желание!&rdquo;</em> (мирный)</li>
+<li><strong>&ldquo;The fountain bubbles furiously for a moment, then calms.&rdquo;</strong> - <em>&ldquo;Фонтан яростно бурлит, но вскоре успокаивается.&rdquo;</em> (не удалось призвать)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Призывается водяная нимфа (<em>water nymph</em>).</p>
+
+<ul>
+<li><strong>&ldquo;You attract a water nymph!&rdquo;</strong> - <em>&ldquo;Вы привлекаете водяную нимфу!&rdquo;</em> (не ослеплён)</li>
+<li><strong>&ldquo;You hear a seductive voice.&rdquo;</strong> - <em>&ldquo;Вы слышите соблазнительный голос.&rdquo;</em> (ослеплён)</li>
+<li><strong>&ldquo;A large bubble rises to the surface and pops.&rdquo;</strong> - <em>&ldquo;Большой пузырь поднимается на поверхность и лопает.&rdquo;</em> (не ослеплён, водяные нимфы подвергались геноциду или вымерли)</li>
+<li><strong>&ldquo;You hear a loud pop.&rdquo;</strong> - <em>&ldquo;Вы слышите громкий хлопок.&rdquo;</em> (ослеплён, водяные нимфы подвергались геноциду или вымерли)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: У каждый предмета в вашем инвентаре есть шанс <sup>1</sup>&frasl;<sub>5</sub> стать проклятым; ваш голод увеличивается и ваше телосложение ухудшается.</p>
+
+<ul>
+<li><strong>&ldquo;This water&rsquo;s no good!&rdquo;</strong> - <em>&ldquo;Эта вода испорчена!&rdquo;</em></li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Вы получаете возможность видеть невидимое (<em>see invisible</em>) и тренируете мудрость.</p>
+
+<ul>
+<li><strong>&ldquo;You see an image of someone stalking you. But it disappears.&rdquo;</strong> - <em>&ldquo;Вы видите образ кого-то, кто преследует вас. Но он исчезает.&rdquo;</em> (не ослеплён)</li>
+<li><strong>&ldquo;You feel transparent.&rdquo;</strong> - <em>&ldquo;Вы чувствуете себя прозрачным.&rdquo;</em> (ослеплён, невидимый)</li>
+<li><strong>&ldquo;You feel very self-conscious. Then it passes.&rdquo;</strong> - <em>&ldquo;Вам становится не по себе. Затем это проходит.&rdquo;</em> (ослеплен, не невидимый)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Вы ненадолго видите монстров на этом уровне и тренируете свою мудрость.</p>
+
+<ul>
+<li><strong>&ldquo;You sense the presence of monsters.&rdquo;</strong> - <em>&ldquo;Вы чувствуете присутствие монстров.&rdquo;</em></li>
+<li>Если нет монстров на уровне (кроме вас), то нет и видимого эффекта.
+
+<ul>
+<li><strong>&ldquo;You have a strange feeling for a moment, then it passes.&rdquo;</strong> - <em>&ldquo;У вас появилось странное чувство на мгновение, затем оно проходит.&rdquo;</em> (начинающий, нет галлюцинаций)</li>
+<li><strong>&ldquo;You have a normal feeling for a moment, then it passes.&rdquo;</strong> - <em>&ldquo;У вас обыное чувство на мгновение, затем оно проходит.&rdquo;</em> (начинающий, есть галлюцинации)</li>
+<li><strong>&ldquo;You feel threatened.&rdquo;</strong> - <em>&ldquo;Вы чувствуете угрозу.&rdquo;</em> (нет галлюцинаций)</li>
+<li><strong>&ldquo;You get the heebie jeebies.&rdquo;</strong> - <em>&ldquo;У вас появляется небольшое чувсто тревоги.&rdquo;</em> (есть галлюцинаии)</li>
+</ul></li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Вы находите случайный драгоценный камень или кусок бесполезного стекла и ваша мудрость тренируется (<em>exercised</em>). Если вам уже попадался драгоценный камень или золото из этого фонтана, то призывается нимфа (как описано выше).</p>
+
+<ul>
+<li><strong>&ldquo;You spot a gem in the sparkling waters!&rdquo;</strong> - <em>&ldquo;Вы заметили драгоценный камень в сверкающих водах!&rdquo;</em> (не ослеплён)</li>
+<li><strong>&ldquo;You feel a gem here!&rdquo;</strong> - <em>&ldquo;Вы чувствуете драгоценный камень здесь!&rdquo;</em> (ослеплён)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Монстры на уровне бегут от вас на некоторое время.</p>
+
+<ul>
+<li><strong>&ldquo;This water gives you bad breath!&rdquo;</strong> - <em>&ldquo;От этой воды у вас неприятный запах изо рта!&rdquo;</em></li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Несколько луж могут быть созданы по-соседству. (Генерируются ближе к вам, но не на вашей клетке и не может генерироваться две ортогонально соседних лужи.)</p>
+
+<ul>
+<li><strong>&ldquo;Water gushes forth from the overflowing fountain!&rdquo;</strong> - <em>&ldquo;Вода выливается из переполненного фонтана!&rdquo;</em> (лужи созданы)</li>
+<li><strong>&ldquo;Your thirst is quenched.&rdquo;</strong> - <em>&ldquo;Вы утоляете жажду.&rdquo;</em> (лужи не созданы)</li>
+</ul>
+
+<p>И, наконец, фонтан имеет шанс <sup>1</sup>&frasl;<sub>3</sub> высохнуть (за исключением <em>Minetown</em>, где вы всегда будете получать одно предупреждение).</p>
+
+<h2 id="погружение-предметов-в-фонтаны">Погружение предметов в фонтаны</h2>
+
+<p>Из <a href="https://nethackwiki.com/wiki/Art1-343.txt">art1-343.txt</a>:</p>
+
+<p>Если вы погружаете (<strong>#dip</strong>) обычный длинный меч (<em>long sword</em>) в фонтан, имея, как минимум, 5-й уровень опыта, и Экскалибур (<em>Excalibur</em>) еще не существует в вашей игре, то есть шанс <sup>1</sup>&frasl;<sub>6</sub>, что нечто особенное произойдет с вашим мечом. Если вы законны (<em>lawful</em>), длинный меч превращается в освящённый, нержавеющий, не разъеденый, защищенный от повреждений Экскалибур (<em>blessed, rustless, uncorroded, damageproof Excalibur</em>) и вы тренируете свою мудрость. Если вы нейтральны (<em>neutral</em>) или хаотичны (<em>chaotic</em>), ваш длинный меч станет проклятым, потеряет своё свойство не ржаветь (<em>rustproofing</em>), может потерять заклятие (<em>enchantment</em>), и ваша мудрость ухудшается.</p>
+
+<p>После этого фонтан исчезает; это разозлит стражу в <em>Minetown&rsquo;е</em> (если вы в нём) независимо от того, предупреждали вас или нет.</p>
+
+<p>В любом другом случае погружение обрабатывается нормально. Сначала объект намокает и ведет себя соответственно(свитки и книги заклинаний очищаются, зелья разбавляются, железные объекты ржавеют, зажжённые объекты гаснут, смазка смывается). Затем могут возникнуть особые эффекты (только 50% шанс, если смачивание объекта уже вызвало эффект):</p>
+
+<p><sup>18</sup>&frasl;<sub>30</sub>: Нет особого эффекта.</p>
+
+<ul>
+<li><strong>&ldquo;A strange tingling runs up your arm.&rdquo;</strong> - <em>&ldquo;Странное покалывание пробежало по руке.&rdquo;</em> (шанс <sup>1</sup>&frasl;<sub>18</sub>)</li>
+<li><strong>&ldquo;You feel a sudden chill.&rdquo;</strong> - <em>&ldquo;Вы чувствуете внезапный озноб.&rdquo;</em> (шанс <sup>1</sup>&frasl;<sub>18</sub>)</li>
+<li>Нет сообщения (шанс <sup>16</sup>&frasl;<sub>18</sub>)</li>
+</ul>
+
+<p><sup>4</sup>&frasl;<sub>30</sub>: Если погруженный предмет был проклят, то он становится не проклятым.</p>
+
+<ul>
+<li><strong>&ldquo;The water glows for a moment.&rdquo;</strong> - <em>&ldquo;Вода сверкает на мгновение.&rdquo;</em> (становится не проклятым, не ослеплён)</li>
+<li><strong>&ldquo;A feeling of loss comes over you.&rdquo;</strong> - <em>&ldquo;Чувство потери овладевает вами.&rdquo;</em> (предмет не был проклят)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Погруженный предмет становится проклятым.</p>
+
+<ul>
+<li>Не отображает сообщений.</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Создаётся <em>d5+1</em> <em>water moccasin&rsquo;ов</em>.</p>
+
+<ul>
+<li><strong>&ldquo;An endless stream of snakes pour forth!&rdquo;</strong> - <em>&ldquo;Извергается нескончаемый поток змей!&rdquo;</em> (не ослеплён)</li>
+<li><strong>&ldquo;You hear something hissing!&rdquo;</strong> - <em>&ldquo;Вы слышите чьё-то шипение!&rdquo;</em> (ослеплён)</li>
+<li><strong>&ldquo;The fountain bubbles furiously for a moment, then calms.&rdquo;</strong> - <em>&ldquo;Фонтан яростно бурлит, но вскоре успокаивается.&rdquo;</em> (<em>moccasin&rsquo;ы</em> подвергались геноциду)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Призывается демон воды (<em>water demon</em>). Он имеет шанс <em>80+DL/100</em> быть враждебным (100%, если у вас есть <em>Амулет</em>); если не враждебный, то он исполнит одно желание, а затем исчезнет.</p>
+
+<ul>
+<li><strong>&ldquo;You unleash a water demon!&rdquo;</strong> - <em>&ldquo;Вы освобождаете демона воды!&rdquo;</em> (не ослеплён)</li>
+<li><strong>&ldquo;You feel the presence of evil.&rdquo;</strong> - <em>&ldquo;Вы чувствуете присутствие зла.&rdquo;</em> (ослеплён)</li>
+<li><strong>&ldquo;Grateful for his release, he grants you a wish!&rdquo;</strong> - <em>&ldquo;В благодарность за своё освобождение, он исполняет ваше желание!&rdquo;</em> (мирный)</li>
+<li><strong>&ldquo;The fountain bubbles furiously for a moment, then calms.&rdquo;</strong> - <em>&ldquo;Фонтан яростно бурлит, но вскоре успокаивается.&rdquo;</em> (не удалось призвать)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Призывается водяная нимфа (<em>water nymph</em>).</p>
+
+<ul>
+<li><strong>&ldquo;You attract a water nymph!&rdquo;</strong> - <em>&ldquo;Вы привлекаете водяную нимфу!&rdquo;</em> (не ослеплён)</li>
+<li><strong>&ldquo;You hear a seductive voice.&rdquo;</strong> - <em>&ldquo;Вы слышите соблазнительный голос.&rdquo;</em> (ослеплён)</li>
+<li><strong>&ldquo;A large bubble rises to the surface and pops.&rdquo;</strong> - <em>&ldquo;Большой пузырь поднимается на поверхность и лопает.&rdquo;</em> (не ослеплён, водяные нимфы подвергались геноциду или вымерли)</li>
+<li><strong>&ldquo;You hear a loud pop.&rdquo;</strong> - <em>&ldquo;Вы слышите громкий хлопок.&rdquo;</em> (ослеплён, водяные нимфы подвергались геноциду или вымерли)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Несколько луж могут быть созданы по-соседству. (Генерируются ближе к вам, но не на вашей клетке и не может генерироваться две ортогонально соседних лужи.)</p>
+
+<ul>
+<li><strong>&ldquo;Water gushes forth from the overflowing fountain!&rdquo;</strong> - <em>&ldquo;Вода выливается из переполненного фонтана!&rdquo;</em> (лужи созданы)</li>
+<li><strong>&ldquo;Water sprays all over you.&rdquo;</strong> - <em>&ldquo;Вода разбрызгивается над вами.&rdquo;</em> (лужи не созданы)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Вы находите случайный драгоценный камень или кусок бесполезного стекла и ваша мудрость тренируется (<em>exercised</em>). Если вам уже попадался драгоценный камень или золото из этого фонтана, то могут быть созданы лужи (как описано выше).</p>
+
+<ul>
+<li><strong>&ldquo;You spot a gem in the sparkling waters!&rdquo;</strong> - <em>&ldquo;Вы заметили драгоценный камень в сверкающих водах!&rdquo;</em> (не ослеплён)</li>
+<li><strong>&ldquo;You feel a gem here!&rdquo;</strong> - <em>&ldquo;Вы чувствуете драгоценный камень здесь!&rdquo;</em> (ослеплён)</li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Вы теряете некоторое количество золота и ваша мудрость ухудшается.</p>
+
+<ul>
+<li>Сумма, которую вы теряете, зависит от количества (<em>GP</em>) золота, которое у вас есть, следующим образом:
+
+<ul>
+<li>если <em>GP &lt;= 10</em>, то теряете <em>0</em> zorkmid&rsquo;ов</li>
+<li>если <em>GP &lt; 100</em>, то теряете <em>GP/10</em> zorkmid&rsquo;ов</li>
+<li>если <em>GP &gt;= 10000</em>, то теряете <em>d(GP)/10</em> zorkmid&rsquo;ов</li>
+<li>если <em>GP &gt; 10000</em>, то теряете <em>d(10000)/10</em> zorkmid&rsquo;ов</li>
+</ul></li>
+<li>Теперь драгоценные камни и золото можно снова найти в этом фонтане.
+
+<ul>
+<li><strong>&ldquo;An urge to take a bath overwhelms you.&rdquo;</strong> - <em>&ldquo;Стремление принять ванну переполняет вас.&rdquo;</em></li>
+<li><strong>&ldquo;You lost some of your gold in the fountain!&rdquo;</strong> - <em>&ldquo;Вы потеряли часть своего золота в фонтане!&rdquo;</em></li>
+</ul></li>
+</ul>
+
+<p><sup>1</sup>&frasl;<sub>30</sub>: Вы находите <em>(2*d(height+1))+5</em> zorkmid&rsquo;ов, где &ldquo;<em>height</em>&rdquo; ваша высота над нижнем уровнем текущего ответвления подземелья; вы тренируете мудрость. Если вы уже получили драгоценный камень или золото из этого фонтана - эффекта не будет.</p>
+
+<ul>
+<li><strong>&ldquo;Far below you, you see coins glistening in the water.&rdquo;</strong> - <em>&ldquo;Глубоко под вами, вы видите блестящие в воде монеты.&rdquo;</em> (не ослеплён)</li>
+</ul>
+
+<p>И, наконец, фонтан имеет шанс <sup>1</sup>&frasl;<sub>3</sub> высохнуть (за исключением <em>Minetown</em>, в котором вы всегда будете получать одно предупреждение); <sup>1</sup>&frasl;<sub>6</sub>, если смачивание объекта вызвало эффект.</p>
+
+<h2 id="другие-эффекты-фонтанов">Другие эффекты фонтанов</h2>
+
+<p>Копая вниз на клетке с фонтаном вы можете создать несколько луж по-соседству. (Генерируются ближе к вам, но не на вашей клетке и не может генерироваться две ортогонально соседних лужи.) После этого фонтан может высохнуть.</p>
+
+<ul>
+<li><strong>&ldquo;Water gushes forth from the overflowing fountain!&rdquo;</strong> - <em>&ldquo;Вода выливается из переполненного фонтана!&rdquo;</em> (лужи созданы)</li>
+<li><strong>&ldquo;Water sprays all over you.&rdquo;</strong> - <em>&ldquo;Вода разбрызгивается над вами.&rdquo;</em> (лужи не созданы)</li>
+</ul>
+
+<p>Гремлины (<em>gremlins</em>) могут размножаться в фонтане (для этого вы можете использовать команду <strong>#monster</strong>, если вы обратились (<em>polyself</em>) в гремлина).</p>
+
+<h2 id="благодарности">Благодарности</h2>
+
+<p>Исправления и разъяснения предоставлены Intoxicated astral medic и Topi Linkala.</p>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'emunix';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="https://emunix.org/post/nethack-amul/" rel="prev">NetHack: Амулеты и их свойства</a></span>
+    
+    
+      <span class="next"><a href="https://emunix.org/post/git-rebase/" rel="next">Git: обновление ветки до актуального состояния</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      © 2011-2017, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a>
+    </div>
+  </footer>
+
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-28744527-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+

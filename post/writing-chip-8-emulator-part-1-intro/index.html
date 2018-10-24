@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    Пишем эмулятор CHIP-8. Часть 1: Введение | Emunix
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://emunix.org/post/writing-chip-8-emulator-part-1-intro/"/>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+  <link href="https://emunix.org/index.xml" rel="feed" type="application/rss+xml" title="Emunix" />
+
+</head>
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://emunix.org/">Emunix</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/btimofeev" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/btimofeev" target="_blank">GitHub</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>Пишем эмулятор CHIP-8. Часть 1: Введение</h1>
+      <div class="meta">
+        Mar 19, 2012 &nbsp;
+        
+          #<a href="/tags/dev">dev</a>&nbsp;
+        
+          #<a href="/tags/emulation">emulation</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>В этой серии статей я собираюсь рассказать как написать простейший эмулятор компьютера на примере CHIP-8.  Вообще CHIP-8 не является реальным компьютером, его можно сравнить с виртуальной машиной (такой как java), но он отлично подходит для понимания основ эмуляции компьютерных систем.</p>
+
+<p>Эмулятор мы будем писать на языке C++ с использованием графической библиотеки <a href="http://www.libsdl.org/">SDL</a>. Код основывается на исходниках моего эмулятора <a href="http://code.google.com/p/emuchip/">emuChip</a>.</p>
+
+<h2 id="история-chip-8">История CHIP-8</h2>
+
+<p><strong>CHIP-8</strong> - это небольшой, интерпретируемый язык программирования и интерпретатор для него, впервые появившийся на домашних компьютерах COSMAC VIP, Telmac 1800, DREAM 6800 в конце 70-х годов. Создателем является Joseph Weisbecker. CHIP-8 использовался для создания игр, таких как Pong, Tetris, Space Invaders и т.п.</p>
+
+<p><img src="../../images/writing-chip-8-emulator-part-1-intro/intro.jpg" alt="Изображение компьютера" /></p>
+
+<p></p>
+
+<p>В 1990 году Andreas Gustafsson написал интерпретатор CHIP-8 для графического калькулятора HP-48. Эта версия была названа CHIP-48.</p>
+
+<p>В 1991 году Erik Bryntse добавил в язык несколько нововведений, позволившие в 2 раза увеличить разрешение экрана в играх и использовать скроллинг. Данная версия стала называться SCHIP (Super Chip).</p>
+
+<p>В настоящее время существует еще и MegaChip разработанный Revival Studios. В эту версию добавлена цветная графика и звук.</p>
+
+<h2 id="технические-характеристики">Технические характеристики</h2>
+
+<h3 id="экран">Экран</h3>
+
+<p>Оригинальная реализация CHIP-8 имеет монохромный(черно-белый) экран размером 64х32 пикселя. SCHIP в дополнение к основному имеет расширенный режим 128x64.</p>
+
+<p>CHIP-8 рисует графику на экране используя спрайты. Спрайт имеет 8 пикселей в ширину и от 1 до 15 пикселей в высоту. Так же интерпретатор предоставляет 16 предопределенных спрайтов размером 4x5 пикселей. Это шестнадцатеричные числа от 0 до F.</p>
+
+<h3 id="клавиатура">Клавиатура</h3>
+
+<p>Компьютеры на которых использовался оригинальный CHIP-8 имели 16-клавишную клавиатуру следующего вида.</p>
+
+<p><center></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>C</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>D</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>E</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>0</td>
+<td>B</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+
+<p></center></p>
+
+<h3 id="память">Память</h3>
+
+<p>CHIP-8 имеет 4 кб памти (адреса 0x000h-0xFFFh). Первые 512 байт (адреса 0x000h-0x200h) зарезервированы для интерпретатора, так что игре доступно только 3,584 байт. Соответственно игра располагается в памяти начиная с адреса 0x200h.</p>
+
+<h3 id="регистры">Регистры</h3>
+
+<p>CHIP-8 имеет 16 восьмибитных <a href="http://ru.wikipedia.org/wiki/Регистр_процессора">регистров</a> общего назначения V0-VF. Регистр VF используется как <a href="http://ru.wikipedia.org/wiki/Флаг_переноса">флаг переноса</a> и индикатор столкновений спрайтов.</p>
+
+<p>Адресный регистр I используется для хранения адресов памяти и имеет размер 16 бит, но используются только младшие 12 бит, так как их хватает что бы адресовать 4 кб памяти.</p>
+
+<p>Помимо регистров существует два восьмибитных таймера: задержки и звука. Оба таймера уменьшают свое значение 60 раз в секунду, пока не достигнут нуля. Если значение звукового таймера отлично от нуля интерпретатор выводил звук (beep!).</p>
+
+<h3 id="стек">Стек</h3>
+
+<p>В стеке сохраняются адреса возврата при вызове функций. Оригинальный интерпретатор имел 12 уровней вложенности стека. Сейчас принято делать 16. Каждое значение стека имеет размер 2 байта.</p>
+
+<h2 id="на-сегодня-это-все">На сегодня это все</h2>
+
+<p>В следующей статье мы перейдем к изучению команд языка и их опкодов.</p>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'emunix';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="https://emunix.org/post/rusifikaciya-zenwalk-7/" rel="prev">Русификация Zenwalk 7</a></span>
+    
+    
+      <span class="next"><a href="https://emunix.org/post/writing-chip-8-emulator-part-2/" rel="next">Пишем эмулятор CHIP-8. Часть 2: Ассемблер</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      © 2011-2017, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a>
+    </div>
+  </footer>
+
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-28744527-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
+
