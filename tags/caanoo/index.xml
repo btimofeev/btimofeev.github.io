@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Caanoo on Emunix</title>
+    <title>caanoo on Emunix</title>
     <link>https://emunix.org/tags/caanoo/</link>
-    <description>Recent content in Caanoo on Emunix</description>
+    <description>Recent content in caanoo on Emunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
+    <copyright>© 2011-2020, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 02 Feb 2012 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://emunix.org/tags/caanoo/index.xml" rel="self" type="application/rss+xml" />
@@ -18,11 +19,8 @@
       
       <guid>https://emunix.org/post/transfer-files-to-caanoo-via-wifi/</guid>
       <description>&lt;p&gt;В этой заметке я опишу способ передачи файлов на Caanoo через Wi-Fi.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../../images/transfer-files-to-caanoo-via-wifi/caanoo.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;img src=&#34;../../images/transfer-files-to-caanoo-via-wifi/caanoo.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Для этого нам понадобятся:&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;собственно консоль GPH Caanoo&lt;/li&gt;
 &lt;li&gt;wifi-сеть, я использую домашний wifi-роутер, но в общественных сетях тоже должно работать&lt;/li&gt;
@@ -41,7 +39,7 @@
       <description>За два дня написал свою первую игру на SDL. Это клон игры flood-it. Работает на Caanoo и линуксе, но скомпилировать можно и для других систем.
 Цель игры: Начиная с левого верхнего угла и перекрашивая прилегающие квадраты заполнить всё поле одним цветом. На это дается 25 ходов.
 Скачать: версии для Caanoo, Linux, исходный код.
-Страница на GitHub&amp;rsquo;е</description>
+Страница на GitHub&#39;е</description>
     </item>
     
   </channel>

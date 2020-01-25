@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cd on Emunix</title>
+    <title>cd on Emunix</title>
     <link>https://emunix.org/tags/cd/</link>
-    <description>Recent content in Cd on Emunix</description>
+    <description>Recent content in cd on Emunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
+    <copyright>© 2011-2020, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
     <lastBuildDate>Sat, 01 Dec 2012 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://emunix.org/tags/cd/index.xml" rel="self" type="application/rss+xml" />
@@ -35,11 +36,11 @@ blank=unclose - открыть последнюю записанную сесс�
       <pubDate>Thu, 08 Dec 2011 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</guid>
-      <description>FuseISO это программа для монтирования образов дисков в форматах .iso, .nrg, .bin, .mdf и .img. Для работы не нужны привилегии root&amp;rsquo;а.
+      <description>FuseISO это программа для монтирования образов дисков в форматах .iso, .nrg, .bin, .mdf и .img. Для работы не нужны привилегии root&#39;а.
 Для того что бы примонтировать образ disk.iso к файловой системе в каталог /mount_point используем команду:
-fuseiso -p disk.iso /mount_point  Опция -p создает каталог, если его не существует, а также удаляет его при отмонтировании.
+fuseiso -p disk.iso /mount_point Опция -p создает каталог, если его не существует, а также удаляет его при отмонтировании.
 Для отмонтирования используем команду:
-fusermount -u /mount_point  </description>
+fusermount -u /mount_point </description>
     </item>
     
   </channel>

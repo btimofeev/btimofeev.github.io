@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Emunix</title>
@@ -6,40 +6,14 @@
     <description>Recent content in Tags on Emunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
-    <lastBuildDate>Wed, 31 Jul 2013 00:00:00 +0000</lastBuildDate>
+    <copyright>© 2011-2020, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 12 Sep 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://emunix.org/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Android</title>
-      <link>https://emunix.org/tags/android/</link>
-      <pubDate>Wed, 31 Jul 2013 00:00:00 +0000</pubDate>
-      
-      <guid>https://emunix.org/tags/android/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Caanoo</title>
-      <link>https://emunix.org/tags/caanoo/</link>
-      <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://emunix.org/tags/caanoo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cd</title>
-      <link>https://emunix.org/tags/cd/</link>
-      <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://emunix.org/tags/cd/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cli</title>
+      <title>cli</title>
       <link>https://emunix.org/tags/cli/</link>
       <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
       
@@ -48,52 +22,7 @@
     </item>
     
     <item>
-      <title>Dev</title>
-      <link>https://emunix.org/tags/dev/</link>
-      <pubDate>Fri, 11 Mar 2016 19:56:51 +0300</pubDate>
-      
-      <guid>https://emunix.org/tags/dev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Emulation</title>
-      <link>https://emunix.org/tags/emulation/</link>
-      <pubDate>Sat, 30 Jun 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://emunix.org/tags/emulation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Game</title>
-      <link>https://emunix.org/tags/game/</link>
-      <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://emunix.org/tags/game/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>https://emunix.org/tags/git/</link>
-      <pubDate>Fri, 11 Mar 2016 19:56:51 +0300</pubDate>
-      
-      <guid>https://emunix.org/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>https://emunix.org/tags/java/</link>
-      <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://emunix.org/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
+      <title>linux</title>
       <link>https://emunix.org/tags/linux/</link>
       <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
       
@@ -102,16 +31,34 @@
     </item>
     
     <item>
-      <title>Mbr</title>
-      <link>https://emunix.org/tags/mbr/</link>
-      <pubDate>Thu, 03 Nov 2011 00:00:00 +0000</pubDate>
+      <title>dev</title>
+      <link>https://emunix.org/tags/dev/</link>
+      <pubDate>Fri, 11 Mar 2016 19:56:51 +0300</pubDate>
       
-      <guid>https://emunix.org/tags/mbr/</guid>
+      <guid>https://emunix.org/tags/dev/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Nethack</title>
+      <title>git</title>
+      <link>https://emunix.org/tags/git/</link>
+      <pubDate>Fri, 11 Mar 2016 19:56:51 +0300</pubDate>
+      
+      <guid>https://emunix.org/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>game</title>
+      <link>https://emunix.org/tags/game/</link>
+      <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/tags/game/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nethack</title>
       <link>https://emunix.org/tags/nethack/</link>
       <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
       
@@ -120,7 +67,43 @@
     </item>
     
     <item>
-      <title>Patcher</title>
+      <title>java</title>
+      <link>https://emunix.org/tags/java/</link>
+      <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android</title>
+      <link>https://emunix.org/tags/android/</link>
+      <pubDate>Wed, 31 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cd</title>
+      <link>https://emunix.org/tags/cd/</link>
+      <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/tags/cd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emulation</title>
+      <link>https://emunix.org/tags/emulation/</link>
+      <pubDate>Sat, 30 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/tags/emulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>patcher</title>
       <link>https://emunix.org/tags/patcher/</link>
       <pubDate>Sun, 19 Feb 2012 00:00:00 +0000</pubDate>
       
@@ -129,7 +112,16 @@
     </item>
     
     <item>
-      <title>Wi Fi</title>
+      <title>caanoo</title>
+      <link>https://emunix.org/tags/caanoo/</link>
+      <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/tags/caanoo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wi-fi</title>
       <link>https://emunix.org/tags/wi-fi/</link>
       <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
       
@@ -138,7 +130,16 @@
     </item>
     
     <item>
-      <title>Windows</title>
+      <title>mbr</title>
+      <link>https://emunix.org/tags/mbr/</link>
+      <pubDate>Thu, 03 Nov 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/tags/mbr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>windows</title>
       <link>https://emunix.org/tags/windows/</link>
       <pubDate>Thu, 03 Nov 2011 00:00:00 +0000</pubDate>
       

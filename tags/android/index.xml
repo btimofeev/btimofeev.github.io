@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Android on Emunix</title>
+    <title>android on Emunix</title>
     <link>https://emunix.org/tags/android/</link>
-    <description>Recent content in Android on Emunix</description>
+    <description>Recent content in android on Emunix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
+    <copyright>© 2011-2020, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 31 Jul 2013 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://emunix.org/tags/android/index.xml" rel="self" type="application/rss+xml" />
@@ -17,7 +18,7 @@
       <pubDate>Wed, 31 Jul 2013 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/the-dark-side-of-asynctask/</guid>
-      <description>Это перевод статьи The dark side of AsyncTask, автор Fr&amp;#233; Dumazy.
+      <description>Это перевод статьи The dark side of AsyncTask, автор Fré Dumazy.
 Привет всем,
 В этой статье я хочу рассказать о некоторых проблемах AsyncTask. Я написал свою первую статью о том, как использовать AsyncTask примерно полгода назад. Теперь я собираюсь рассказать про проблемы, которые он может вызвать, о том как их можно исправить и о существующих альтернативах.
 В настоящее время AsyncTask, вероятно, наиболее широко используемый на Android способ выполнения задач в фоне.</description>

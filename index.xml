@@ -1,461 +1,214 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Emunix</title>
     <link>https://emunix.org/</link>
     <description>Recent content on Emunix</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo - gohugo.io</generator>
     <language>ru</language>
-    <lastBuildDate>Tue, 12 Sep 2017 00:00:00 +0000</lastBuildDate>
+    <contact>btimofeev@emunix.org</contact>
+    <copyright>© 2011-2020, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></copyright>
     
-	<atom:link href="https://emunix.org/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://emunix.org/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Как сделать раздел жесткого диска доступным нескольким пользователям</title>
       <link>https://emunix.org/post/how-to-share-partition-between-users-in-linux/</link>
       <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/how-to-share-partition-between-users-in-linux/</guid>
-      <description>Данная заметка написана для начинающих пользователей Linux. В ней описывается как примонтировать раздел жесткого диска таким образом, что бы у нескольких пользователей в системе были права на доступ к файлам (на чтение и запись). Вся информация подходит только для файловых систем использующих unix права доступа (таких как ext3, ext4 и т.п.) и не подходит для файловых систем NTFS и FAT.
-Допустим, у нас есть два пользователя состоящие в разных группах</description>
+      <description>Как расшарить раздел жесткого диска между несколькими пользователями в Linux</description>
+      
     </item>
     
     <item>
       <title>atool: простая работа с архивами в Linux</title>
       <link>https://emunix.org/post/atool/</link>
       <pubDate>Thu, 24 Mar 2016 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/atool/</guid>
-      <description>При работе с архивами в командной строке Linux есть одно неудобство: у каждой программы-архиватора свой набор ключей, который необходимо помнить, либо постоянно заглядывать в man.
-Эта проблема легко решается, если использовать утилиту atool, т.к. с ее помощью вы сможете работать с любым форматом архивов. Попросту говоря, atool это фронтенд для консольных архиваторов, предоставляющий единый интерфейс для работы с ними.
-Программу можно скачать с официальной страницы www.nongnu.org/atool, либо установив с помощью пакетного менеджера вашего дистрибутива.</description>
+      <description>Консольная программа для работы с архивами различных форматов</description>
+      
     </item>
     
     <item>
       <title>Git: обновление ветки до актуального состояния</title>
       <link>https://emunix.org/post/git-rebase/</link>
       <pubDate>Fri, 11 Mar 2016 19:56:51 +0300</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/git-rebase/</guid>
-      <description>Если в ветке master появились новые коммиты и вы хотите обновить свою ветку до её состояния, то проще всего это сделать так:
- Находясь в своей ветке выполняем команду git rebase master(либо загружаем с сервера git pull --rebase origin/master)
- Если есть конфликты, то правим их и выполняем git add конфликтующие_файлы, затем git rebase --continue
-  При этом коммиты вашей ветки окажутся наверху истории изменений.</description>
+      <description></description>
+      
     </item>
     
     <item>
       <title>NetHack: Питьё и погружение предметов в фонтаны</title>
       <link>https://emunix.org/post/nethack-foun/</link>
       <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/nethack-foun/</guid>
-      <description>&lt;p&gt;&lt;em&gt;© &lt;a href=&#34;https://nethackwiki.com/wiki/Foun-343.txt&#34;&gt;foun-343.txt&lt;/a&gt; Последний раз редактировалось 2003-12-17 для NetHack 3.4.3&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;© Собрано Диланом О&amp;rsquo;Доннеллом (Dylan O&amp;rsquo;Donnell) &lt;a href=&#34;mailto:psmith@spod-central.org&#34;&gt;psmith@spod-central.org&lt;/a&gt;&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;© Перевод с английского: Борис Тимофеев &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;btimofeev@emunix.org&lt;/a&gt;.&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;Этот спойлер я перевёл для сайта &lt;a href=&#34;http://www.nethack-rutext.ru/doku.php?id=wiki:foun-343ru&#34;&gt;www.nethack-rutext.ru&lt;/a&gt;. Здесь будет лежать его резервная копия.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;питьё-из-фонтанов&#34;&gt;Питьё из фонтанов&lt;/h2&gt;
-
-&lt;p&gt;Любой случайно сгенерированный фонтан будет иметь шанс &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;7&lt;/sub&gt; быть &amp;ldquo;волшебным&amp;rdquo; (&lt;em&gt;magic&lt;/em&gt;), или &amp;ldquo;освящённым&amp;rdquo; (&lt;em&gt;blessed&lt;/em&gt;); но не существует способа узнать, является ли данный фонтан волшебным или нет.&lt;/p&gt;
-
-&lt;p&gt;Питье из волшебного фонтана, при неотрицательной удаче:&lt;/p&gt;
-
-&lt;p&gt;&lt;sup&gt;3&lt;/sup&gt;&amp;frasl;&lt;sub&gt;10&lt;/sub&gt;: Чувство голода немного уменьшается.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ldquo;The cool draught refreshes you.&amp;rdquo;&lt;/strong&gt; - &lt;em&gt;&amp;ldquo;Холодный глоток освежает вас.&amp;rdquo;&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;sup&gt;7&lt;/sup&gt;&amp;frasl;&lt;sub&gt;10&lt;/sub&gt;: Ваша мудрость тренируется (&lt;em&gt;exercised&lt;/em&gt;), и все ваши атрибуты восстанавливаются до их максимального значения (такой же эффект, как от &lt;em&gt;blessed potion of restore ability&lt;/em&gt;). Один атрибут увеличивается на 1 (эффект как у &lt;em&gt;uncursed potion of gain ability&lt;/em&gt;); если ваша Удача (&lt;em&gt;Luck&lt;/em&gt;) 4 или выше, этот последний эффект увеличит все ваши атрибуты на 1 (&lt;em&gt;blessed potion effect&lt;/em&gt;). После такого эффекта фонтан перестаёт быть волшебным.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ldquo;Wow! This makes you feel great!&amp;rdquo;&lt;/strong&gt; - &lt;em&gt;&amp;ldquo;Вау! От этого вы чувствуете себя великолепно!&amp;rdquo;&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ldquo;A wisp of vapor escapes the fountain&amp;hellip;&amp;rdquo;&lt;/strong&gt; - &lt;em&gt;&amp;ldquo;Немного пара исходит из фонтана&amp;hellip;&amp;rdquo;&lt;/em&gt;
-
-Питьё из обычного (не волшебного) фонтана или из волшебного при отрицательной удаче:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;sup&gt;9&lt;/sup&gt;&amp;frasl;&lt;sub&gt;30&lt;/sub&gt;: Чувство голода немного уменьшается. (То же самое, что и выше.)&lt;/p&gt;</description>
+      <description>Перевод классического nethack спойлера о фонтанах</description>
+      
     </item>
     
     <item>
       <title>NetHack: Амулеты и их свойства</title>
       <link>https://emunix.org/post/nethack-amul/</link>
       <pubDate>Sat, 27 Feb 2016 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/nethack-amul/</guid>
-      <description>&lt;p&gt;&lt;em&gt;© &lt;a href=&#34;https://nethackwiki.com/wiki/Amul-343.txt&#34;&gt;amul-343.txt&lt;/a&gt; Последний раз редактировалось 2004-02-06 для NetHack 3.4.3&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;© Амулеты и их свойства в NetHack 3.4&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;© Составлено для 3.2.2 Кевином Хьюго (Kevin Hugo).&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;© Обновлено для 3.4.3 Диланом О&amp;rsquo;Доннеллом (Dylan O&amp;rsquo;Donnell).&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;© Перевод с английского: Борис Тимофеев &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;btimofeev@emunix.org&lt;/a&gt;&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;Этот спойлер я перевёл для сайта &lt;a href=&#34;http://www.nethack-rutext.ru/doku.php?id=wiki:amul-343ru&#34;&gt;www.nethack-rutext.ru&lt;/a&gt;. Здесь будет лежать его резервная копия.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;таблица-амулетов&#34;&gt;Таблица амулетов&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;АМУЛЕТ&lt;/th&gt;
-&lt;th&gt;ЦЕНА&lt;/th&gt;
-&lt;th&gt;ВЕС&lt;/th&gt;
-&lt;th&gt;ВЕРОЯТНОСТЬ&lt;/th&gt;
-&lt;th&gt;СЪЕДОБЕН&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet of change&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;130c&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;amulet of ESP&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;175&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;amulet of life saving&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;75&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;amulet of magical breathing&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;65&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;amulet of reflection&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;75&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;amulet of restful sleep&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;135c&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;amulet of strangulation&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;135c&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;amulet of unchanging&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;45&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;amulet versus poison&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;165&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;imitation AoY&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Amulet of Yendor&lt;/td&gt;
-&lt;td&gt;30000&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
+      <description>Перевод классического nethack спойлера о амулетах</description>
+      
     </item>
     
     <item>
       <title>NetHack: Раковины, питьё из них и пинание</title>
       <link>https://emunix.org/post/nethack-sink/</link>
       <pubDate>Mon, 22 Feb 2016 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/nethack-sink/</guid>
-      <description>&lt;p&gt;&lt;em&gt;© &lt;a href=&#34;https://nethackwiki.com/wiki/Sink-343.txt&#34;&gt;sink-343.html&lt;/a&gt; Последняя редакция 2004-07-15 для NetHack 3.4.3&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;© Составитель Дилан О&amp;rsquo;Доннелл (&lt;a href=&#34;mailto:psmith@spod-central.org&#34;&gt;Dylan O&amp;rsquo;Donnell&lt;/a&gt;).&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;© Перевод в HTML Кейт Непвеу (&lt;a href=&#34;mailto:knepveu@steelypips.org&#34;&gt;Kate Nepveu&lt;/a&gt;); HTML ре-синхронизация 2005-08-29 Дэн Фабулич (Dan Fabulich).&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;© Перевод с английского Борис Тимофеев &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;btimofeev@emunix.org&lt;/a&gt;&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;Этот спойлер я перевёл для сайта &lt;a href=&#34;http://www.nethack-rutext.ru/doku.php?id=wiki:sink-343ru&#34;&gt;www.nethack-rutext.ru&lt;/a&gt;. Здесь будет лежать его резервная копия.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;питье-из-раковин&#34;&gt;Питье из раковин&lt;/h2&gt;
-
-&lt;p&gt;&lt;sup&gt;11&lt;/sup&gt;&amp;frasl;&lt;sub&gt;20&lt;/sub&gt;: Нет эффекта. Появляется одно из следующих сообщений:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&amp;ldquo;You take a sip of (very) &lt;hot|warm|cold&gt; water.&amp;rdquo;&lt;/strong&gt; &lt;em&gt;(&amp;ldquo;Вы выпиваете глоток (очень) &amp;lt;горячей|теплой|холодной&amp;gt; воды.&amp;ldquo;)&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&amp;ldquo;You hear clanking from the pipes&amp;hellip;&amp;rdquo;&lt;/strong&gt; &lt;em&gt;(&amp;ldquo;Вы слышите лязг из труб &amp;hellip;&amp;rdquo;)&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&amp;ldquo;You hear snatches of song from among the sewers&amp;hellip;&amp;rdquo;&lt;/strong&gt; &lt;em&gt;(&amp;ldquo;Вы слышите обрывки песни из канализационной трубы&amp;hellip;&amp;rdquo;)&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&amp;ldquo;From the murky drain, a hand reaches up&amp;hellip; &amp;ndash;oops&amp;ndash;&amp;rdquo;&lt;/strong&gt; &lt;em&gt;(&amp;ldquo;Из темной канализации к вам тянется рука&amp;hellip;&amp;rdquo;)&lt;/em&gt; (только при галлюцинациях)
-
-&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;20&lt;/sub&gt;: Если у вас есть сопротивление огню - эффекта не будет; в противном случае вы потеряете &lt;strong&gt;d6&lt;/strong&gt; очков жизни.&lt;/p&gt;</description>
+      <description>Перевод классического nethack спойлера о раковинах</description>
+      
     </item>
     
     <item>
       <title>Guava - простые рецепты, делающие ваш Java код чище, часть 1</title>
       <link>https://emunix.org/post/guava-recipes-part-1/</link>
       <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/guava-recipes-part-1/</guid>
-      <description>&lt;p&gt;&lt;em&gt;Это перевод статьи &lt;a href=&#34;http://onthejvm.blogspot.ru/2013/06/guava-simple-recipes-to-make-your-java.html&#34;&gt;Guava - simple recipes to make your Java code cleaner, 1st part&lt;/a&gt;, автор Lukasz Barc.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Это статья для тех, кто не работал с библиотекой Guava. Просто несколько простых примеров которые вы можете использовать в своем коде.&lt;/p&gt;
-
-&lt;h4 id=&#34;1-вы-можете-использовать-optional-вместо-простого-возврата-null-в-некоторых-случаях&#34;&gt;1. Вы можете использовать Optional вместо простого возврата null в некоторых случаях:&lt;/h4&gt;
-
-&lt;p&gt;Вместо:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/**
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;* Может вернуть null в некоторых случаях ... но это
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;* трудно запомнить
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;*/&lt;/span&gt;
-&lt;span style=&#34;color:#00a8c8&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;someMethod&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
-    &lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;returnValue&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
-    &lt;span style=&#34;color:#00a8c8&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;Date&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;getTime&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color:#111&#34;&gt;returnValue&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;time % 2 == 0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
-    &lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
-    &lt;span style=&#34;color:#00a8c8&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;returnValue&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
-&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color:#00a8c8&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;main&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[]&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;args&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
-    &lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;str&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;someMethod&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt;
-    &lt;span style=&#34;color:#111&#34;&gt;str&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;contains&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;%&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// ошибка, если str == null
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>Guava - простые рецепты, делающие ваш Java код чище, часть 1</description>
+      
     </item>
     
     <item>
       <title>Тёмная сторона AsyncTask</title>
       <link>https://emunix.org/post/the-dark-side-of-asynctask/</link>
       <pubDate>Wed, 31 Jul 2013 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/the-dark-side-of-asynctask/</guid>
-      <description>Это перевод статьи The dark side of AsyncTask, автор Fr&amp;#233; Dumazy.
-Привет всем,
-В этой статье я хочу рассказать о некоторых проблемах AsyncTask. Я написал свою первую статью о том, как использовать AsyncTask примерно полгода назад. Теперь я собираюсь рассказать про проблемы, которые он может вызвать, о том как их можно исправить и о существующих альтернативах.
-В настоящее время AsyncTask, вероятно, наиболее широко используемый на Android способ выполнения задач в фоне.</description>
+      <description>Тёмная сторона AsyncTask</description>
+      
     </item>
     
     <item>
       <title>Запись CD/DVD дисков из консоли</title>
       <link>https://emunix.org/post/command-line-cd-burning/</link>
       <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/command-line-cd-burning/</guid>
-      <description>Запись образа на CD-R или CD-RW диск: cdrecord -v -eject speed=10 dev=/dev/cdrom ~/disc.iso
-Если speed=0 программа сама выбирает подходящую скорость.
-CD-RW диск необходимо сначала очистить: cdrecord -v blank=fast dev=/dev/cdrom
-blank=all - очистить весь диск
-blank=fast - быстрая очистка диска
-blank=session - очистить последнюю сессию
-blank=unclose - открыть последнюю записанную сессию
-Создание образа диска: mkisofs -o test.iso -Jrv -V test_disk /home/user/something
-В этом примере следующие обозначения:
--o - имя создаваемого iso-файла (test.</description>
+      <description>Запись cd/dvd из консоли</description>
+      
     </item>
     
     <item>
       <title>Пишем эмулятор CHIP-8. Часть 4: Ядро</title>
       <link>https://emunix.org/post/writing-chip-8-emulator-part-4-kernel/</link>
       <pubDate>Sat, 30 Jun 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-4-kernel/</guid>
-      <description>В сегодняшней статье мы перейдем непосредственно к самой важной части - написанию ядра нашего эмулятора.
-В общем виде эмуляция CHIP8 выглядит следующим образом:
- Мы объявляем переменные, которые будут представлять регистры процессора, массивы которые представляют память, экран, состояние клавиатуры и т.п. Инициализируем эти переменные начальными значениями, очищаем массивы памяти и экрана, загружаем в память стандартные шрифты CHIP8/SCHIP. После этого загружаем в память игру (копируем ее в массив памяти со смещением 0x200 от начала массива)  Считываем из памяти по адресу PC двухбайтовый опкод, конструкцией switch-case выбираем его и выполняем (здесь мы должны добиться полного соответствия с эмулируемой платформой: если опкод CHIP-8 присваивает регистру I какое-то значение, то и мы присваиваем его нашей переменной I; если опкод сдвигает изображение на экране на несколько пикселей вправо, то и мы сдвигаем данные в массиве представляющем экран, и т.</description>
+      <description>Пишем эмулятор CHIP-8. Часть 4: Ядро</description>
+      
     </item>
     
     <item>
       <title>Пишем эмулятор CHIP-8. Часть 3: Примеры программ</title>
       <link>https://emunix.org/post/writing-chip-8-emulator-part-3/</link>
       <pubDate>Sun, 15 Apr 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-3/</guid>
-      <description>&lt;p&gt;В прошлой статье мы рассмотрели опкоды CHIP-8. Сегодня попробуем написать несколько простых демонстрационных программ для него.&lt;/p&gt;
-
-&lt;h2 id=&#34;chipper&#34;&gt;Chipper&lt;/h2&gt;
-
-&lt;p&gt;Для компиляции исходного кода нам потребуется ассемблер Chipper, автором которого является Hans Christian Egeberg. Скачать можно по ссылке &lt;a href=&#34;http://www.hpcalc.org/hp48/pc/programming/chipper.zip&#34;&gt;http://www.hpcalc.org/hp48/pc/programming/chipper.zip&lt;/a&gt;
-
-В архиве лежат 3 файла:&lt;/p&gt;</description>
+      <description>Пишем эмулятор CHIP-8. Часть 3: Примеры программ</description>
+      
     </item>
     
     <item>
       <title>Пишем эмулятор CHIP-8. Часть 2: Ассемблер</title>
       <link>https://emunix.org/post/writing-chip-8-emulator-part-2/</link>
       <pubDate>Fri, 30 Mar 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-2/</guid>
-      <description>&lt;p&gt;В предыдущей статье мы рассмотрели общее устройство CHIP-8. Сегодня перейдем к описанию &lt;a href=&#34;http://ru.wikipedia.org/wiki/Язык_ассемблера&#34;&gt;ассемблерных&lt;/a&gt; команд и их &lt;a href=&#34;http://ru.wikipedia.org/wiki/Код_операции&#34;&gt;опкодов&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;В этой статье список инструкций условно разбит на три колонки:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&lt;code&gt;опкод&lt;/code&gt;    &lt;code&gt;команда на ассемблере&lt;/code&gt;    описание&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;И используются следующие обозначения:&lt;br /&gt;
-&lt;code&gt;nnn&lt;/code&gt; - 12 битный адрес&lt;br /&gt;
-&lt;code&gt;kk&lt;/code&gt; - 8 битная константа&lt;br /&gt;
-&lt;code&gt;x&lt;/code&gt; -  4 битный номер регистра&lt;br /&gt;
-&lt;code&gt;y&lt;/code&gt; - 4 битный номер регистра&lt;br /&gt;
-&lt;code&gt;1..9, A..F&lt;/code&gt; - шестнадцатеричные цифры&lt;/p&gt;
-
-&lt;h2 id=&#34;инструкции-chip-8&#34;&gt;Инструкции CHIP-8&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;00E0&lt;/code&gt;   &lt;code&gt;CLS&lt;/code&gt;    Очистить экран&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;00EE&lt;/code&gt;   &lt;code&gt;RET&lt;/code&gt;    Возвратиться из &lt;a href=&#34;http://ru.wikipedia.org/wiki/Подпрограмма&#34;&gt;подпрограммы&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;0nnn&lt;/code&gt;    &lt;code&gt;SYS nnn&lt;/code&gt;    Перейти на машинный код RCA 1802 по адресу &lt;strong&gt;nnn&lt;/strong&gt;. Эта инструкция была только в самой первой реализации CHIP-8. В более поздних реализациях и эмуляторах не используется.
-
-&lt;code&gt;1nnn&lt;/code&gt;    &lt;code&gt;JP nnn&lt;/code&gt;    Перейти по адресу &lt;strong&gt;nnn&lt;/strong&gt;&lt;/p&gt;</description>
+      <description>Пишем эмулятор CHIP-8. Часть 2: Ассемблер</description>
+      
     </item>
     
     <item>
       <title>Пишем эмулятор CHIP-8. Часть 1: Введение</title>
       <link>https://emunix.org/post/writing-chip-8-emulator-part-1-intro/</link>
       <pubDate>Mon, 19 Mar 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-1-intro/</guid>
-      <description>&lt;p&gt;В этой серии статей я собираюсь рассказать как написать простейший эмулятор компьютера на примере CHIP-8.  Вообще CHIP-8 не является реальным компьютером, его можно сравнить с виртуальной машиной (такой как java), но он отлично подходит для понимания основ эмуляции компьютерных систем.&lt;/p&gt;
-
-&lt;p&gt;Эмулятор мы будем писать на языке C++ с использованием графической библиотеки &lt;a href=&#34;http://www.libsdl.org/&#34;&gt;SDL&lt;/a&gt;. Код основывается на исходниках моего эмулятора &lt;a href=&#34;http://code.google.com/p/emuchip/&#34;&gt;emuChip&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;история-chip-8&#34;&gt;История CHIP-8&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;CHIP-8&lt;/strong&gt; - это небольшой, интерпретируемый язык программирования и интерпретатор для него, впервые появившийся на домашних компьютерах COSMAC VIP, Telmac 1800, DREAM 6800 в конце 70-х годов. Создателем является Joseph Weisbecker. CHIP-8 использовался для создания игр, таких как Pong, Tetris, Space Invaders и т.п.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../../images/writing-chip-8-emulator-part-1-intro/intro.jpg&#34; alt=&#34;Изображение компьютера&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>Пишем эмулятор CHIP-8. Часть 1: Введение</description>
+      
     </item>
     
     <item>
       <title>Русификация Zenwalk 7</title>
       <link>https://emunix.org/post/rusifikaciya-zenwalk-7/</link>
       <pubDate>Thu, 23 Feb 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/rusifikaciya-zenwalk-7/</guid>
-      <description>После установки linux-дистрибутива Zenwalk, мы получаем систему на английском языке. Как ее русифицировать? Это очень просто.
-Первым делом, во время установки, zenwalk предлагает нам выбрать локаль. Сразу выбираем ru_RU.UTF-8, это заставит программы использовать русский язык по-умолчанию.
-Для добавления русской раскладки клавиатуры изменяем в файле /etc/X11/xorg.conf следующую секцию:
-Section &amp;#34;InputDevice&amp;#34; Identifier &amp;#34;Keyboard1&amp;#34; Driver &amp;#34;kbd&amp;#34; Option &amp;#34;XkbRules&amp;#34; &amp;#34;xorg&amp;#34; Option &amp;#34;XkbModel&amp;#34; &amp;#34;pc105&amp;#34; Option &amp;#34;XkbLayout&amp;#34; &amp;#34;us,ru(winkeys)&amp;#34; Option &amp;#34;XkbOptions&amp;#34; &amp;#34;grp:ctrl_shift_toggle,grp_led:scroll,terminate:ctrl_alt_bksp&amp;#34; EndSection  В этом примере раскладки переключаются по Control+Shift, при переключении загорается лампочка Scroll Lock.</description>
+      <description>Русификация Zenwalk 7</description>
+      
     </item>
     
     <item>
       <title>Lazy IPS</title>
       <link>https://emunix.org/post/lazyips-patcher/</link>
       <pubDate>Sun, 19 Feb 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/lazyips-patcher/</guid>
-      <description>Сегодня за пару часов написал IPS патчер для Linux. Он основан на коде моего же патчера pySmartIPS.
-Скачать можно по ссылке LazyIPS. Пакет для Arch Linux доступен в AUR.
-Зависимости: Python 2 и pygtk.</description>
+      <description>Lazy IPS</description>
+      
     </item>
     
     <item>
       <title>Sega Mega Drive Fix Checksum</title>
       <link>https://emunix.org/post/sega-mega-drive-fix-checksum/</link>
       <pubDate>Wed, 08 Feb 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/sega-mega-drive-fix-checksum/</guid>
-      <description>Иногда после пропатчивания ROM&amp;rsquo;ов с консоли Sega Mega Drive / Sega Genesis игра отказывается запускаться показывая нам красный экран. Это означает что в роме неправильно проставлена контрольная сумма, которую необходимо исправить.
-Для исправления контрольной суммы 2 года назад я написал на питоне программу SMD Fix Checksum которую и выкладываю.
-Скачать можно на GitHub&amp;rsquo;е
-Зависимости - python 2 и pygtk</description>
+      <description>Sega Mega Drive Fix Checksum</description>
+      
     </item>
     
     <item>
       <title>Передача файлов на Caanoo через Wi-Fi</title>
       <link>https://emunix.org/post/transfer-files-to-caanoo-via-wifi/</link>
       <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/transfer-files-to-caanoo-via-wifi/</guid>
-      <description>&lt;p&gt;В этой заметке я опишу способ передачи файлов на Caanoo через Wi-Fi.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../../images/transfer-files-to-caanoo-via-wifi/caanoo.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Для этого нам понадобятся:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;собственно консоль GPH Caanoo&lt;/li&gt;
-&lt;li&gt;wifi-сеть, я использую домашний wifi-роутер, но в общественных сетях тоже должно работать&lt;/li&gt;
-&lt;li&gt;wifi-адаптер для Caanoo&lt;/li&gt;
-&lt;li&gt;ssh-сервер Dropbear (скачать можно &lt;a href=&#34;http://zx81.zx81.free.fr/serendipity/index.php?/categories/187-DropBear&#34;&gt;здесь&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;любой SFTP-клиент (например &lt;a href=&#34;http://filezilla-project.org/&#34;&gt;Filezilla&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>Передача файлов на Caanoo через Wi-Fi</description>
+      
     </item>
     
     <item>
       <title>Игра flood-it для Caanoo и Linux</title>
       <link>https://emunix.org/post/flood-it-game-for-caanoo-and-linux/</link>
       <pubDate>Mon, 30 Jan 2012 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/flood-it-game-for-caanoo-and-linux/</guid>
-      <description>За два дня написал свою первую игру на SDL. Это клон игры flood-it. Работает на Caanoo и линуксе, но скомпилировать можно и для других систем.
-Цель игры: Начиная с левого верхнего угла и перекрашивая прилегающие квадраты заполнить всё поле одним цветом. На это дается 25 ходов.
-Скачать: версии для Caanoo, Linux, исходный код.
-Страница на GitHub&amp;rsquo;е</description>
+      <description>Игра flood-it для Caanoo и Linux</description>
+      
     </item>
     
     <item>
       <title>Монтируем образ диска через FuseISO</title>
       <link>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</link>
       <pubDate>Thu, 08 Dec 2011 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</guid>
-      <description>FuseISO это программа для монтирования образов дисков в форматах .iso, .nrg, .bin, .mdf и .img. Для работы не нужны привилегии root&amp;rsquo;а.
-Для того что бы примонтировать образ disk.iso к файловой системе в каталог /mount_point используем команду:
-fuseiso -p disk.iso /mount_point  Опция -p создает каталог, если его не существует, а также удаляет его при отмонтировании.
-Для отмонтирования используем команду:
-fusermount -u /mount_point  </description>
+      <description>Монтируем образ диска через FuseISO</description>
+      
     </item>
     
     <item>
       <title>Как восстановить Windows MBR из-под Linux</title>
       <link>https://emunix.org/post/how-to-restore-windows-mbr-from-linux/</link>
       <pubDate>Thu, 03 Nov 2011 00:00:00 +0000</pubDate>
-      
+      <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/how-to-restore-windows-mbr-from-linux/</guid>
-      <description>Что делать если необходимо восстановить Windows Master Boot Record (MBR)?
-Берем любой LiveCD-дистрибутив linux и устанавливаем программу ms-sys. К примеру, в Ubuntu для этого набираем в терминале:
-sudo apt-get install ms-sys  Далее ищем в выводе следующей команды диск с установленной windows:
-sudo fdisk -l  Если, например, таким диском является /dev/sda1, набираем:
-sudo ms-sys -m /dev/sda  Вот и все, загрузчик восстановлен.</description>
+      <description>Как восстановить Windows MBR из-под Linux</description>
+      
     </item>
     
   </channel>
