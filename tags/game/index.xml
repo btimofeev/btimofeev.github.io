@@ -18,22 +18,7 @@
       <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/nethack-foun/</guid>
-      <description>&lt;p&gt;&lt;em&gt;© &lt;a href=&#34;https://nethackwiki.com/wiki/Foun-343.txt&#34;&gt;foun-343.txt&lt;/a&gt; Последний раз редактировалось 2003-12-17 для NetHack 3.4.3&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;© Собрано Диланом О&#39;Доннеллом (Dylan O&amp;rsquo;Donnell) &lt;a href=&#34;mailto:psmith@spod-central.org&#34;&gt;psmith@spod-central.org&lt;/a&gt;&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;© Перевод с английского: Борис Тимофеев &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;btimofeev@emunix.org&lt;/a&gt;.&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;Этот спойлер я перевёл для сайта &lt;a href=&#34;http://www.nethack-rutext.ru/doku.php?id=wiki:foun-343ru&#34;&gt;www.nethack-rutext.ru&lt;/a&gt;. Здесь будет лежать его резервная копия.&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;питьё-из-фонтанов&#34;&gt;Питьё из фонтанов&lt;/h2&gt;
-&lt;p&gt;Любой случайно сгенерированный фонтан будет иметь шанс 1/7 быть &amp;ldquo;волшебным&amp;rdquo; (&lt;em&gt;magic&lt;/em&gt;), или &amp;ldquo;освящённым&amp;rdquo; (&lt;em&gt;blessed&lt;/em&gt;); но не существует способа узнать, является ли данный фонтан волшебным или нет.&lt;/p&gt;
-&lt;p&gt;Питье из волшебного фонтана, при неотрицательной удаче:&lt;/p&gt;
-&lt;p&gt;3/10: Чувство голода немного уменьшается.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ldquo;The cool draught refreshes you.&amp;quot;&lt;/strong&gt; - &lt;em&gt;&amp;ldquo;Холодный глоток освежает вас.&amp;quot;&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;7/10: Ваша мудрость тренируется (&lt;em&gt;exercised&lt;/em&gt;), и все ваши атрибуты восстанавливаются до их максимального значения (такой же эффект, как от &lt;em&gt;blessed potion of restore ability&lt;/em&gt;). Один атрибут увеличивается на 1 (эффект как у &lt;em&gt;uncursed potion of gain ability&lt;/em&gt;); если ваша Удача (&lt;em&gt;Luck&lt;/em&gt;) 4 или выше, этот последний эффект увеличит все ваши атрибуты на 1 (&lt;em&gt;blessed potion effect&lt;/em&gt;). После такого эффекта фонтан перестаёт быть волшебным.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ldquo;Wow! This makes you feel great!&amp;quot;&lt;/strong&gt; - &lt;em&gt;&amp;ldquo;Вау! От этого вы чувствуете себя великолепно!&amp;quot;&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ldquo;A wisp of vapor escapes the fountain&amp;hellip;&amp;quot;&lt;/strong&gt; - &lt;em&gt;&amp;ldquo;Немного пара исходит из фонтана&amp;hellip;&amp;quot;&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>Перевод на русский язык спойлера о фонтанах для игры NetHack</description>
     </item>
     
     <item>
@@ -42,105 +27,7 @@
       <pubDate>Sat, 27 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/nethack-amul/</guid>
-      <description>&lt;p&gt;&lt;em&gt;© &lt;a href=&#34;https://nethackwiki.com/wiki/Amul-343.txt&#34;&gt;amul-343.txt&lt;/a&gt; Последний раз редактировалось 2004-02-06 для NetHack 3.4.3&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;© Амулеты и их свойства в NetHack 3.4&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;© Составлено для 3.2.2 Кевином Хьюго (Kevin Hugo).&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;© Обновлено для 3.4.3 Диланом О&#39;Доннеллом (Dylan O&amp;rsquo;Donnell).&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;© Перевод с английского: Борис Тимофеев &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;btimofeev@emunix.org&lt;/a&gt;&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;Этот спойлер я перевёл для сайта &lt;a href=&#34;http://www.nethack-rutext.ru/doku.php?id=wiki:amul-343ru&#34;&gt;www.nethack-rutext.ru&lt;/a&gt;. Здесь будет лежать его резервная копия.&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;таблица-амулетов&#34;&gt;Таблица амулетов&lt;/h2&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;АМУЛЕТ&lt;/th&gt;
-&lt;th&gt;ЦЕНА&lt;/th&gt;
-&lt;th&gt;ВЕС&lt;/th&gt;
-&lt;th&gt;ВЕРОЯТНОСТЬ&lt;/th&gt;
-&lt;th&gt;СЪЕДОБЕН&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet of change&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;130c&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet of ESP&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;175&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet of life saving&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;75&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet of magical breathing&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;65&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet of reflection&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;75&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet of restful sleep&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;135c&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet of strangulation&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;135c&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet of unchanging&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;45&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;amulet versus poison&lt;/td&gt;
-&lt;td&gt;150&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;165&lt;/td&gt;
-&lt;td&gt;ДА&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;imitation AoY&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Amulet of Yendor&lt;/td&gt;
-&lt;td&gt;30000&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;!-- raw HTML omitted --&gt;</description>
+      <description>Перевод на русский язык спойлера о амулетах для игры NetHack</description>
     </item>
     
     <item>
@@ -149,27 +36,7 @@
       <pubDate>Mon, 22 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/nethack-sink/</guid>
-      <description>&lt;p&gt;&lt;em&gt;© &lt;a href=&#34;https://nethackwiki.com/wiki/Sink-343.txt&#34;&gt;sink-343.html&lt;/a&gt; Последняя редакция 2004-07-15 для NetHack 3.4.3&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;© Составитель Дилан О&#39;Доннелл (&lt;a href=&#34;mailto:psmith@spod-central.org&#34;&gt;Dylan O&amp;rsquo;Donnell&lt;/a&gt;).&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;© Перевод в HTML Кейт Непвеу (&lt;a href=&#34;mailto:knepveu@steelypips.org&#34;&gt;Kate Nepveu&lt;/a&gt;); HTML ре-синхронизация 2005-08-29 Дэн Фабулич (Dan Fabulich).&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;© Перевод с английского Борис Тимофеев &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;btimofeev@emunix.org&lt;/a&gt;&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;Этот спойлер я перевёл для сайта &lt;a href=&#34;http://www.nethack-rutext.ru/doku.php?id=wiki:sink-343ru&#34;&gt;www.nethack-rutext.ru&lt;/a&gt;. Здесь будет лежать его резервная копия.&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;питье-из-раковин&#34;&gt;Питье из раковин&lt;/h2&gt;
-&lt;p&gt;11/20: Нет эффекта. Появляется одно из следующих сообщений:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&amp;ldquo;You take a sip of (very) &amp;lt;hot|warm|cold&amp;gt; water.&amp;quot;&lt;/strong&gt; &lt;em&gt;(&amp;ldquo;Вы выпиваете глоток (очень) &amp;lt;горячей|теплой|холодной&amp;gt; воды.&amp;quot;)&lt;/em&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&amp;ldquo;You hear clanking from the pipes&amp;hellip;&amp;quot;&lt;/strong&gt; &lt;em&gt;(&amp;ldquo;Вы слышите лязг из труб &amp;hellip;&amp;quot;)&lt;/em&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&amp;ldquo;You hear snatches of song from among the sewers&amp;hellip;&amp;quot;&lt;/strong&gt; &lt;em&gt;(&amp;ldquo;Вы слышите обрывки песни из канализационной трубы&amp;hellip;&amp;quot;)&lt;/em&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&amp;ldquo;From the murky drain, a hand reaches up&amp;hellip; &amp;ndash;oops&amp;ndash;&amp;quot;&lt;/strong&gt; &lt;em&gt;(&amp;ldquo;Из темной канализации к вам тянется рука&amp;hellip;&amp;quot;)&lt;/em&gt; (только при галлюцинациях)&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>Перевод на русский язык спойлера о раковинах для игры NetHack</description>
     </item>
     
     <item>
@@ -178,10 +45,7 @@
       <pubDate>Mon, 30 Jan 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/flood-it-game-for-caanoo-and-linux/</guid>
-      <description>За два дня написал свою первую игру на SDL. Это клон игры flood-it. Работает на Caanoo и линуксе, но скомпилировать можно и для других систем.
-Цель игры: Начиная с левого верхнего угла и перекрашивая прилегающие квадраты заполнить всё поле одним цветом. На это дается 25 ходов.
-Скачать: версии для Caanoo, Linux, исходный код.
-Страница на GitHub&#39;е</description>
+      <description>&lt;p&gt;За два дня написал свою первую игру на SDL. Это клон игры flood-it.&lt;/p&gt;</description>
     </item>
     
   </channel>

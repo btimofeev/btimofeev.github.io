@@ -99,14 +99,7 @@
       <h2 class="subtitle is-6 date">23 апреля 2014</h2>
       <h1 class="title"><a href="https://emunix.org/post/guava-recipes-part-1/">Guava - простые рецепты, делающие ваш Java код чище, часть 1</a></h1>
       <div class="content">
-        Это перевод статьи Guava - simple recipes to make your Java code cleaner, 1st part, автор Lukasz Barc.
-Это статья для тех, кто не работал с библиотекой Guava. Просто несколько простых примеров которые вы можете использовать в своем коде.
-1. Вы можете использовать Optional вместо простого возврата null в некоторых случаях: Вместо:
-/** * Может вернуть null в некоторых случаях ... но это * трудно запомнить */ public static String someMethod() { String returnValue = null; if (new Date().getTime() % 2 == 0) { returnValue = &#34;time % 2 == 0&#34;; } return returnValue; } public static void main(String[] args) { String str = someMethod(); str.contains(&#34;%&#34;); // ошибка, если str == null } 
-        
-        <a class="button is-link" href="https://emunix.org/post/guava-recipes-part-1/" style="height:28px">
-          Читать дальше
-        </a>
+        Это статья для тех, кто не работал с библиотекой Guava. Просто несколько простых примеров которые вы можете использовать в своем коде.
         
       </div>
     </article>

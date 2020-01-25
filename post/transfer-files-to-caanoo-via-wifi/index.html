@@ -94,12 +94,12 @@
 
       
     </div>
-    <h2 class="subtitle is-6">February 2, 2012</h2>
+    <h2 class="subtitle is-6">2 февраля 2012</h2>
     <h1 class="title">Передача файлов на Caanoo через Wi-Fi</h1>
     
     <div class="content">
       <p>В этой заметке я опишу способ передачи файлов на Caanoo через Wi-Fi.</p>
-<p><img src="../../images/transfer-files-to-caanoo-via-wifi/caanoo.jpg" alt=""></p>
+<p><img src="../../images/transfer-files-to-caanoo-via-wifi/caanoo.jpg#c" alt=""></p>
 <p>Для этого нам понадобятся:</p>
 <ul>
 <li>собственно консоль GPH Caanoo</li>
@@ -112,10 +112,10 @@
 Далее вставляем wifi-донгл в Caanoo, переходим в <em>Настройки =&gt; Wireless LAN</em>. Caanoo найдет вашу вайфай сеть и подключется к ней. Заходим в меню <em>Apps</em> и запускаем <em>Dropbear</em> (у него нет пользовательского интерфейса, так что после запуска  вы снова окажетесь в меню).</p>
 <p>Теперь нам нужно узнать ip-адрес Caanoo. Его можно посмотреть в веб-интерфейсе вашего wifi-роутера. Второй вариант это установить на Caanoo эмулятор терминала <a href="http://zx81.zx81.free.fr/serendipity/index.php?/categories/189-Termlua">Termlua</a>, в нем нужно выполнить команду <em>ifconfig</em>, в выводе которой будет 2 блока описания интерфейсов <em>lo</em> и <em>ra0</em>. В блоке <em>ra0</em> есть строчка <em>inet addr: 192.168.1.3</em> - это и есть ip-адрес консоли в сети.</p>
 <p>Теперь устанавливаем на компьютер программу Filezilla. Открываем меню <em>Файл =&gt; Менеджер сайтов</em>, в поле хост прописываем ip-адрес консоли, выбираем протокол SFTP, в поле пользователь вводим <em>root</em> и жмем кнопку соединиться.</p>
-<p><img src="../../images/transfer-files-to-caanoo-via-wifi/manager.png" alt=""></p>
+<p><img src="../../images/transfer-files-to-caanoo-via-wifi/manager.png#c" alt=""></p>
 <p>В правой панели filezilla вы увидите файлы на caanoo. Сохранять файлы нужно в директорию <em>/mnt/sd/</em> - это корневой каталог нашей флешки.
 Наконец, что бы переслать файл на Caanoo, просто выбираем его в левой панели, щелкаем по нему правой кнопкой мыши и выбираем <em>Закачать на сервер</em>.</p>
-<p><img src="../../images/transfer-files-to-caanoo-via-wifi/filezilla.png" alt=""></p>
+<p><img src="../../images/transfer-files-to-caanoo-via-wifi/filezilla.png#c" alt=""></p>
       
       <div class="related">
 

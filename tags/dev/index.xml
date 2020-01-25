@@ -18,10 +18,7 @@
       <pubDate>Fri, 11 Mar 2016 19:56:51 +0300</pubDate>
       
       <guid>https://emunix.org/post/git-rebase/</guid>
-      <description>Если в ветке master появились новые коммиты и вы хотите обновить свою ветку до её состояния, то проще всего это сделать так:
-  Находясь в своей ветке выполняем команду git rebase master(либо загружаем с сервера git pull --rebase origin/master)
-  Если есть конфликты, то правим их и выполняем git add конфликтующие_файлы, затем git rebase --continue
-  При этом коммиты вашей ветки окажутся наверху истории изменений.</description>
+      <description>&lt;p&gt;Если в ветке &lt;em&gt;master&lt;/em&gt; появились новые коммиты и вы хотите обновить свою ветку до её состояния, то проще всего это сделать так:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -30,27 +27,7 @@
       <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/guava-recipes-part-1/</guid>
-      <description>&lt;p&gt;&lt;em&gt;Это перевод статьи &lt;a href=&#34;http://onthejvm.blogspot.ru/2013/06/guava-simple-recipes-to-make-your-java.html&#34;&gt;Guava - simple recipes to make your Java code cleaner, 1st part&lt;/a&gt;, автор Lukasz Barc.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Это статья для тех, кто не работал с библиотекой Guava. Просто несколько простых примеров которые вы можете использовать в своем коде.&lt;/p&gt;
-&lt;h4 id=&#34;1-вы-можете-использовать-optional-вместо-простого-возврата-null-в-некоторых-случаях&#34;&gt;1. Вы можете использовать Optional вместо простого возврата null в некоторых случаях:&lt;/h4&gt;
-&lt;p&gt;Вместо:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/**
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;* Может вернуть null в некоторых случаях ... но это
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;* трудно запомнить
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;*/&lt;/span&gt;
-&lt;span style=&#34;color:#00a8c8&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;someMethod&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
-    &lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;returnValue&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
-    &lt;span style=&#34;color:#00a8c8&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;Date&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;getTime&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color:#111&#34;&gt;returnValue&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;time % 2 == 0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
-    &lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
-    &lt;span style=&#34;color:#00a8c8&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;returnValue&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
-&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color:#00a8c8&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;main&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;args&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
-    &lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;str&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;someMethod&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
-    &lt;span style=&#34;color:#111&#34;&gt;str&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;contains&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;%&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// ошибка, если str == null
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>Это статья для тех, кто не работал с библиотекой Guava. Просто несколько простых примеров которые вы можете использовать в своем коде.</description>
     </item>
     
     <item>
@@ -59,10 +36,7 @@
       <pubDate>Wed, 31 Jul 2013 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/the-dark-side-of-asynctask/</guid>
-      <description>Это перевод статьи The dark side of AsyncTask, автор Fré Dumazy.
-Привет всем,
-В этой статье я хочу рассказать о некоторых проблемах AsyncTask. Я написал свою первую статью о том, как использовать AsyncTask примерно полгода назад. Теперь я собираюсь рассказать про проблемы, которые он может вызвать, о том как их можно исправить и о существующих альтернативах.
-В настоящее время AsyncTask, вероятно, наиболее широко используемый на Android способ выполнения задач в фоне.</description>
+      <description>В этой статье я хочу рассказать о некоторых проблемах AsyncTask. Я собираюсь рассказать про проблемы, которые он может вызвать, о том как их можно исправить и о существующих альтернативах.</description>
     </item>
     
     <item>
@@ -71,9 +45,7 @@
       <pubDate>Sat, 30 Jun 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-4-kernel/</guid>
-      <description>В сегодняшней статье мы перейдем непосредственно к самой важной части - написанию ядра нашего эмулятора.
-В общем виде эмуляция CHIP8 выглядит следующим образом:
- Мы объявляем переменные, которые будут представлять регистры процессора, массивы которые представляют память, экран, состояние клавиатуры и т.п. Инициализируем эти переменные начальными значениями, очищаем массивы памяти и экрана, загружаем в память стандартные шрифты CHIP8/SCHIP. После этого загружаем в память игру (копируем ее в массив памяти со смещением 0x200 от начала массива)   Считываем из памяти по адресу PC двухбайтовый опкод, конструкцией switch-case выбираем его и выполняем (здесь мы должны добиться полного соответствия с эмулируемой платформой: если опкод CHIP-8 присваивает регистру I какое-то значение, то и мы присваиваем его нашей переменной I; если опкод сдвигает изображение на экране на несколько пикселей вправо, то и мы сдвигаем данные в массиве представляющем экран, и т.</description>
+      <description>&lt;p&gt;В сегодняшней статье мы перейдем непосредственно к самой важной части - написанию ядра нашего эмулятора.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -82,9 +54,7 @@
       <pubDate>Sun, 15 Apr 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-3/</guid>
-      <description>&lt;p&gt;В прошлой статье мы рассмотрели опкоды CHIP-8. Сегодня попробуем написать несколько простых демонстрационных программ для него.&lt;/p&gt;
-&lt;h2 id=&#34;chipper&#34;&gt;Chipper&lt;/h2&gt;
-&lt;p&gt;Для компиляции исходного кода нам потребуется ассемблер Chipper, автором которого является Hans Christian Egeberg. Скачать можно по ссылке &lt;a href=&#34;http://www.hpcalc.org/hp48/pc/programming/chipper.zip&#34;&gt;http://www.hpcalc.org/hp48/pc/programming/chipper.zip&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;В прошлой статье мы рассмотрели опкоды CHIP-8. Сегодня попробуем написать несколько простых демонстрационных программ для него.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -93,19 +63,7 @@
       <pubDate>Fri, 30 Mar 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-2/</guid>
-      <description>&lt;p&gt;В предыдущей статье мы рассмотрели общее устройство CHIP-8. Сегодня перейдем к описанию &lt;a href=&#34;http://ru.wikipedia.org/wiki/%D0%AF%D0%B7%D1%8B%D0%BA_%D0%B0%D1%81%D1%81%D0%B5%D0%BC%D0%B1%D0%BB%D0%B5%D1%80%D0%B0&#34;&gt;ассемблерных&lt;/a&gt; команд и их &lt;a href=&#34;http://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%B4_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8&#34;&gt;опкодов&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;В этой статье список инструкций условно разбит на три колонки:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;code&gt;опкод&lt;/code&gt;    &lt;code&gt;команда на ассемблере&lt;/code&gt;    описание&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;И используются следующие обозначения:&lt;br&gt;
-&lt;code&gt;nnn&lt;/code&gt; - 12 битный адрес&lt;br&gt;
-&lt;code&gt;kk&lt;/code&gt; - 8 битная константа&lt;br&gt;
-&lt;code&gt;x&lt;/code&gt; -  4 битный номер регистра&lt;br&gt;
-&lt;code&gt;y&lt;/code&gt; - 4 битный номер регистра&lt;br&gt;
-&lt;code&gt;1..9, A..F&lt;/code&gt; - шестнадцатеричные цифры&lt;/p&gt;
-&lt;h2 id=&#34;инструкции-chip-8&#34;&gt;Инструкции CHIP-8&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;00E0&lt;/code&gt;   &lt;code&gt;CLS&lt;/code&gt;    Очистить экран&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;00EE&lt;/code&gt;   &lt;code&gt;RET&lt;/code&gt;    Возвратиться из &lt;a href=&#34;http://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D0%B4%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0&#34;&gt;подпрограммы&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;0nnn&lt;/code&gt;    &lt;code&gt;SYS nnn&lt;/code&gt;    Перейти на машинный код RCA 1802 по адресу &lt;strong&gt;nnn&lt;/strong&gt;. Эта инструкция была только в самой первой реализации CHIP-8. В более поздних реализациях и эмуляторах не используется.&lt;/p&gt;</description>
+      <description>&lt;p&gt;В предыдущей статье мы рассмотрели общее устройство CHIP-8. Сегодня перейдем к описанию &lt;a href=&#34;http://ru.wikipedia.org/wiki/%D0%AF%D0%B7%D1%8B%D0%BA_%D0%B0%D1%81%D1%81%D0%B5%D0%BC%D0%B1%D0%BB%D0%B5%D1%80%D0%B0&#34;&gt;ассемблерных&lt;/a&gt; команд и их &lt;a href=&#34;http://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%B4_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8&#34;&gt;опкодов&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -114,11 +72,7 @@
       <pubDate>Mon, 19 Mar 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-1-intro/</guid>
-      <description>&lt;p&gt;В этой серии статей я собираюсь рассказать как написать простейший эмулятор компьютера на примере CHIP-8.  Вообще CHIP-8 не является реальным компьютером, его можно сравнить с виртуальной машиной (такой как java), но он отлично подходит для понимания основ эмуляции компьютерных систем.&lt;/p&gt;
-&lt;p&gt;Эмулятор мы будем писать на языке C++ с использованием графической библиотеки &lt;a href=&#34;http://www.libsdl.org/&#34;&gt;SDL&lt;/a&gt;. Код основывается на исходниках моего эмулятора &lt;a href=&#34;http://code.google.com/p/emuchip/&#34;&gt;emuChip&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;история-chip-8&#34;&gt;История CHIP-8&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;CHIP-8&lt;/strong&gt; - это небольшой, интерпретируемый язык программирования и интерпретатор для него, впервые появившийся на домашних компьютерах COSMAC VIP, Telmac 1800, DREAM 6800 в конце 70-х годов. Создателем является Joseph Weisbecker. CHIP-8 использовался для создания игр, таких как Pong, Tetris, Space Invaders и т.п.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../images/writing-chip-8-emulator-part-1-intro/intro.jpg&#34; alt=&#34;Изображение компьютера&#34;&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;В этой серии статей я собираюсь рассказать как написать простейший эмулятор компьютера на примере CHIP-8.  Вообще CHIP-8 не является реальным компьютером, его можно сравнить с виртуальной машиной (такой как java), но он отлично подходит для понимания основ эмуляции компьютерных систем.&lt;/p&gt;</description>
     </item>
     
   </channel>

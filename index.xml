@@ -17,7 +17,7 @@
       <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/how-to-share-partition-between-users-in-linux/</guid>
-      <description>Как расшарить раздел жесткого диска между несколькими пользователями в Linux</description>
+      <description>Данная заметка написана для начинающих пользователей Linux. В ней описывается как примонтировать раздел жесткого диска таким образом, что бы у нескольких пользователей в системе были права на доступ к файлам (на чтение и запись).</description>
       
     </item>
     
@@ -47,7 +47,7 @@
       <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/nethack-foun/</guid>
-      <description>Перевод классического nethack спойлера о фонтанах</description>
+      <description>Перевод на русский язык спойлера о фонтанах для игры NetHack</description>
       
     </item>
     
@@ -57,7 +57,7 @@
       <pubDate>Sat, 27 Feb 2016 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/nethack-amul/</guid>
-      <description>Перевод классического nethack спойлера о амулетах</description>
+      <description>Перевод на русский язык спойлера о амулетах для игры NetHack</description>
       
     </item>
     
@@ -67,7 +67,7 @@
       <pubDate>Mon, 22 Feb 2016 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/nethack-sink/</guid>
-      <description>Перевод классического nethack спойлера о раковинах</description>
+      <description>Перевод на русский язык спойлера о раковинах для игры NetHack</description>
       
     </item>
     
@@ -77,7 +77,7 @@
       <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/guava-recipes-part-1/</guid>
-      <description>Guava - простые рецепты, делающие ваш Java код чище, часть 1</description>
+      <description>Это статья для тех, кто не работал с библиотекой Guava. Просто несколько простых примеров которые вы можете использовать в своем коде.</description>
       
     </item>
     
@@ -87,7 +87,7 @@
       <pubDate>Wed, 31 Jul 2013 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/the-dark-side-of-asynctask/</guid>
-      <description>Тёмная сторона AsyncTask</description>
+      <description>В этой статье я хочу рассказать о некоторых проблемах AsyncTask. Я собираюсь рассказать про проблемы, которые он может вызвать, о том как их можно исправить и о существующих альтернативах.</description>
       
     </item>
     
@@ -107,7 +107,7 @@
       <pubDate>Sat, 30 Jun 2012 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-4-kernel/</guid>
-      <description>Пишем эмулятор CHIP-8. Часть 4: Ядро</description>
+      <description>В сегодняшней статье мы перейдем непосредственно к самой важной части - написанию ядра нашего эмулятора.</description>
       
     </item>
     
@@ -117,7 +117,7 @@
       <pubDate>Sun, 15 Apr 2012 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-3/</guid>
-      <description>Пишем эмулятор CHIP-8. Часть 3: Примеры программ</description>
+      <description>В прошлой статье мы рассмотрели опкоды CHIP-8. Сегодня попробуем написать несколько простых демонстрационных программ для него.</description>
       
     </item>
     
@@ -127,7 +127,7 @@
       <pubDate>Fri, 30 Mar 2012 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-2/</guid>
-      <description>Пишем эмулятор CHIP-8. Часть 2: Ассемблер</description>
+      <description>В предыдущей статье мы рассмотрели общее устройство CHIP-8. Сегодня перейдем к описанию ассемблерных команд и их опкодов</description>
       
     </item>
     
@@ -137,7 +137,7 @@
       <pubDate>Mon, 19 Mar 2012 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-1-intro/</guid>
-      <description>Пишем эмулятор CHIP-8. Часть 1: Введение</description>
+      <description>В этой серии статей я собираюсь рассказать как написать простейший эмулятор компьютера на примере CHIP-8.</description>
       
     </item>
     
@@ -147,7 +147,7 @@
       <pubDate>Thu, 23 Feb 2012 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/rusifikaciya-zenwalk-7/</guid>
-      <description>Русификация Zenwalk 7</description>
+      <description>После установки linux-дистрибутива Zenwalk, мы получаем систему на английском языке. Как ее русифицировать? Это очень просто.</description>
       
     </item>
     
@@ -167,7 +167,7 @@
       <pubDate>Wed, 08 Feb 2012 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/sega-mega-drive-fix-checksum/</guid>
-      <description>Sega Mega Drive Fix Checksum</description>
+      <description>Иногда после пропатчивания ROM&#39;ов с консоли Sega Mega Drive игра отказывается запускаться показывая нам красный экран. Это означает что в роме неправильно проставлена контрольная сумма, которую необходимо исправить. Как это сделать читайте в этой статье.</description>
       
     </item>
     
@@ -177,7 +177,7 @@
       <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/transfer-files-to-caanoo-via-wifi/</guid>
-      <description>Передача файлов на Caanoo через Wi-Fi</description>
+      <description>В этой заметке я опишу способ передачи файлов на GPH Caanoo через Wi-Fi.</description>
       
     </item>
     
@@ -197,7 +197,7 @@
       <pubDate>Thu, 08 Dec 2011 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</guid>
-      <description>Монтируем образ диска через FuseISO</description>
+      <description>FuseISO это программа для монтирования образов дисков в форматах .iso, .nrg, .bin, .mdf и .img. Для работы не нужны привилегии root..</description>
       
     </item>
     
@@ -207,7 +207,7 @@
       <pubDate>Thu, 03 Nov 2011 00:00:00 +0000</pubDate>
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/how-to-restore-windows-mbr-from-linux/</guid>
-      <description>Как восстановить Windows MBR из-под Linux</description>
+      <description>Что делать если у вас слетел загрузчик Windows? Есть решение..</description>
       
     </item>
     

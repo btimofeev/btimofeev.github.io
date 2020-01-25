@@ -18,16 +18,7 @@
       <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/transfer-files-to-caanoo-via-wifi/</guid>
-      <description>&lt;p&gt;В этой заметке я опишу способ передачи файлов на Caanoo через Wi-Fi.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../images/transfer-files-to-caanoo-via-wifi/caanoo.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Для этого нам понадобятся:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;собственно консоль GPH Caanoo&lt;/li&gt;
-&lt;li&gt;wifi-сеть, я использую домашний wifi-роутер, но в общественных сетях тоже должно работать&lt;/li&gt;
-&lt;li&gt;wifi-адаптер для Caanoo&lt;/li&gt;
-&lt;li&gt;ssh-сервер Dropbear (скачать можно &lt;a href=&#34;http://zx81.zx81.free.fr/serendipity/index.php?/categories/187-DropBear&#34;&gt;здесь&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;любой SFTP-клиент (например &lt;a href=&#34;http://filezilla-project.org/&#34;&gt;Filezilla&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>&lt;p&gt;В этой заметке я опишу способ передачи файлов на Caanoo через Wi-Fi.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -36,10 +27,7 @@
       <pubDate>Mon, 30 Jan 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/flood-it-game-for-caanoo-and-linux/</guid>
-      <description>За два дня написал свою первую игру на SDL. Это клон игры flood-it. Работает на Caanoo и линуксе, но скомпилировать можно и для других систем.
-Цель игры: Начиная с левого верхнего угла и перекрашивая прилегающие квадраты заполнить всё поле одним цветом. На это дается 25 ходов.
-Скачать: версии для Caanoo, Linux, исходный код.
-Страница на GitHub&#39;е</description>
+      <description>&lt;p&gt;За два дня написал свою первую игру на SDL. Это клон игры flood-it.&lt;/p&gt;</description>
     </item>
     
   </channel>
