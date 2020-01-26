@@ -3,27 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://emunix.org/tags/android/</loc>
+    <lastmod>2020-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/</loc>
+    <lastmod>2020-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/tags/playstation/</loc>
+    <lastmod>2020-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/post/</loc>
+    <lastmod>2020-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/tags/</loc>
+    <lastmod>2020-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/post/how-to-connect-dualshock-to-android/</loc>
+    <lastmod>2020-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://emunix.org/tags/cli/</loc>
     <lastmod>2017-09-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://emunix.org/</loc>
-    <lastmod>2017-09-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://emunix.org/tags/linux/</loc>
-    <lastmod>2017-09-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://emunix.org/post/</loc>
-    <lastmod>2017-09-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://emunix.org/tags/</loc>
     <lastmod>2017-09-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -85,11 +100,6 @@
   <url>
     <loc>https://emunix.org/tags/java/</loc>
     <lastmod>2014-04-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://emunix.org/tags/android/</loc>
-    <lastmod>2013-07-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
