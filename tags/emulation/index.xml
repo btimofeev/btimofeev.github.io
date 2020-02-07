@@ -18,7 +18,7 @@
       <pubDate>Sat, 30 Jun 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-4-kernel/</guid>
-      <description>&lt;p&gt;В сегодняшней статье мы перейдем непосредственно к самой важной части - написанию ядра нашего эмулятора.&lt;/p&gt;</description>
+      <description>&lt;p&gt;В &lt;a href=&#34;https://emunix.org/post/writing-chip-8-emulator-part-3/&#34;&gt;прошлой статье&lt;/a&gt; мы пробовали писать небольшие программы для CHIP8 на ассемблере, а в сегодняшней статье мы перейдем непосредственно к самой важной части - написанию ядра нашего эмулятора.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       <pubDate>Sun, 15 Apr 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-3/</guid>
-      <description>&lt;p&gt;В прошлой статье мы рассмотрели опкоды CHIP-8. Сегодня попробуем написать несколько простых демонстрационных программ для него.&lt;/p&gt;</description>
+      <description>&lt;p&gt;В &lt;a href=&#34;https://emunix.org/post/writing-chip-8-emulator-part-2/&#34;&gt;прошлой статье&lt;/a&gt; мы рассмотрели опкоды CHIP-8. Сегодня попробуем написать несколько простых демонстрационных программ для него.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@
       <pubDate>Fri, 30 Mar 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-2/</guid>
-      <description>&lt;p&gt;В предыдущей статье мы рассмотрели общее устройство CHIP-8. Сегодня перейдем к описанию &lt;a href=&#34;http://ru.wikipedia.org/wiki/%D0%AF%D0%B7%D1%8B%D0%BA_%D0%B0%D1%81%D1%81%D0%B5%D0%BC%D0%B1%D0%BB%D0%B5%D1%80%D0%B0&#34;&gt;ассемблерных&lt;/a&gt; команд и их &lt;a href=&#34;http://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%B4_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8&#34;&gt;опкодов&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;В &lt;a href=&#34;https://emunix.org/post/writing-chip-8-emulator-part-1-intro/&#34;&gt;предыдущей статье&lt;/a&gt; мы рассмотрели общее устройство CHIP-8. Сегодня перейдем к описанию &lt;a href=&#34;http://ru.wikipedia.org/wiki/%D0%AF%D0%B7%D1%8B%D0%BA_%D0%B0%D1%81%D1%81%D0%B5%D0%BC%D0%B1%D0%BB%D0%B5%D1%80%D0%B0&#34;&gt;ассемблерных&lt;/a&gt; команд и их &lt;a href=&#34;http://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%B4_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8&#34;&gt;опкодов&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
