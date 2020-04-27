@@ -63,7 +63,7 @@
       <pubDate>Wed, 08 Feb 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/sega-mega-drive-fix-checksum/</guid>
-      <description>&lt;p&gt;Иногда после пропатчивания ROM&#39;ов с консоли Sega Mega Drive / Sega Genesis игра отказывается запускаться показывая нам красный экран. Это означает что в роме неправильно проставлена контрольная сумма, которую необходимо исправить.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Иногда после пропатчивания ROM&amp;rsquo;ов с консоли Sega Mega Drive / Sega Genesis игра отказывается запускаться показывая нам красный экран. Это означает что в роме неправильно проставлена контрольная сумма, которую необходимо исправить.&lt;/p&gt;</description>
     </item>
     
   </channel>

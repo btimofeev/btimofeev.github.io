@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
     <copyright>© 2011-2020, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 11 Mar 2016 19:56:51 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://emunix.org/tags/dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git: удаление неотслеживаемых файлов</title>
+      <link>https://emunix.org/post/git-clean-untracked-files/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/git-clean-untracked-files/</guid>
+      <description>&lt;p&gt;Для удаления неотслеживаемых файлов в Git имеется специальная команда &lt;em&gt;git clean&lt;/em&gt;.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Git: обновление ветки до актуального состояния</title>

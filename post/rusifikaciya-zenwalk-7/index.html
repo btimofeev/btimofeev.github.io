@@ -102,7 +102,7 @@
       <p>После установки linux-дистрибутива Zenwalk, мы получаем систему на английском языке. Как ее русифицировать? Это очень просто.</p>
 <p>Первым делом, во время установки, zenwalk предлагает нам выбрать локаль. Сразу выбираем <em>ru_RU.UTF-8</em>, это заставит программы использовать русский язык по-умолчанию.</p>
 <p>Для добавления русской раскладки клавиатуры изменяем в файле <em>/etc/X11/xorg.conf</em> следующую секцию:</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Xorg" data-lang="Xorg"><span style="color:#f92672">Section</span><span style="color:#8045ff"></span> <span style="color:#8045ff">&#34;InputDevice&#34;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Xorg" data-lang="Xorg"><span style="color:#f92672">Section</span> <span style="color:#8045ff">&#34;InputDevice&#34;</span>
     <span style="color:#111">Identifier</span>    <span style="color:#d88200">&#34;Keyboard1&#34;</span>
     <span style="color:#111">Driver</span>    <span style="color:#d88200">&#34;kbd&#34;</span>
     <span style="color:#111">Option</span>     <span style="color:#d88200">&#34;XkbRules&#34;      &#34;xorg&#34;</span>

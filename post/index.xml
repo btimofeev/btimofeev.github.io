@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
     <copyright>© 2011-2020, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 26 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://emunix.org/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git: удаление неотслеживаемых файлов</title>
+      <link>https://emunix.org/post/git-clean-untracked-files/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/git-clean-untracked-files/</guid>
+      <description>&lt;p&gt;Для удаления неотслеживаемых файлов в Git имеется специальная команда &lt;em&gt;git clean&lt;/em&gt;.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Как подключить DualShock 4 к Android</title>
@@ -164,7 +173,7 @@
       <pubDate>Wed, 08 Feb 2012 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/sega-mega-drive-fix-checksum/</guid>
-      <description>&lt;p&gt;Иногда после пропатчивания ROM&#39;ов с консоли Sega Mega Drive / Sega Genesis игра отказывается запускаться показывая нам красный экран. Это означает что в роме неправильно проставлена контрольная сумма, которую необходимо исправить.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Иногда после пропатчивания ROM&amp;rsquo;ов с консоли Sega Mega Drive / Sega Genesis игра отказывается запускаться показывая нам красный экран. Это означает что в роме неправильно проставлена контрольная сумма, которую необходимо исправить.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -191,7 +200,7 @@
       <pubDate>Thu, 08 Dec 2011 00:00:00 +0000</pubDate>
       
       <guid>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;FuseISO&lt;/strong&gt; это программа для монтирования образов дисков в форматах &lt;em&gt;.iso&lt;/em&gt;, &lt;em&gt;.nrg&lt;/em&gt;, &lt;em&gt;.bin&lt;/em&gt;, &lt;em&gt;.mdf&lt;/em&gt; и &lt;em&gt;.img&lt;/em&gt;. Для работы не нужны привилегии root&#39;а.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;FuseISO&lt;/strong&gt; это программа для монтирования образов дисков в форматах &lt;em&gt;.iso&lt;/em&gt;, &lt;em&gt;.nrg&lt;/em&gt;, &lt;em&gt;.bin&lt;/em&gt;, &lt;em&gt;.mdf&lt;/em&gt; и &lt;em&gt;.img&lt;/em&gt;. Для работы не нужны привилегии root&amp;rsquo;а.&lt;/p&gt;</description>
     </item>
     
     <item>
