@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
     <copyright>© 2011-2020, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 12 Sep 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://emunix.org/tags/cli/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pass - консольный менеджер паролей</title>
+      <link>https://emunix.org/post/pass-cli/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/pass-cli/</guid>
+      <description>Pass - это небольшой, но достаточно мощный консольный менеджер паролей. Если вы не хотите доверять ваши пароли проприетарному программному обеспечению, любите консоль и unix-way, то эта программа для вас.</description>
+    </item>
     
     <item>
       <title>Как сделать раздел жесткого диска доступным нескольким пользователям</title>

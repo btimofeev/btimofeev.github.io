@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Pass - консольный менеджер паролей</title>
+      <link>https://emunix.org/post/pass-cli/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      <author>Борис Тимофеев</author>
+      <guid>https://emunix.org/post/pass-cli/</guid>
+      <description>Pass - это небольшой, но достаточно мощный консольный менеджер паролей. Если вы не хотите доверять ваши пароли проприетарному программному обеспечению, любите консоль и unix-way, то эта программа для вас.</description>
+      
+    </item>
+    
+    <item>
       <title>Git: удаление неотслеживаемых файлов</title>
       <link>https://emunix.org/post/git-clean-untracked-files/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
