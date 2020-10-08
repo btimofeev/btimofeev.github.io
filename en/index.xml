@@ -1,0 +1,25 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emunix</title>
+    <link>https://emunix.org/en/</link>
+    <description>Recent content on Emunix</description>
+    <generator>Hugo - gohugo.io</generator>
+    <language>en</language>
+    <contact></contact>
+    <copyright>© 2011-2020, <a href="mailto:btimofeev@emunix.org">Boris Timofeev</a></copyright>
+    
+        <atom:link href="https://emunix.org/en/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Andriod NDK: How to use CMake and ndk-build together in one project</title>
+      <link>https://emunix.org/en/post/android-ndk-cmake-and-ndkbuild/</link>
+      <pubDate>Thu, 08 Oct 2020 19:15:30 +0300</pubDate>
+      <author>Boris Timofeev</author>
+      <guid>https://emunix.org/en/post/android-ndk-cmake-and-ndkbuild/</guid>
+      <description>Android NDK currently provides us with at least two ways to build native libraries: CMake and ndk-build. But if you specify two paths to the build scripts CMakeLists.txt and Android.mk in the build.gradle file, then Gradle will show an error &#39;More than one externalNativeBuild path specified&#39; and will not compile anything. I will show one of the possible ways to solve this problem.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

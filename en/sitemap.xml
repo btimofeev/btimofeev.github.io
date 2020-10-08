@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://emunix.org/en/post/android-ndk-cmake-and-ndkbuild/</loc>
+    <lastmod>2020-10-08T19:15:30+03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ru"
+                href="https://emunix.org/post/android-ndk-cmake-and-ndkbuild/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://emunix.org/en/post/android-ndk-cmake-and-ndkbuild/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/en/tags/android/</loc>
+    <lastmod>2020-10-08T19:15:30+03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ru"
+                href="https://emunix.org/tags/android/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://emunix.org/en/tags/android/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/en/tags/dev/</loc>
+    <lastmod>2020-10-08T19:15:30+03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ru"
+                href="https://emunix.org/tags/dev/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://emunix.org/en/tags/dev/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/en/</loc>
+    <lastmod>2020-10-08T19:15:30+03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ru"
+                href="https://emunix.org/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://emunix.org/en/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/en/post/</loc>
+    <lastmod>2020-10-08T19:15:30+03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ru"
+                href="https://emunix.org/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://emunix.org/en/post/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://emunix.org/en/tags/</loc>
+    <lastmod>2020-10-08T19:15:30+03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ru"
+                href="https://emunix.org/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://emunix.org/en/tags/"
+                />
+  </url>
+  
+</urlset>

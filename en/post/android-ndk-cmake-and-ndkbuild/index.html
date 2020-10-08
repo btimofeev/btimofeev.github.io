@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Andriod NDK: How to use CMake and ndk-build together in one project | Emunix</title>
+
+<meta property='og:title' content='Andriod NDK: How to use CMake and ndk-build together in one project - Emunix'>
+<meta property='og:description' content='Android NDK currently provides us with at least two ways to build native libraries: CMake and ndk-build. But if you specify two paths to the build scripts CMakeLists.txt and Android.mk in the build.gradle file, then Gradle will show an error &#39;More than one externalNativeBuild path specified&#39; and will not compile anything. I will show one of the possible ways to solve this problem.'>
+<meta property='og:url' content='https://emunix.org/en/post/android-ndk-cmake-and-ndkbuild/'>
+<meta property='og:site_name' content='Emunix'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/46a988cbbb8ce4261171971429c45420?s=256'><meta property='article:section' content='Post'><meta property='article:tag' content='dev'><meta property='article:tag' content='android'><meta property='article:published_time' content='2020-10-08T19:15:30&#43;03:00'/><meta property='article:modified_time' content='2020-10-08T19:15:30&#43;03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@btimofeev'><meta name='twitter:creator' content='@btimofeev'>
+
+
+<link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix" />
+
+<link rel="stylesheet" href="/css/style.css"/><link rel='stylesheet' href='https://emunix.org/css/custom.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://emunix.org/en/post/android-ndk-cmake-and-ndkbuild/">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://emunix.org/">
+          <h1 id="nav-heading" class="title is-4">Emunix</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/btimofeev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/btimofeev'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:btimofeev@emunix.org'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="rss" href='/index.xml'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+  <script src="/js/navicon-shift.js"></script>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/dev">#dev</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/android">#android</a>
+  
+
+      
+    </div>
+    <h2 class="subtitle is-6">8
+
+  October
+
+2020
+</h2>
+    <h1 class="title">Andriod NDK: How to use CMake and ndk-build together in one project</h1>
+    
+    <div class="content">
+      <p>Android NDK currently provides us with at least two ways to build native libraries: <em>CMake</em> and <em>ndk-build</em>.</p>
+<p>You may need to use both build systems at the same time to compile some existing libraries. But if you specify two paths to the build scripts <em>CMakeLists.txt</em> and <em>Android.mk</em> in the <em>build.gradle</em> file, then Gradle will show an error <em>&ldquo;More than one externalNativeBuild path specified&rdquo;</em> and will not compile anything. I will show one of the possible ways to solve this problem.</p>
+<p>The most obvious solution would be to use <em>CMake</em> by default and run <em>ndk-build</em> separately. But I don&rsquo;t want to run it manually every time, so in this article, we will use Gradle&rsquo;s ability to invoke external commands and configure <em>ndk-build</em> to run automatically during application build.</p>
+<p>I created <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild">a simple project on GitHub</a> with two C libraries: one with a build script <em>CMakeLists.txt</em> and the other built via <em>Android.mk</em>. You can view the files in the <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild/tree/main/app/src/main/jni">app/src/main/jni/</a> directory.</p>
+<p>In the <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild/blob/main/app/build.gradle">app/build.gradle</a> file we configure the library build via <em>CMake</em> in the usual way:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#111">android</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">defaultConfig</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">ndk</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">abiFilters</span> <span style="color:#d88200">&#39;armeabi-v7a&#39;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#39;arm64-v8a&#39;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#39;x86&#39;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#39;x86_64&#39;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#111">externalNativeBuild</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">cmake</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">path</span> <span style="color:#d88200">&#34;src/main/jni/cmake/CMakeLists.txt&#34;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>This will allow us to compile the first library via <em>CMake</em> by simply starting the build of the application. To build the second library using <em>ndk-build</em>, we have the following task at the end of the <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild/blob/main/app/build.gradle">app/build.gradle</a> file:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#111">task</span> <span style="color:#75af00">runNdkBuild</span><span style="color:#f92672">(</span><span style="color:#111">type:</span> <span style="color:#111">Exec</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">def</span> <span style="color:#111">ndkDir</span> <span style="color:#f92672">=</span> <span style="color:#111">android</span><span style="color:#f92672">.</span><span style="color:#75af00">ndkDirectory</span>
+    <span style="color:#111">executable</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;$ndkDir/ndk-build&#34;</span>
+    <span style="color:#111">args</span> <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#d88200">&#39;NDK_PROJECT_PATH=build/intermediates/ndk&#39;</span><span style="color:#f92672">,</span>
+            <span style="color:#d88200">&#39;NDK_LIBS_OUT=src/main/jniLibs&#39;</span><span style="color:#f92672">,</span>
+            <span style="color:#d88200">&#39;APP_BUILD_SCRIPT=src/main/jni/ndkbuild/Android.mk&#39;</span><span style="color:#f92672">,</span>
+            <span style="color:#d88200">&#39;NDK_APPLICATION_MK=src/main/jni/ndkbuild/Application.mk&#39;</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Tasks of <em>Exec</em> type are used to run external commands. We must assign the path to the command to the <code>executable</code> property. To do this, we get the path to the installed NDK in the first line and add the name <em>&quot;/ndk-build&quot;</em> to it. We also pass an array of arguments for the command in the <code>args</code> property:</p>
+<ul>
+<li>
+<p><code>NDK_LIBS_OUT</code> - the directory in which the libraries will be located after compilation. Here we specify the path <em>src/main/jniLibs</em> because the libraries from this directory are automatically included in the APK after compiling the project. You will also have to override the property <em>android.sourceSets.main.jniLibs.srcDirs</em> if you need to specify a different directory here.</p>
+</li>
+<li>
+<p><code>APP_BUILD_SCRIPT</code> - specifies the path to our build script <em>Android.mk</em></p>
+</li>
+<li>
+<p><code>NDK_APPLICATION_MK</code> - specifies the path to the <em>Application.mk</em> file, where we put the compilation settings</p>
+</li>
+</ul>
+<p>We can run this task now with <code>gradle runNdkBuild</code> command. You will see the freshly compiled <em>*.so</em> files in the <em>app/src/main/jniLibs</em> directory if the compilation was successful.</p>
+<p>It&rsquo;s time to add automatic execution of this task during the project build. Add a line to the end of the <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild/blob/main/app/build.gradle">app/build.gradle</a> file to do this:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#111">preBuild</span><span style="color:#f92672">.</span><span style="color:#75af00">dependsOn</span> <span style="color:#111">runNdkBuild</span>
+</code></pre></div><p>Here we have indicated that starting the build of the project depends on our task, so <em>ndk-build</em> will run just before the build. You can run <code>gradle clean</code> and <code>gradle build</code> to make sure everything builds as it should.</p>
+
+      
+      
+      <div class="related">
+
+</div>
+      
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+  
+    <div id="show_comments"><a id="load_comments" class="button is-link">Show comments</a></div>
+  
+    <script type="text/javascript">
+      var disqus_shortname = 'emunix';
+      function disqus() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+  
+      
+      var hash = window.location.hash.substr(1);
+      if ((hash.length > 8) && (hash.substring(0, 8) === "comment-")) {
+        disqus();
+        document.getElementById("show_comments").style.display = "none";
+      } else {
+        document.getElementById('load_comments').onclick = function() {
+          disqus();
+          document.getElementById("show_comments").style.display = "none";
+        };
+      }
+  
+
+    </script>
+    <noscript><a href="https://disqus.com/?ref_noscript" rel="nofollow">Please enable JavaScript to view comments</a></noscript>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© 2011-2020, <a href="mailto:btimofeev@emunix.org">Boris Timofeev</a></p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/ribice/kiss">Kiss</a>.</p>
+    
+  </div>
+</section>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-28744527-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+</body>
+</html>
+

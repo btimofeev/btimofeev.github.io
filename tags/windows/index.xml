@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
     <copyright>© 2011-2020, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 03 Nov 2011 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://emunix.org/tags/windows/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 03 Nov 2011 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Как восстановить Windows MBR из-под Linux</title>
       <link>https://emunix.org/post/how-to-restore-windows-mbr-from-linux/</link>
