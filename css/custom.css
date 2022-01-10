@@ -10,6 +10,6 @@ code,
 pre {
   -moz-osx-font-smoothing: auto;
   -webkit-font-smoothing: auto;
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", "PT Mono", monospace;
   line-height: 1.25;
 }
