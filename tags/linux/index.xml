@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
     <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 31 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lazy IPS - небольшой IPS патчер для Linux</title>
+      <link>https://emunix.org/post/lazyips-patcher/</link>
+      <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/lazyips-patcher/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Оригинальная заметка была написана в 2012 году, но потеряла актуальность, поэтому обновляю.&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Pass - консольный менеджер паролей</title>
       <link>https://emunix.org/post/pass-cli/</link>
@@ -52,15 +61,6 @@
       
       <guid>https://emunix.org/post/rusifikaciya-zenwalk-7/</guid>
       <description>&lt;p&gt;После установки linux-дистрибутива Zenwalk, мы получаем систему на английском языке. Как ее русифицировать? Это очень просто.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Lazy IPS</title>
-      <link>https://emunix.org/post/lazyips-patcher/</link>
-      <pubDate>Sun, 19 Feb 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://emunix.org/post/lazyips-patcher/</guid>
-      <description>&lt;p&gt;Сегодня за пару часов написал IPS патчер для Linux. Он основан на коде моего же патчера &lt;a href=&#34;http://pysmart.emu-mobi.com/&#34;&gt;pySmartIPS&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>

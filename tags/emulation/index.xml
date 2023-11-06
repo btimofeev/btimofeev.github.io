@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru</language>
     <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 30 Jun 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/emulation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/emulation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lazy IPS - небольшой IPS патчер для Linux</title>
+      <link>https://emunix.org/post/lazyips-patcher/</link>
+      <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://emunix.org/post/lazyips-patcher/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Оригинальная заметка была написана в 2012 году, но потеряла актуальность, поэтому обновляю.&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Пишем эмулятор CHIP-8. Часть 4: Ядро</title>
       <link>https://emunix.org/post/writing-chip-8-emulator-part-4-kernel/</link>
@@ -42,15 +51,6 @@
       
       <guid>https://emunix.org/post/writing-chip-8-emulator-part-1-intro/</guid>
       <description>&lt;p&gt;В этой серии статей я собираюсь рассказать как написать простейший эмулятор компьютера на примере CHIP-8.  Вообще CHIP-8 не является реальным компьютером, его можно сравнить с виртуальной машиной (такой как java), но он отлично подходит для понимания основ эмуляции компьютерных систем.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Lazy IPS</title>
-      <link>https://emunix.org/post/lazyips-patcher/</link>
-      <pubDate>Sun, 19 Feb 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://emunix.org/post/lazyips-patcher/</guid>
-      <description>&lt;p&gt;Сегодня за пару часов написал IPS патчер для Linux. Он основан на коде моего же патчера &lt;a href=&#34;http://pysmart.emu-mobi.com/&#34;&gt;pySmartIPS&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>

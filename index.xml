@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Lazy IPS - небольшой IPS патчер для Linux</title>
+      <link>https://emunix.org/post/lazyips-patcher/</link>
+      <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
+      <author>Борис Тимофеев</author>
+      <guid>https://emunix.org/post/lazyips-patcher/</guid>
+      <description>Lazy IPS - небольшой IPS патчер для Linux</description>
+      
+    </item>
+    
+    <item>
       <title>Android NDK: Как использовать CMake и ndk-build в одном проекте</title>
       <link>https://emunix.org/post/android-ndk-cmake-and-ndkbuild/</link>
       <pubDate>Thu, 08 Oct 2020 19:15:30 +0300</pubDate>
@@ -188,16 +198,6 @@
       <author>Борис Тимофеев</author>
       <guid>https://emunix.org/post/rusifikaciya-zenwalk-7/</guid>
       <description>После установки linux-дистрибутива Zenwalk, мы получаем систему на английском языке. Как ее русифицировать? Это очень просто.</description>
-      
-    </item>
-    
-    <item>
-      <title>Lazy IPS</title>
-      <link>https://emunix.org/post/lazyips-patcher/</link>
-      <pubDate>Sun, 19 Feb 2012 00:00:00 +0000</pubDate>
-      <author>Борис Тимофеев</author>
-      <guid>https://emunix.org/post/lazyips-patcher/</guid>
-      <description>Lazy IPS</description>
       
     </item>
     

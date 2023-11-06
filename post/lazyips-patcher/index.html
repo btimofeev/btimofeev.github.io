@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Lazy IPS | Emunix</title>
+<title>Lazy IPS - небольшой IPS патчер для Linux | Emunix</title>
 
-<meta property='og:title' content='Lazy IPS - Emunix'>
-<meta property='og:description' content='Lazy IPS'>
+<meta property='og:title' content='Lazy IPS - небольшой IPS патчер для Linux - Emunix'>
+<meta property='og:description' content='Lazy IPS - небольшой IPS патчер для Linux'>
 <meta property='og:url' content='https://emunix.org/post/lazyips-patcher/'>
 <meta property='og:site_name' content='Emunix'>
-<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/46a988cbbb8ce4261171971429c45420?s=256'><meta property='article:section' content='Post'><meta property='article:tag' content='patcher'><meta property='article:tag' content='linux'><meta property='article:tag' content='emulation'><meta property='article:published_time' content='2012-02-19T00:00:00Z'><meta property='article:modified_time' content='2012-02-19T00:00:00Z'><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@btimofeev'><meta name='twitter:creator' content='@btimofeev'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/46a988cbbb8ce4261171971429c45420?s=256'><meta property='article:section' content='Post'><meta property='article:tag' content='patcher'><meta property='article:tag' content='linux'><meta property='article:tag' content='emulation'><meta property='article:published_time' content='2023-11-06T00:00:00Z'><meta property='article:modified_time' content='2023-11-06T00:00:00Z'><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@btimofeev'><meta name='twitter:creator' content='@btimofeev'>
 
 
 <link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix">
@@ -102,19 +102,22 @@
 
       
     </div>
-    <h2 class="subtitle is-6">19
+    <h2 class="subtitle is-6">6
 
-  февраля
+  ноября
 
-2012
+2023
 </h2>
-    <h1 class="title">Lazy IPS</h1>
+    <h1 class="title">Lazy IPS - небольшой IPS патчер для Linux</h1>
     
     <div class="content">
-      <p>Сегодня за пару часов написал IPS патчер для Linux. Он основан на коде моего же патчера <a href="http://pysmart.emu-mobi.com/">pySmartIPS</a>.</p>
-<p><img src="../../images/lazyips-patcher/lazyips.png" alt="Скриншот программы"></p>
-<p>Скачать можно по ссылке <a href="http://goo.gl/0kcmr">LazyIPS</a>. Пакет для Arch Linux доступен в <a href="https://aur.archlinux.org/packages.php?ID=56857">AUR</a>.</p>
-<p>Зависимости: <em>Python 2</em> и <em>pygtk</em>.</p>
+      <p><em>Оригинальная заметка была написана в 2012 году, но потеряла актуальность, поэтому обновляю.</em></p>
+<p><img src="https://github.com/btimofeev/lazy_ips/raw/master/img/screenshot.png#c" alt="Скриншот программы"></p>
+<p>Когда-то давно я написал программу для Symbian-телефонов применяющую патчи в формате IPS к ROM-файлам игр. Называлась она pySmartIPS и была написана на Python 2.</p>
+<p>В 2012 году на основе ее кода я сделал графическую утилиту для линукса с использованием GTK2.</p>
+<p>Еще через несколько лет мне начали присылать пулл реквесты: программу портировали на Python 3 и добавили возможность применять патчи из консоли, без запуска графического интерфейса. Также я добавил поддержку установки через setup.py</p>
+<p>Скачать программу можно по адресу <a href="https://github.com/btimofeev/lazy_ips">https://github.com/btimofeev/lazy_ips</a></p>
+<p>Для Arch Linux существует пакет в <a href="https://aur.archlinux.org/packages/lazy-ips">AUR</a></p>
       
       
       <div class="related">
@@ -122,13 +125,15 @@
 <h3>Другие статьи в блоге:</h3>
 <ul>
 	
-	<li><a href="/post/sega-mega-drive-fix-checksum/">Sega Mega Drive Fix Checksum</a></li>
+	<li><a href="/post/pass-cli/">Pass - консольный менеджер паролей</a></li>
 	
-	<li><a href="/post/flood-it-game-for-caanoo-and-linux/">Игра flood-it для Caanoo и Linux</a></li>
+	<li><a href="/post/how-to-share-partition-between-users-in-linux/">Как сделать раздел жесткого диска доступным нескольким пользователям</a></li>
 	
-	<li><a href="/post/mount-the-disk-image-via-fuseiso/">Монтируем образ диска через FuseISO</a></li>
+	<li><a href="/post/atool/">atool: простая работа с архивами в Linux</a></li>
 	
-	<li><a href="/post/how-to-restore-windows-mbr-from-linux/">Как восстановить Windows MBR из-под Linux</a></li>
+	<li><a href="/post/command-line-cd-burning/">Запись CD/DVD дисков из консоли</a></li>
+	
+	<li><a href="/post/writing-chip-8-emulator-part-4-kernel/">Пишем эмулятор CHIP-8. Часть 4: Ядро</a></li>
 	
 </ul>
 
