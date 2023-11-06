@@ -122,74 +122,74 @@
 <p>Считываем из памяти по адресу PC двухбайтовый опкод, конструкцией switch-case выбираем его и выполняем (здесь мы должны добиться полного соответствия с эмулируемой платформой: если опкод CHIP-8 присваивает регистру I какое-то значение, то и мы присваиваем его нашей переменной I; если опкод сдвигает изображение на экране на несколько пикселей вправо, то и мы сдвигаем данные в массиве представляющем экран, и т.п.). И не забываем увеличивать значение в регистре PC на 2 (необходимо для выполнения следующего опкода). Конструкция выглядит примерно так:</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#111">opcode</span> <span style="color:#f92672">=</span> <span style="color:#111">memory</span><span style="color:#111">[</span><span style="color:#111">PC</span><span style="color:#111">];</span>
-<span style="color:#111">PC</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span><span style="color:#111">;</span>
-<span style="color:#00a8c8">switch</span><span style="color:#111">(</span><span style="color:#111">opcode</span><span style="color:#111">)</span>
-<span style="color:#111">{</span>
-   <span style="color:#00a8c8">case</span> <span style="color:#111">opcode1</span><span style="color:#111">:</span> <span style="color:#75715e">/** выполняем опкод **/</span><span style="color:#111">;</span> <span style="color:#00a8c8">break</span><span style="color:#111">;</span>
-   <span style="color:#00a8c8">case</span> <span style="color:#111">opcode2</span><span style="color:#111">:</span> <span style="color:#75715e">/** выполняем опкод **/</span><span style="color:#111">;</span> <span style="color:#00a8c8">break</span><span style="color:#111">;</span>
-   <span style="color:#111">..</span>
-   <span style="color:#00a8c8">case</span> <span style="color:#111">opcodeN</span><span style="color:#111">:</span> <span style="color:#75715e">/** выполняем опкод **/</span><span style="color:#111">;</span> <span style="color:#00a8c8">break</span><span style="color:#111">;</span>
-<span style="color:#111">}</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#111">opcode</span> <span style="color:#f92672">=</span> <span style="color:#111">memory</span><span style="color:#111">[</span><span style="color:#111">PC</span><span style="color:#111">];</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">PC</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span><span style="color:#111">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">switch</span><span style="color:#111">(</span><span style="color:#111">opcode</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#00a8c8">case</span> <span style="color:#111">opcode1</span><span style="color:#111">:</span> <span style="color:#75715e">/** выполняем опкод **/</span><span style="color:#111">;</span> <span style="color:#00a8c8">break</span><span style="color:#111">;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#00a8c8">case</span> <span style="color:#111">opcode2</span><span style="color:#111">:</span> <span style="color:#75715e">/** выполняем опкод **/</span><span style="color:#111">;</span> <span style="color:#00a8c8">break</span><span style="color:#111">;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#111">..</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#00a8c8">case</span> <span style="color:#111">opcodeN</span><span style="color:#111">:</span> <span style="color:#75715e">/** выполняем опкод **/</span><span style="color:#111">;</span> <span style="color:#00a8c8">break</span><span style="color:#111">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><ul>
 <li>Обновляем значения таймеров 60 раз в секунду, рисуем экран, считываем состояние клавиатуры и снова выполняем пункт 3.</li>
 </ul>
 <p>Теперь приступим к написанию кода. Создаем файл <strong>emu_chip.h</strong> со следующим содержимым:</p>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#ifndef CHIP_EMU_H
-</span><span style="color:#75715e">#define CHIP_EMU_H
-</span><span style="color:#75715e"></span> 
-<span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span> 
-<span style="color:#00a8c8">class</span> <span style="color:#75af00">ChipEmu</span>
-<span style="color:#111">{</span>
-<span style="color:#00a8c8">private</span><span style="color:#f92672">:</span>
-        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">opcode</span><span style="color:#111">;</span>          <span style="color:#75715e">// двухбайтовый опкод
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">V</span><span style="color:#111">[</span><span style="color:#ae81ff">16</span><span style="color:#111">];</span>            <span style="color:#75715e">// регистры общего назначения и флаг переноса VF  
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">I</span><span style="color:#111">;</span>               <span style="color:#75715e">// адрессный регистр
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">PC</span><span style="color:#111">;</span>              <span style="color:#75715e">// указатель кода
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">SP</span><span style="color:#111">;</span>               <span style="color:#75715e">// указаель стека
-</span><span style="color:#75715e"></span>       
-        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">stack</span><span style="color:#111">[</span><span style="color:#ae81ff">16</span><span style="color:#111">];</span>       <span style="color:#75715e">// массив хранящий в себе стек
-</span><span style="color:#75715e"></span>       
-        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">memory</span><span style="color:#111">[</span><span style="color:#ae81ff">4096</span><span style="color:#111">];</span>     <span style="color:#75715e">// память, в нее загружаем игру
-</span><span style="color:#75715e"></span> 
-        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">delay_timer</span><span style="color:#111">;</span>      <span style="color:#75715e">// таймеры задержки
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">sound_timer</span><span style="color:#111">;</span>      <span style="color:#75715e">// и звука
-</span><span style="color:#75715e"></span> 
-        <span style="color:#75715e">// функция рисующая спрайт в массив screen
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">drawSprite</span><span style="color:#111">(</span><span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">X</span><span style="color:#111">,</span> <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">Y</span><span style="color:#111">,</span> <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">N</span><span style="color:#111">);</span>
- 
-        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">hp48_flags</span><span style="color:#111">[</span><span style="color:#ae81ff">8</span><span style="color:#111">];</span>    <span style="color:#75715e">// флаги, необходимы для опкодов Fx75, Fx85
-</span><span style="color:#75715e"></span> 
-<span style="color:#00a8c8">public</span><span style="color:#f92672">:</span>
-        <span style="color:#00a8c8">int</span> <span style="color:#111">mode</span><span style="color:#111">;</span>                       <span style="color:#75715e">// переменная определяющая текущий режим:
-</span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 0 - CHIP-8
-</span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 1 - SCHIP
-</span><span style="color:#75715e"></span> 
-        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">screen</span><span style="color:#111">[</span><span style="color:#ae81ff">128</span><span style="color:#111">][</span><span style="color:#ae81ff">64</span><span style="color:#111">];</span>  <span style="color:#75715e">// массив представляющий экран
-</span><span style="color:#75715e"></span> 
-        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">key</span><span style="color:#111">[</span><span style="color:#ae81ff">16</span><span style="color:#111">];</span>          <span style="color:#75715e">// массив содержащий состояние клавиатуры:
-</span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 0 - клавиша отпущена
-</span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 1 - клавиша нажата
-</span><span style="color:#75715e"></span> 
-        <span style="color:#00a8c8">bool</span> <span style="color:#111">stop</span><span style="color:#111">;</span>                      <span style="color:#75715e">// переменная для опкода 00FD
-</span><span style="color:#75715e"></span> 
-        <span style="color:#111">ChipEmu</span><span style="color:#111">();</span>
- 
-        <span style="color:#75715e">// инициализация переменных, загрузка шрифтов
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">init</span><span style="color:#111">();</span>
- 
-        <span style="color:#75715e">// функция загрузки игры в память
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">bool</span> <span style="color:#75af00">loadGame</span><span style="color:#111">(</span><span style="color:#00a8c8">const</span> <span style="color:#00a8c8">char</span> <span style="color:#f92672">*</span><span style="color:#111">filename</span><span style="color:#111">);</span>
- 
-        <span style="color:#75715e">// функция выполняющая опкод
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">executeNextOpcode</span><span style="color:#111">();</span>
- 
-        <span style="color:#75715e">// функция уменьшающая значения таймеров
-</span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">decreaseTimers</span><span style="color:#111">();</span>
-<span style="color:#111">};</span>
-<span style="color:#75715e">#endif
-</span></code></pre></div><p>Файл <strong>emu_chip.cpp</strong> я выложил на <a href="http://pastebin.com/iiAz3Hfk">http://pastebin.com/iiAz3Hfk</a> Рассмотрим в нем ключевые моменты.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#ifndef CHIP_EMU_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define CHIP_EMU_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">class</span> <span style="color:#75af00">ChipEmu</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">opcode</span><span style="color:#111">;</span>          <span style="color:#75715e">// двухбайтовый опкод
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">V</span><span style="color:#111">[</span><span style="color:#ae81ff">16</span><span style="color:#111">];</span>            <span style="color:#75715e">// регистры общего назначения и флаг переноса VF  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">I</span><span style="color:#111">;</span>               <span style="color:#75715e">// адрессный регистр
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">PC</span><span style="color:#111">;</span>              <span style="color:#75715e">// указатель кода
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">SP</span><span style="color:#111">;</span>               <span style="color:#75715e">// указаель стека
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">short</span> <span style="color:#111">stack</span><span style="color:#111">[</span><span style="color:#ae81ff">16</span><span style="color:#111">];</span>       <span style="color:#75715e">// массив хранящий в себе стек
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">memory</span><span style="color:#111">[</span><span style="color:#ae81ff">4096</span><span style="color:#111">];</span>     <span style="color:#75715e">// память, в нее загружаем игру
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">delay_timer</span><span style="color:#111">;</span>      <span style="color:#75715e">// таймеры задержки
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">sound_timer</span><span style="color:#111">;</span>      <span style="color:#75715e">// и звука
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// функция рисующая спрайт в массив screen
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">drawSprite</span><span style="color:#111">(</span><span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">X</span><span style="color:#111">,</span> <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">Y</span><span style="color:#111">,</span> <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">N</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">hp48_flags</span><span style="color:#111">[</span><span style="color:#ae81ff">8</span><span style="color:#111">];</span>    <span style="color:#75715e">// флаги, необходимы для опкодов Fx75, Fx85
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">int</span> <span style="color:#111">mode</span><span style="color:#111">;</span>                       <span style="color:#75715e">// переменная определяющая текущий режим:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 0 - CHIP-8
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 1 - SCHIP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">screen</span><span style="color:#111">[</span><span style="color:#ae81ff">128</span><span style="color:#111">][</span><span style="color:#ae81ff">64</span><span style="color:#111">];</span>  <span style="color:#75715e">// массив представляющий экран
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">unsigned</span> <span style="color:#00a8c8">char</span> <span style="color:#111">key</span><span style="color:#111">[</span><span style="color:#ae81ff">16</span><span style="color:#111">];</span>          <span style="color:#75715e">// массив содержащий состояние клавиатуры:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 0 - клавиша отпущена
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                                        <span style="color:#75715e">// 1 - клавиша нажата
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">bool</span> <span style="color:#111">stop</span><span style="color:#111">;</span>                      <span style="color:#75715e">// переменная для опкода 00FD
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#111">ChipEmu</span><span style="color:#111">();</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// инициализация переменных, загрузка шрифтов
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">init</span><span style="color:#111">();</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// функция загрузки игры в память
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">bool</span> <span style="color:#75af00">loadGame</span><span style="color:#111">(</span><span style="color:#00a8c8">const</span> <span style="color:#00a8c8">char</span> <span style="color:#f92672">*</span><span style="color:#111">filename</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// функция выполняющая опкод
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">executeNextOpcode</span><span style="color:#111">();</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// функция уменьшающая значения таймеров
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">void</span> <span style="color:#75af00">decreaseTimers</span><span style="color:#111">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>Файл <strong>emu_chip.cpp</strong> я выложил на <a href="http://pastebin.com/iiAz3Hfk">http://pastebin.com/iiAz3Hfk</a> Рассмотрим в нем ключевые моменты.</p>
 <p>В функции <strong>init()</strong> мы обнуляем регистры, очищаем массивы памяти и экрана, а так же загружаем шрифты: маленький грузим в начало массива памяти, большой со смешением в 80 байт от начала. PC устанавливаем в 0x200, так как игра начинает выполняться с этого адреса.</p>
 <p>Переменная mode нужна для того, что бы функция <strong>drawSprite()</strong> знала в каком режиме ей рисовать спрайты: CHIP-8 или SUPER CHIP. По-умолчанию это режим CHIP-8.</p>
 <p>Функция <strong>loadGame()</strong> загружает игру в массив memory начиная со смещения 0x200, так как по спецификации CHIP-8 код игры должен начинаться с этого адреса.</p>
@@ -274,7 +274,7 @@
 
 <section class="section">
   <div class="container has-text-centered">
-    <p>© 2011-2022, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
+    <p>© 2011-2023, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
     
       <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/ribice/kiss">Kiss</a>.</p>
     

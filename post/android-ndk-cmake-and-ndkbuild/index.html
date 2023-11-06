@@ -114,29 +114,29 @@
 <p>Самым очевидным решением будет использовать <em>CMake</em> по-умолчанию, а <em>ndk-build</em> запускать отдельно. Но я хочу, чтобы не было никаких лишних действий, поэтому в этой статье мы будем использовать возможность <em>Gradle</em> вызывать внешние команды и настроим автоматический запуск <em>ndk-build</em> во время сборки приложения.</p>
 <p>В качестве примера к статье я создал <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild">простейший проект на GitHub</a> содержащий две библиотеки на C: одна со сборочным скриптом <em>CMakeLists.txt</em>, вторая собираемая через <em>Android.mk</em>. Посмотреть их вы можете в директории <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild/tree/main/app/src/main/jni">app/src/main/jni/</a>.</p>
 <p>В файле <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild/blob/main/app/build.gradle">app/build.gradle</a> настраиваем сборку библиотеки через <em>CMake</em> привычным способом:</p>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#111">android</span> <span style="color:#f92672">{</span>
-    <span style="color:#111">defaultConfig</span> <span style="color:#f92672">{</span>
-        <span style="color:#111">ndk</span> <span style="color:#f92672">{</span>
-            <span style="color:#111">abiFilters</span> <span style="color:#d88200">&#39;armeabi-v7a&#39;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#39;arm64-v8a&#39;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#39;x86&#39;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#39;x86_64&#39;</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#111">externalNativeBuild</span> <span style="color:#f92672">{</span>
-        <span style="color:#111">cmake</span> <span style="color:#f92672">{</span>
-            <span style="color:#111">path</span> <span style="color:#d88200">&#34;src/main/jni/cmake/CMakeLists.txt&#34;</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Это позволит нам скомпилировать первую библиотеку через <em>CMake</em> просто запустив сборку приложения. Чтобы собрать вторую библиотеку используя <em>ndk-build</em> напишем в конце файла <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild/blob/main/app/build.gradle">app/build.gradle</a> вот такую задачу:</p>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#111">task</span> <span style="color:#75af00">runNdkBuild</span><span style="color:#f92672">(</span><span style="color:#111">type:</span> <span style="color:#111">Exec</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#00a8c8">def</span> <span style="color:#111">ndkDir</span> <span style="color:#f92672">=</span> <span style="color:#111">android</span><span style="color:#f92672">.</span><span style="color:#75af00">ndkDirectory</span>
-    <span style="color:#111">executable</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;$ndkDir/ndk-build&#34;</span>
-    <span style="color:#111">args</span> <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#d88200">&#39;NDK_PROJECT_PATH=build/intermediates/ndk&#39;</span><span style="color:#f92672">,</span>
-            <span style="color:#d88200">&#39;NDK_LIBS_OUT=src/main/jniLibs&#39;</span><span style="color:#f92672">,</span>
-            <span style="color:#d88200">&#39;APP_BUILD_SCRIPT=src/main/jni/ndkbuild/Android.mk&#39;</span><span style="color:#f92672">,</span>
-            <span style="color:#d88200">&#39;NDK_APPLICATION_MK=src/main/jni/ndkbuild/Application.mk&#39;</span><span style="color:#f92672">]</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Как мы видим эта задача типа <em>Exec</em>, то есть она создана, чтобы запускать внешние команды. Свойству <code>executable</code> мы должны присвоить путь к команде. Для этого в первой строке получаем путь к установленному NDK и добавляем к нему название <em>&quot;/ndk-build&quot;</em>. В свойство <code>args</code> мы передаем массив аргументов для запускаемой команды, рассмотрим их подробнее:</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span><span style="color:#111">android</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">defaultConfig</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">ndk</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">abiFilters</span> <span style="color:#d88200">&#39;armeabi-v7a&#39;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#39;arm64-v8a&#39;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#39;x86&#39;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#39;x86_64&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">externalNativeBuild</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">cmake</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">path</span> <span style="color:#d88200">&#34;src/main/jni/cmake/CMakeLists.txt&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Это позволит нам скомпилировать первую библиотеку через <em>CMake</em> просто запустив сборку приложения. Чтобы собрать вторую библиотеку используя <em>ndk-build</em> напишем в конце файла <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild/blob/main/app/build.gradle">app/build.gradle</a> вот такую задачу:</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span><span style="color:#111">task</span> <span style="color:#75af00">runNdkBuild</span><span style="color:#f92672">(</span><span style="color:#111">type:</span> <span style="color:#111">Exec</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">def</span> <span style="color:#111">ndkDir</span> <span style="color:#f92672">=</span> <span style="color:#111">android</span><span style="color:#f92672">.</span><span style="color:#75af00">ndkDirectory</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">executable</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;$ndkDir/ndk-build&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">args</span> <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#d88200">&#39;NDK_PROJECT_PATH=build/intermediates/ndk&#39;</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#d88200">&#39;NDK_LIBS_OUT=src/main/jniLibs&#39;</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#d88200">&#39;APP_BUILD_SCRIPT=src/main/jni/ndkbuild/Android.mk&#39;</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#d88200">&#39;NDK_APPLICATION_MK=src/main/jni/ndkbuild/Application.mk&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Как мы видим эта задача типа <em>Exec</em>, то есть она создана, чтобы запускать внешние команды. Свойству <code>executable</code> мы должны присвоить путь к команде. Для этого в первой строке получаем путь к установленному NDK и добавляем к нему название <em>&quot;/ndk-build&quot;</em>. В свойство <code>args</code> мы передаем массив аргументов для запускаемой команды, рассмотрим их подробнее:</p>
 <ul>
 <li>
 <p><code>NDK_LIBS_OUT</code> - каталог куда попадут библиотеки после компиляции (здесь мы указываем <em>src/main/jniLibs</em>, потому что библиотеки из этого каталога автоматически попадают в APK после компиляции проекта. Если вам нужно указать здесь другой каталог, то вам также придется переопределить <em>android.sourceSets.main.jniLibs.srcDirs</em>).</p>
@@ -150,8 +150,8 @@
 </ul>
 <p>Теперь можем запустить эту задачу командой <code>gradle runNdkBuild</code>. Если все прошло без ошибок, то вы увидите свежесобранные <em>*.so</em> файлы в каталоге <em>app/src/main/jniLibs</em>.</p>
 <p>Пришло время добавить выполнение этой задачи во время компиляции проекта. Для этого дописываем в конец файла <a href="https://github.com/btimofeev/android_cmake_and_ndkbuild/blob/main/app/build.gradle">app/build.gradle</a> строку:</p>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#111">preBuild</span><span style="color:#f92672">.</span><span style="color:#75af00">dependsOn</span> <span style="color:#111">runNdkBuild</span>
-</code></pre></div><p>Здесь мы указали, что начало сборки проекта зависит от нашей задачи, поэтому <em>ndk-build</em> будет запускаться непосредственно перед сборкой. Можете выполнить <code>gradle clean</code> и <code>gradle build</code>, чтобы убедиться что все собирается как надо.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span><span style="color:#111">preBuild</span><span style="color:#f92672">.</span><span style="color:#75af00">dependsOn</span> <span style="color:#111">runNdkBuild</span>
+</span></span></code></pre></div><p>Здесь мы указали, что начало сборки проекта зависит от нашей задачи, поэтому <em>ndk-build</em> будет запускаться непосредственно перед сборкой. Можете выполнить <code>gradle clean</code> и <code>gradle build</code>, чтобы убедиться что все собирается как надо.</p>
 
       
       
@@ -214,7 +214,7 @@
 
 <section class="section">
   <div class="container has-text-centered">
-    <p>© 2011-2022, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
+    <p>© 2011-2023, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
     
       <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/ribice/kiss">Kiss</a>.</p>
     

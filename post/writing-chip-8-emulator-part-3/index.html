@@ -127,31 +127,31 @@
 ИСХОДНИК - путь к файлу с исходным кодом игры (здесь можно указать несколько файлов).</p>
 <h2 id="рисуем-спрайт-на-экране">Рисуем спрайт на экране</h2>
 <p>Первая программа будет совсем простой - мы нарисуем спрайт рыцаря в центре экрана. (Спрайт я взял вот с <a href="http://8bitcity.blogspot.com/2011/12/pixel-art-tiny-sprites.html">этой</a> страницы).</p>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-TASM" data-lang="TASM"><span style="color:#75af00">OPTION</span> <span style="color:#111">BINARY</span>
-<span style="color:#00a8c8">ALIGN</span> <span style="color:#111">OFF</span>
- 
-        <span style="color:#75af00">ld</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#ae81ff">28</span>      <span style="color:#75715e">;(4)</span>
-        <span style="color:#75af00">ld</span> <span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">10</span>      <span style="color:#75715e">;(5)</span>
-        <span style="color:#75af00">ld</span> <span style="color:#111">I</span><span style="color:#111">,</span><span style="color:#111">sp</span><span style="color:#111">rite</span>   <span style="color:#75715e">;(6)</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>  <span style="color:#75715e">;(7)</span>
-       
-<span style="color:#111">loop:</span>                 <span style="color:#75715e">;(9)</span>
-        <span style="color:#75af00">jp</span> <span style="color:#111">loop</span>       <span style="color:#75715e">;(10)</span>
-       
-<span style="color:#111">sprite:</span>               <span style="color:#75715e">;(12)</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">......1.</span>  <span style="color:#75715e">;(13)</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1.1.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111111</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">.1111...</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111...</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>  <span style="color:#75715e">;(24)</span>
-</code></pre></div><p>Сохраняем данный код в файл с именем <strong>sprite.asm</strong> и компилируем командой:</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-TASM" data-lang="TASM"><span style="display:flex;"><span><span style="color:#75af00">OPTION</span> <span style="color:#111">BINARY</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">ALIGN</span> <span style="color:#111">OFF</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#ae81ff">28</span>      <span style="color:#75715e">;(4)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">10</span>      <span style="color:#75715e">;(5)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">I</span><span style="color:#111">,</span><span style="color:#111">sp</span><span style="color:#111">rite</span>   <span style="color:#75715e">;(6)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>  <span style="color:#75715e">;(7)</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span><span style="color:#111">loop:</span>                 <span style="color:#75715e">;(9)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">jp</span> <span style="color:#111">loop</span>       <span style="color:#75715e">;(10)</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span><span style="color:#111">sprite:</span>               <span style="color:#75715e">;(12)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">......1.</span>  <span style="color:#75715e">;(13)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1.1.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111111</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">.1111...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>  <span style="color:#75715e">;(24)</span>
+</span></span></code></pre></div><p>Сохраняем данный код в файл с именем <strong>sprite.asm</strong> и компилируем командой:</p>
 <pre tabindex="0"><code>chipper sprite.c8 sprite.asm
 </code></pre><p>Запустив sprite.c8 в эмуляторе мы увидим рыцаря.</p>
 <p><img src="../../images/writing-chip-8-emulator-part-3/knight.png#c" alt="Изображение рыцаря в эмуляторе"></p>
@@ -165,73 +165,73 @@
 <p>Начиная от (13) и по (24) строку располагаются 12 байт представляющих спрайт рыцаря. Записаны они в двоичном виде(на что указывает символ $), где символ &ldquo;1&rdquo; обозначает установленный бит, символ &ldquo;.&rdquo; неустановленный (вместо точки можно использовать ноль). Установленные биты рисуются на экране.</p>
 <h2 id="клавиатура-подпрограммы-перерисовка-спрайтов">Клавиатура, подпрограммы, перерисовка спрайтов</h2>
 <p>В следующей программе можно перемещать спрайт по экрану используя клавиатуру.</p>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-TASM" data-lang="TASM"><span style="color:#75af00">OPTION</span> <span style="color:#111">BINARY</span>
-<span style="color:#00a8c8">ALIGN</span> <span style="color:#111">OFF</span>
- 
-        <span style="color:#75af00">ld</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#ae81ff">28</span>
-        <span style="color:#75af00">ld</span> <span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">10</span>
-        <span style="color:#75af00">ld</span> <span style="color:#111">I</span><span style="color:#111">,</span><span style="color:#111">sp</span><span style="color:#111">rite</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;рисуем спрайт в центре экрана</span>
-       
-        <span style="color:#75af00">ld</span> <span style="color:#111">v4</span><span style="color:#111">,</span> <span style="color:#ae81ff">1</span>        <span style="color:#75715e">;регистр v4 будем использовать для изменения координаты на 1 пиксель</span>
- 
-<span style="color:#111">loop:</span>
-        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">2</span>        <span style="color:#75715e">;в регистре v3 сохраняем номер клавиши</span>
-        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>         <span style="color:#75715e">;пропускаем следующую инструкцию если эта клавиша не нажата</span>
-        <span style="color:#75af00">call</span> <span style="color:#111">up</span>         <span style="color:#75715e">;если клавиша оказалась нажата, то вызываем подпрограмму up</span>
-       
-        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">8</span>        <span style="color:#75715e">;остальное подобно предыдущему блоку</span>
-        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>
-        <span style="color:#75af00">call</span> <span style="color:#111">down</span>
-       
-        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">4</span>
-        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>
-        <span style="color:#75af00">call</span> <span style="color:#111">left</span>
-       
-        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">6</span>
-        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>
-        <span style="color:#75af00">call</span> <span style="color:#111">right</span>
-       
-        <span style="color:#75af00">jp</span> <span style="color:#111">loop</span>
-       
-<span style="color:#111">up:</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;стираем спрайт</span>
-        <span style="color:#75af00">sub</span> <span style="color:#111">v1</span><span style="color:#111">,</span> <span style="color:#111">v4</span>      <span style="color:#75715e">;вычисляем новую координату</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;рисуем спрайт на новом месте</span>
-        <span style="color:#75af00">ret</span>             <span style="color:#75715e">;возвращаемся из подпрограммы в место вызова</span>
-       
-<span style="color:#111">down:</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;подобно функции up</span>
-        <span style="color:#75af00">add</span> <span style="color:#111">v1</span><span style="color:#111">,</span> <span style="color:#111">v4</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
-        <span style="color:#75af00">ret</span>
- 
-<span style="color:#111">left:</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
-        <span style="color:#75af00">sub</span> <span style="color:#111">v0</span><span style="color:#111">,</span> <span style="color:#111">v4</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
-        <span style="color:#75af00">ret</span>
-       
-<span style="color:#111">right:</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
-        <span style="color:#75af00">add</span> <span style="color:#111">v0</span><span style="color:#111">,</span> <span style="color:#111">v4</span>
-        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
-        <span style="color:#75af00">ret</span>
-       
-<span style="color:#111">sprite:</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">......1.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1.1.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111111</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">.1111...</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111...</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>
-        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>
-</code></pre></div><p>Все необходимые комментарии есть в коде программы. Хочу упомянуть лишь о том, что графика на экран выводится методом XOR. Это означает, что если в определенной точке экрана нарисован пиксель, и мы рисуем его в этом же месте снова, то пиксель стирается! Таким образом, что бы стереть спрайт с экрана, нам необходимо нарисовать его еще раз в том же самом месте, что мы и делаем в первой строчке функций up, down, left и right.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-TASM" data-lang="TASM"><span style="display:flex;"><span><span style="color:#75af00">OPTION</span> <span style="color:#111">BINARY</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">ALIGN</span> <span style="color:#111">OFF</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#ae81ff">28</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">I</span><span style="color:#111">,</span><span style="color:#111">sp</span><span style="color:#111">rite</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;рисуем спрайт в центре экрана</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">v4</span><span style="color:#111">,</span> <span style="color:#ae81ff">1</span>        <span style="color:#75715e">;регистр v4 будем использовать для изменения координаты на 1 пиксель</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#111">loop:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">2</span>        <span style="color:#75715e">;в регистре v3 сохраняем номер клавиши</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>         <span style="color:#75715e">;пропускаем следующую инструкцию если эта клавиша не нажата</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">call</span> <span style="color:#111">up</span>         <span style="color:#75715e">;если клавиша оказалась нажата, то вызываем подпрограмму up</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">8</span>        <span style="color:#75715e">;остальное подобно предыдущему блоку</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">call</span> <span style="color:#111">down</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">call</span> <span style="color:#111">left</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ld</span> <span style="color:#111">v3</span><span style="color:#111">,</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">sknp</span> <span style="color:#111">v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">call</span> <span style="color:#111">right</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">jp</span> <span style="color:#111">loop</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span><span style="color:#111">up:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;стираем спрайт</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">sub</span> <span style="color:#111">v1</span><span style="color:#111">,</span> <span style="color:#111">v4</span>      <span style="color:#75715e">;вычисляем новую координату</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;рисуем спрайт на новом месте</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ret</span>             <span style="color:#75715e">;возвращаемся из подпрограммы в место вызова</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span><span style="color:#111">down:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>    <span style="color:#75715e">;подобно функции up</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">add</span> <span style="color:#111">v1</span><span style="color:#111">,</span> <span style="color:#111">v4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ret</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#111">left:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">sub</span> <span style="color:#111">v0</span><span style="color:#111">,</span> <span style="color:#111">v4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ret</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span><span style="color:#111">right:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">add</span> <span style="color:#111">v0</span><span style="color:#111">,</span> <span style="color:#111">v4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">drw</span> <span style="color:#111">v0</span><span style="color:#111">,</span><span style="color:#111">v1</span><span style="color:#111">,</span><span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75af00">ret</span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span><span style="color:#111">sprite:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">......1.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1.1.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111.1.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111111</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#ae81ff">11111.1</span><span style="color:#111">.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">.1111...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..111...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">db</span> <span style="color:#00a8c8">$</span><span style="color:#111">..1.1...</span>
+</span></span></code></pre></div><p>Все необходимые комментарии есть в коде программы. Хочу упомянуть лишь о том, что графика на экран выводится методом XOR. Это означает, что если в определенной точке экрана нарисован пиксель, и мы рисуем его в этом же месте снова, то пиксель стирается! Таким образом, что бы стереть спрайт с экрана, нам необходимо нарисовать его еще раз в том же самом месте, что мы и делаем в первой строчке функций up, down, left и right.</p>
 <h2 id="заготовка-для-небольшой-игры">Заготовка для небольшой игры</h2>
 <p>В следующей программе я реализовал небольшую заготовку для игры наподобие Space Invaders. В ней инопланетный захватчик перемещается вправо-влево. Нажимая клавиши 4 и 6 мы так же можем перемещать наш корабль. Но стрелять наш корабль пока не умеет, я думаю вы сможете сами написать код для реализации стрельбы, если захотите.</p>
 <p><img src="../../images/writing-chip-8-emulator-part-3/space-invaders.png#c" alt="Изображение space invaders"></p>
@@ -300,7 +300,7 @@
 
 <section class="section">
   <div class="container has-text-centered">
-    <p>© 2011-2022, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
+    <p>© 2011-2023, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
     
       <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/ribice/kiss">Kiss</a>.</p>
     
