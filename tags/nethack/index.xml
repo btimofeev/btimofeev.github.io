@@ -1,39 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>nethack on Emunix</title>
+    <title>Nethack on Emunix</title>
     <link>https://emunix.org/tags/nethack/</link>
-    <description>Recent content in nethack on Emunix</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Nethack on Emunix</description>
+    <generator>Hugo</generator>
     <language>ru</language>
-    <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 29 Feb 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/nethack/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2011-2025, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 29 Feb 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://emunix.org/tags/nethack/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NetHack: Питьё и погружение предметов в фонтаны</title>
       <link>https://emunix.org/post/nethack-foun/</link>
       <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/nethack-foun/</guid>
       <description>Перевод на русский язык спойлера о фонтанах для игры NetHack</description>
     </item>
-    
     <item>
       <title>NetHack: Амулеты и их свойства</title>
       <link>https://emunix.org/post/nethack-amul/</link>
       <pubDate>Sat, 27 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/nethack-amul/</guid>
       <description>Перевод на русский язык спойлера о амулетах для игры NetHack</description>
     </item>
-    
     <item>
       <title>NetHack: Раковины, питьё из них и пинание</title>
       <link>https://emunix.org/post/nethack-sink/</link>
       <pubDate>Mon, 22 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/nethack-sink/</guid>
       <description>Перевод на русский язык спойлера о раковинах для игры NetHack</description>
     </item>
-    
   </channel>
 </rss>

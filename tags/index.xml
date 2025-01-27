@@ -4,153 +4,122 @@
     <title>Tags on Emunix</title>
     <link>https://emunix.org/tags/</link>
     <description>Recent content in Tags on Emunix</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ru</language>
-    <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2011-2025, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://emunix.org/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>emulation</title>
+      <title>Emulation</title>
       <link>https://emunix.org/tags/emulation/</link>
       <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/emulation/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>linux</title>
+      <title>Linux</title>
       <link>https://emunix.org/tags/linux/</link>
       <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/linux/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>patcher</title>
+      <title>Patcher</title>
       <link>https://emunix.org/tags/patcher/</link>
       <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/patcher/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>android</title>
+      <title>Android</title>
       <link>https://emunix.org/tags/android/</link>
       <pubDate>Thu, 08 Oct 2020 19:15:30 +0300</pubDate>
-      
       <guid>https://emunix.org/tags/android/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>dev</title>
+      <title>Dev</title>
       <link>https://emunix.org/tags/dev/</link>
       <pubDate>Thu, 08 Oct 2020 19:15:30 +0300</pubDate>
-      
       <guid>https://emunix.org/tags/dev/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>cli</title>
+      <title>Cli</title>
       <link>https://emunix.org/tags/cli/</link>
       <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/cli/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>git</title>
+      <title>Git</title>
       <link>https://emunix.org/tags/git/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/git/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>playstation</title>
+      <title>Playstation</title>
       <link>https://emunix.org/tags/playstation/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/playstation/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>game</title>
+      <title>Game</title>
       <link>https://emunix.org/tags/game/</link>
       <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/game/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>nethack</title>
+      <title>Nethack</title>
       <link>https://emunix.org/tags/nethack/</link>
       <pubDate>Mon, 29 Feb 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/nethack/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>java</title>
+      <title>Java</title>
       <link>https://emunix.org/tags/java/</link>
       <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/java/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>cd</title>
+      <title>Cd</title>
       <link>https://emunix.org/tags/cd/</link>
       <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/cd/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>caanoo</title>
+      <title>Caanoo</title>
       <link>https://emunix.org/tags/caanoo/</link>
       <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/caanoo/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>wi-fi</title>
+      <title>Wi-Fi</title>
       <link>https://emunix.org/tags/wi-fi/</link>
       <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/wi-fi/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>mbr</title>
+      <title>Mbr</title>
       <link>https://emunix.org/tags/mbr/</link>
       <pubDate>Thu, 03 Nov 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/mbr/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>windows</title>
+      <title>Windows</title>
       <link>https://emunix.org/tags/windows/</link>
       <pubDate>Thu, 03 Nov 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/tags/windows/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

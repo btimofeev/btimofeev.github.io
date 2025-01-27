@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cd on Emunix</title>
+    <title>Cd on Emunix</title>
     <link>https://emunix.org/tags/cd/</link>
-    <description>Recent content in cd on Emunix</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Cd on Emunix</description>
+    <generator>Hugo</generator>
     <language>ru</language>
-    <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 01 Dec 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/cd/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2011-2025, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 01 Dec 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://emunix.org/tags/cd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Запись CD/DVD дисков из консоли</title>
       <link>https://emunix.org/post/command-line-cd-burning/</link>
       <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/command-line-cd-burning/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Монтируем образ диска через FuseISO</title>
       <link>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</link>
       <pubDate>Thu, 08 Dec 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</guid>
       <description>&lt;p&gt;&lt;strong&gt;FuseISO&lt;/strong&gt; это программа для монтирования образов дисков в форматах &lt;em&gt;.iso&lt;/em&gt;, &lt;em&gt;.nrg&lt;/em&gt;, &lt;em&gt;.bin&lt;/em&gt;, &lt;em&gt;.mdf&lt;/em&gt; и &lt;em&gt;.img&lt;/em&gt;. Для работы не нужны привилегии root&amp;rsquo;а.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

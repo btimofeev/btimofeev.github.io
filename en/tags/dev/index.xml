@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>dev on Emunix</title>
+    <title>Dev on Emunix</title>
     <link>https://emunix.org/en/tags/dev/</link>
-    <description>Recent content in dev on Emunix</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Dev on Emunix</description>
+    <generator>Hugo</generator>
     <language>en</language>
     <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Boris Timofeev&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 08 Oct 2020 19:15:30 +0300</lastBuildDate><atom:link href="https://emunix.org/en/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Oct 2020 19:15:30 +0300</lastBuildDate>
+    <atom:link href="https://emunix.org/en/tags/dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Android NDK: How to use CMake and ndk-build together in one project</title>
       <link>https://emunix.org/en/post/android-ndk-cmake-and-ndkbuild/</link>
       <pubDate>Thu, 08 Oct 2020 19:15:30 +0300</pubDate>
-      
       <guid>https://emunix.org/en/post/android-ndk-cmake-and-ndkbuild/</guid>
       <description>Android NDK currently provides us with at least two ways to build native libraries: CMake and ndk-build. But if you specify two paths to the build scripts CMakeLists.txt and Android.mk in the build.gradle file, then Gradle will show an error &amp;lsquo;More than one externalNativeBuild path specified&amp;rsquo; and will not compile anything. I will show one of the possible ways to solve this problem.</description>
     </item>
-    
   </channel>
 </rss>

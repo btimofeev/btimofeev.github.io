@@ -13,7 +13,7 @@
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/46a988cbbb8ce4261171971429c45420?s=256'><meta property='article:section' content='Post'><meta property='article:tag' content='linux'><meta property='article:tag' content='cli'><meta property='article:published_time' content='2017-09-12T00:00:00Z'><meta property='article:modified_time' content='2017-09-12T00:00:00Z'><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@btimofeev'><meta name='twitter:creator' content='@btimofeev'>
 
 
-<link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix">
+
 
 <link rel="stylesheet" href="/css/style.css"><link rel='stylesheet' href='https://emunix.org/css/custom.css'>
 
@@ -100,12 +100,9 @@
 
       
     </div>
-    <h2 class="subtitle is-6">12
-
-  сентября
-
-2017
-</h2>
+    
+    <h2 class="subtitle is-6">September 12, 2017</h2>
+    
     <h1 class="title">Как сделать раздел жесткого диска доступным нескольким пользователям</h1>
     
     <div class="content">
@@ -131,7 +128,6 @@ sudo chmod g+s /mnt/data
 </code></pre><p>Последней командой мы выставляем бит <strong>setgid</strong> для директории. Данный бит нужен для того, что бы создаваемые в директории файлы наследовали группу этой директирии, вместо группы пользователя создавшего файл. Таким образом все новые файлы будут принадлежать группе <em>users</em> и пользователи смогут совместно работать с ними. Все создаваемые поддиректории также будут автоматически получать бит <strong>setgid</strong>.</p>
 <p>Теперь можете смонтировать директорию (<code>sudo mount -a</code>) и начинать работать с расшареным диском. Хочу отметить, что всё вышесказанное подходит не только для создания общедоступных дисков, но и для совершенно любой директории на существующем диске (просто включите директорию в необходимую группу и установите бит <strong>setgid</strong>).</p>
       
-      
       <div class="related">
 
 <h3>Другие статьи в блоге:</h3>
@@ -152,6 +148,7 @@ sudo chmod g+s /mnt/data
 </div>
       
     </div>
+    
   </div>
 </section>
 
@@ -191,7 +188,7 @@ sudo chmod g+s /mnt/data
 
 <section class="section">
   <div class="container has-text-centered">
-    <p>© 2011-2023, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
+    <p>© 2011-2025, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
     
       <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/ribice/kiss">Kiss</a>.</p>
     
@@ -199,18 +196,6 @@ sudo chmod g+s /mnt/data
 </section>
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-28744527-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
 
 
 

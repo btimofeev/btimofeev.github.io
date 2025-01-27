@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>git on Emunix</title>
+    <title>Git on Emunix</title>
     <link>https://emunix.org/tags/git/</link>
-    <description>Recent content in git on Emunix</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Git on Emunix</description>
+    <generator>Hugo</generator>
     <language>ru</language>
-    <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2011-2025, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://emunix.org/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git: удаление неотслеживаемых файлов</title>
       <link>https://emunix.org/post/git-clean-untracked-files/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/git-clean-untracked-files/</guid>
       <description>&lt;p&gt;Для удаления неотслеживаемых файлов в Git имеется специальная команда &lt;em&gt;git clean&lt;/em&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Git: обновление ветки до актуального состояния</title>
       <link>https://emunix.org/post/git-rebase/</link>
       <pubDate>Fri, 11 Mar 2016 19:56:51 +0300</pubDate>
-      
       <guid>https://emunix.org/post/git-rebase/</guid>
       <description>&lt;p&gt;Если в ветке &lt;em&gt;master&lt;/em&gt; появились новые коммиты и вы хотите обновить свою ветку до её состояния, то проще всего это сделать так:&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

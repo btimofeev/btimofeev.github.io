@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>playstation on Emunix</title>
+    <title>Playstation on Emunix</title>
     <link>https://emunix.org/tags/playstation/</link>
-    <description>Recent content in playstation on Emunix</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Playstation on Emunix</description>
+    <generator>Hugo</generator>
     <language>ru</language>
-    <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 26 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/playstation/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2011-2025, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
+    <lastBuildDate>Sun, 26 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://emunix.org/tags/playstation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Как подключить DualShock 4 к Android</title>
       <link>https://emunix.org/post/how-to-connect-dualshock-to-android/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/how-to-connect-dualshock-to-android/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://emunix.org/images/how-to-connect-dualshock-to-android/promo.jpg#c&#34; alt=&#34;Картинка для привлечения внимания&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Множество android-игр и эмуляторов (таких как RetroArch) поддерживают не только управление тачпадом, но и управление с помощью геймпада, подключенного через Bluetooth. И если у вас уже есть контроллер от Sony PlayStation 4, то вы можете подключить его к телефону, вместо покупки специализированного геймпада.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://emunix.org/images/how-to-connect-dualshock-to-android/promo.jpg#c&#34; alt=&#34;Картинка для привлечения внимания&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Множество android-игр и эмуляторов (таких как RetroArch) поддерживают не только управление тачпадом, но и управление с помощью геймпада, подключенного через Bluetooth. И если у вас уже есть контроллер от Sony PlayStation 4, то вы можете подключить его к телефону, вместо покупки специализированного геймпада.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

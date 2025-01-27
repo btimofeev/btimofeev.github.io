@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>caanoo on Emunix</title>
+    <title>Caanoo on Emunix</title>
     <link>https://emunix.org/tags/caanoo/</link>
-    <description>Recent content in caanoo on Emunix</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Caanoo on Emunix</description>
+    <generator>Hugo</generator>
     <language>ru</language>
-    <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 02 Feb 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/caanoo/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2011-2025, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 02 Feb 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://emunix.org/tags/caanoo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Передача файлов на Caanoo через Wi-Fi</title>
       <link>https://emunix.org/post/transfer-files-to-caanoo-via-wifi/</link>
       <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/transfer-files-to-caanoo-via-wifi/</guid>
       <description>&lt;p&gt;В этой заметке я опишу способ передачи файлов на Caanoo через Wi-Fi.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Игра flood-it для Caanoo и Linux</title>
       <link>https://emunix.org/post/flood-it-game-for-caanoo-and-linux/</link>
       <pubDate>Mon, 30 Jan 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/flood-it-game-for-caanoo-and-linux/</guid>
       <description>&lt;p&gt;За два дня написал свою первую игру на SDL. Это клон игры flood-it.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

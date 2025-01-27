@@ -13,7 +13,7 @@
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/46a988cbbb8ce4261171971429c45420?s=256'><meta property='article:section' content='Post'><meta property='article:tag' content='android'><meta property='article:tag' content='dev'><meta property='article:published_time' content='2013-07-31T00:00:00Z'><meta property='article:modified_time' content='2013-07-31T00:00:00Z'><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@btimofeev'><meta name='twitter:creator' content='@btimofeev'>
 
 
-<link href="https://emunix.org/index.xml" rel="alternate" type="application/rss+xml" title="Emunix">
+
 
 <link rel="stylesheet" href="/css/style.css"><link rel='stylesheet' href='https://emunix.org/css/custom.css'>
 
@@ -100,12 +100,9 @@
 
       
     </div>
-    <h2 class="subtitle is-6">31
-
-  июля
-
-2013
-</h2>
+    
+    <h2 class="subtitle is-6">July 31, 2013</h2>
+    
     <h1 class="title">Тёмная сторона AsyncTask</h1>
     
     <div class="content">
@@ -126,8 +123,8 @@
 <p>Еще одной проблемой является то, что мы потеряем результаты выполнения AsyncTask если наша Activity будет пересоздана. Например, это происходит при повороте экрана. Activity будет уничтожена и создана заново, но наш AsyncTask теперь будет иметь недействительную ссылку на эту Activity, поэтому <em>onPostExecute()</em> не будет иметь никакого эффекта. Существует решение этой проблемы. Вы можете сохранять ссылку на AsyncTask во время изменения конфигурации (например, используя global holder в объекте Application). <em>Activity.onRetainNonConfigurationInstance()</em> и <em>Fragment.setRetainedInstance(true)</em> также могут помочь вам в этом случае.</p>
 <h3 id="последовательно-или-параллельно">Последовательно или параллельно?</h3>
 <p>Существует много путаницы в том, как работают несколько AsyncTask: последовательно или параллельно. Всё дело в том, что его поведение было изменено несколько раз. Что я имею в виду под словами <em>&ldquo;работают последовательно или параллельно&rdquo;</em>? Предположим, где-то в коде у вас есть следующие строки:</p>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a8c8">new</span> <span style="color:#111">AsyncTask1</span><span style="color:#f92672">().</span><span style="color:#75af00">execute</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#00a8c8">new</span> <span style="color:#111">AsyncTask2</span><span style="color:#f92672">().</span><span style="color:#75af00">execute</span><span style="color:#f92672">();</span>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a8c8">new</span> <span style="color:#111">AsyncTask1</span><span style="color:#111">().</span><span style="color:#75af00">execute</span><span style="color:#111">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">new</span> <span style="color:#111">AsyncTask2</span><span style="color:#111">().</span><span style="color:#75af00">execute</span><span style="color:#111">();</span>
 </span></span></code></pre></div><p><strong>Будут ли эти две задачи выполняться одновременно или AsyncTask2 запустится после завершения работы AsyncTask1?</strong><br>
 <strong>Краткий ответ:</strong> это зависит от версии API.</p>
 <h4 id="до-api-версии-16-donut">До API версии 1.6 (Donut):</h4>
@@ -137,18 +134,17 @@
 <h4 id="с-api-версии-30-honeycomb-по-настоящее-время">С API версии 3.0 (Honeycomb) по настоящее время</h4>
 <p>&ldquo;М-да, разработчики, кажется, не пользуются этим? Давайте вернём всё как было.&rdquo; AsyncTask&rsquo;и снова выполняются последовательно. Конечно, разработчики Android предоставили возможность выполнять задачи параллельно. Это делается методом <em>executeOnExecutor(Executor)</em>. Смотрите документацию для получения дополнительной информации по этому методу.</p>
 <p>Если мы хотим быть уверены, что наши задачи выполняются параллельно, можно использовать следующий код:</p>
-<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">execute</span><span style="color:#f92672">(</span><span style="color:#111">AsyncTask</span> <span style="color:#111">as</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">Build</span><span style="color:#f92672">.</span><span style="color:#75af00">VERSION</span><span style="color:#f92672">.</span><span style="color:#75af00">SDK_INT</span> <span style="color:#f92672">&lt;=</span> <span style="color:#111">Build</span><span style="color:#f92672">.</span><span style="color:#75af00">VERSION_CODES</span><span style="color:#f92672">.</span><span style="color:#75af00">HONEYCOMB_MR1</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#111">as</span><span style="color:#f92672">.</span><span style="color:#75af00">execute</span><span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span> <span style="color:#00a8c8">else</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  		<span style="color:#111">as</span><span style="color:#f92672">.</span><span style="color:#75af00">executeOnExecutor</span><span style="color:#f92672">(</span><span style="color:#111">AsyncTask</span><span style="color:#f92672">.</span><span style="color:#75af00">THREAD_POOL_EXECUTOR</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">execute</span><span style="color:#111">(</span><span style="color:#111">AsyncTask</span> <span style="color:#111">as</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">if</span> <span style="color:#111">(</span><span style="color:#111">Build</span><span style="color:#111">.</span><span style="color:#75af00">VERSION</span><span style="color:#111">.</span><span style="color:#75af00">SDK_INT</span> <span style="color:#f92672">&lt;=</span> <span style="color:#111">Build</span><span style="color:#111">.</span><span style="color:#75af00">VERSION_CODES</span><span style="color:#111">.</span><span style="color:#75af00">HONEYCOMB_MR1</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">as</span><span style="color:#111">.</span><span style="color:#75af00">execute</span><span style="color:#111">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">}</span> <span style="color:#00a8c8">else</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>  		<span style="color:#111">as</span><span style="color:#111">.</span><span style="color:#75af00">executeOnExecutor</span><span style="color:#111">(</span><span style="color:#111">AsyncTask</span><span style="color:#111">.</span><span style="color:#75af00">THREAD_POOL_EXECUTOR</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
 </span></span></code></pre></div><p>(Этот код не работает для API версий от 1 до 3)</p>
 <h3 id="нужен-ли-нам-asynctask">Нужен ли нам AsyncTask?</h3>
 <p>Не всегда. AsyncTask это простой способ выполнения фоновых задач без необходимости писать много кода, но как вы могли увидеть, если мы хотим чтобы все хорошо работало мы должны помнить о многих &ldquo;подводных камнях&rdquo;. Другой способ асинхронной загрузки данных это использовние класса <a href="http://developer.android.com/guide/components/loaders.html">Loaders</a>. Он был введен в Android 3.0 (Honeycomb), а также доступен в <em>Android Support Library</em>. Смотрите документацию для получения дополнительной информации. Возможно, в ближайшем будущем, я напишу статью о том, как использовать Loaders, так что не забудьте зайти на мой блог позже (или на мой сайт <a href="http://www.bon-app-etit.com">www.bon-app-etit.com</a>).</p>
 
-      
       
       <div class="related">
 
@@ -168,6 +164,7 @@
 </div>
       
     </div>
+    
   </div>
 </section>
 
@@ -207,7 +204,7 @@
 
 <section class="section">
   <div class="container has-text-centered">
-    <p>© 2011-2023, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
+    <p>© 2011-2025, <a href="mailto:btimofeev@emunix.org">Борис Тимофеев</a></p>
     
       <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/ribice/kiss">Kiss</a>.</p>
     
@@ -215,18 +212,6 @@
 </section>
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-28744527-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
 
 
 

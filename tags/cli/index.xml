@@ -1,67 +1,55 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cli on Emunix</title>
+    <title>Cli on Emunix</title>
     <link>https://emunix.org/tags/cli/</link>
-    <description>Recent content in cli on Emunix</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Cli on Emunix</description>
+    <generator>Hugo</generator>
     <language>ru</language>
-    <copyright>© 2011-2023, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 31 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://emunix.org/tags/cli/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2011-2025, &lt;a href=&#34;mailto:btimofeev@emunix.org&#34;&gt;Борис Тимофеев&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 31 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://emunix.org/tags/cli/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pass - консольный менеджер паролей</title>
       <link>https://emunix.org/post/pass-cli/</link>
       <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/pass-cli/</guid>
       <description>Pass - это небольшой, но достаточно мощный консольный менеджер паролей. Если вы не хотите доверять ваши пароли проприетарному программному обеспечению, любите консоль и unix-way, то эта программа для вас.</description>
     </item>
-    
     <item>
       <title>Как сделать раздел жесткого диска доступным нескольким пользователям</title>
       <link>https://emunix.org/post/how-to-share-partition-between-users-in-linux/</link>
       <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/how-to-share-partition-between-users-in-linux/</guid>
       <description>&lt;p&gt;Данная заметка написана для начинающих пользователей Linux. В ней описывается как примонтировать раздел жесткого диска таким образом, что бы у нескольких пользователей в системе были права на доступ к файлам (на чтение и запись).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>atool: простая работа с архивами в Linux</title>
       <link>https://emunix.org/post/atool/</link>
       <pubDate>Thu, 24 Mar 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/atool/</guid>
-      <description>&lt;p&gt;При работе с архивами в командной строке Linux есть одно неудобство: у каждой программы-архиватора свой набор ключей, который необходимо помнить, либо постоянно заглядывать в man.&lt;/p&gt;
-&lt;p&gt;Эта проблема легко решается, если использовать утилиту &lt;strong&gt;atool&lt;/strong&gt;, т.к. с ее помощью вы сможете работать с любым форматом архивов.&lt;/p&gt;</description>
+      <description>&lt;p&gt;При работе с архивами в командной строке Linux есть одно неудобство: у каждой программы-архиватора свой набор ключей, который необходимо помнить, либо постоянно заглядывать в man.&lt;/p&gt;&#xA;&lt;p&gt;Эта проблема легко решается, если использовать утилиту &lt;strong&gt;atool&lt;/strong&gt;, т.к. с ее помощью вы сможете работать с любым форматом архивов.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Запись CD/DVD дисков из консоли</title>
       <link>https://emunix.org/post/command-line-cd-burning/</link>
       <pubDate>Sat, 01 Dec 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/command-line-cd-burning/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Монтируем образ диска через FuseISO</title>
       <link>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</link>
       <pubDate>Thu, 08 Dec 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/mount-the-disk-image-via-fuseiso/</guid>
       <description>&lt;p&gt;&lt;strong&gt;FuseISO&lt;/strong&gt; это программа для монтирования образов дисков в форматах &lt;em&gt;.iso&lt;/em&gt;, &lt;em&gt;.nrg&lt;/em&gt;, &lt;em&gt;.bin&lt;/em&gt;, &lt;em&gt;.mdf&lt;/em&gt; и &lt;em&gt;.img&lt;/em&gt;. Для работы не нужны привилегии root&amp;rsquo;а.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Как восстановить Windows MBR из-под Linux</title>
       <link>https://emunix.org/post/how-to-restore-windows-mbr-from-linux/</link>
       <pubDate>Thu, 03 Nov 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://emunix.org/post/how-to-restore-windows-mbr-from-linux/</guid>
       <description>Что делать если у вас слетел загрузчик Windows? Есть решение..</description>
     </item>
-    
   </channel>
 </rss>
